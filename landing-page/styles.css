@@ -1,14 +1,22 @@
 
 * {
-    --darkAccent: rgb(41, 36, 101);
+    --darkPurple: #313960;
+    --accentTan: #92746E;
+
+    --lightGray: #d7dbdc;
+    --mediumGray: #bec5c7;
     margin: 0;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+h1 {
+    font-size: 48px;
+}
+
 .header {
     
-    background-color: var(--darkAccent);
-    color: white;
+    background-color: var(--darkPurple);
+    color: var(--lightGray);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,10 +31,13 @@
 .body {
     display: flex;
     flex-direction: column;
+    background-color: var(--lightGray);
+    color: var(--darkPurple);
 }
 
 .hero {
-    background-color: rgb(199, 194, 255);
+    background-color: var(--darkPurple);
+    color: var(--lightGray);
     padding: 80px 200px;
 }
 
@@ -42,7 +53,7 @@
 }
 
 .heroImage {
-    background-color: gray;
+    background-color: var(--lightGray);
     width: 100%;
     height: auto;
 }
@@ -52,7 +63,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 32px;
 }
 
 .info h2 {
@@ -79,7 +90,8 @@
 }
 
 .quote {
-    background-color: lightblue;
+    background-color: var(--mediumGray);
+    color: var(--darkPurple);
     padding: 80px 400px;
 }
 
@@ -99,7 +111,8 @@
 }
 
 .actionWidget {
-    background-color: lightblue;
+    background-color: var(--accentTan);
+    color: var(--lightGray);
     border-radius: 20px;
     padding: 40px 160px;
     display: flex;
@@ -116,6 +129,6 @@
     padding: 20px 200px;
     display: flex;
     justify-content: center;
-    background-color: var(--darkAccent);
+    background-color: var(--darkPurple);
     color: white;
 }
