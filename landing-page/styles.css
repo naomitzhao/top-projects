@@ -1,0 +1,325 @@
+
+* {
+    --darkPurple: #313960;
+    --accentTan: #92746E;
+
+    --lightGray: #d7dbdc;
+    --mediumGray: #bec5c7;
+
+    --aqua: #38dbed;
+    margin: 0;
+    padding: 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    font-size: 20px; 
+}
+
+a {
+    color: var(--aqua);
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 72px;
+}
+
+h2 {
+    font-size: 48px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+.header {
+    background-color: var(--darkPurple);
+    color: var(--lightGray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 100px;
+}
+
+.textLogo {
+    height: 10vh;
+    width: auto;
+}
+
+.headerLinks {
+    display: flex;
+    gap: 40px;
+    list-style-type: none;
+}
+
+.headerLinks li a {
+    color: var(--lightGray)
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--lightGray);
+    color: var(--darkPurple);
+}
+
+.hero {
+    background-color: var(--darkPurple);
+    color: var(--lightGray);
+    padding: 80px 200px;
+    display: flex;
+    gap: 50px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.heroText {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.styledButton {
+    background-color: var(--lightGray);
+    padding: 12px 24px;
+    border: none;
+    border-radius: 20px;
+}
+
+.cypherLogo {
+    height: 30vh;
+    aspect-ratio: 1.5;
+}
+
+.info {
+    padding: 80px 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+.info h2 {
+    text-align: center;
+}
+
+.cardContainer {
+    display: flex;
+    gap: 40px;
+}
+
+.cardContainerlets {
+    display: flex;
+    gap: 40px;
+}
+
+.cardContainerLets div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.cardImage {
+    height: 25vh;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.cardText {
+    font-size: 24px;
+}
+
+.quote {
+    background-color: var(--mediumGray);
+    color: var(--darkPurple);
+    padding: 80px 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quoteContent {
+    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.quoteText {
+    font-style: italic;
+    font-size: 40px;
+}
+
+.quoteName {
+    font-size: 30px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.action {
+    padding: 80px 200px;
+}
+
+.actionWidget {
+    background-color: var(--accentTan);
+    color: var(--lightGray);
+    border-radius: 20px;
+    padding: 40px 160px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.actionWidget.styledButton {
+    color: var(--accentTan);
+}
+
+.actionText {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer {
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--darkPurple);
+    color: var(--lightGray);
+}
+
+.footerText {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+.githubLink {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
+.footerLists {
+    display: flex;
+    gap: 32px;
+}
+
+.footerLinkList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footerLinkList ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.footerLinkList ul li a {
+    color: var(--aqua);
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1000px) {
+    .actionWidget {
+        padding: 40px 80px;
+    }
+    .cardContainer {
+        flex-direction: column;
+    }
+    .footer {
+        padding: 20px 50px;
+        flex-direction: column;
+        gap: 32px;
+    }
+    .footer .textLogo {
+        width: 20%;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 840px) {
+    * {
+        font-size: 16px;
+    }
+    
+    h1 {
+        font-size: 60px;
+    }
+    .hero {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+    }
+    .heroText{
+        align-items: center;
+    }
+    .cypherLogo {
+        width: 50%;
+        height: auto;
+    }
+    .hero, .quote, .info, .action {
+        padding: 40px 100px;
+    }
+    .header {
+        padding: 20px 50px;
+    }
+    
+    .actionWidget {
+        padding: 20px 40px;
+    }
+    .quoteText {
+        font-size: 30px;
+    }
+    .quoteName {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .cardImage {
+        width: 100%;
+        height: auto;
+    }
+    h1 {
+        font-size: 48px;
+    }
+    h2 {
+        font-size: 36px;
+    }
+    .quoteText {
+        font-size: 20px;
+    }
+    .quoteName {
+        font-size: 16px;
+    }
+    .headerLinks {
+        gap: 8px;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    * {
+        font-size: 24px;
+    }
+    h1 {
+        font-size: 84px;
+    }
+    h2 {
+        font-size: 60px;
+    }
+    h3 {
+        font-size: 36px;
+    }
+    .actionWidget {
+        padding: 80px 160px;
+        justify-content: space-around;
+    }
+}
