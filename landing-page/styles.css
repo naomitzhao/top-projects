@@ -5,10 +5,18 @@
 
     --lightGray: #d7dbdc;
     --mediumGray: #bec5c7;
+
+    --aqua: #38dbed;
     margin: 0;
+    padding: 0;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
-    font-size: 20px;
+    font-size: 20px; 
+}
+
+a {
+    color: var(--aqua);
+    text-decoration: none;
 }
 
 h1 {
@@ -21,10 +29,10 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 200px;
+    padding: 20px 100px;
 }
 
-.headerLogo {
+.textLogo {
     height: 10vh;
     width: auto;
 }
@@ -32,6 +40,11 @@ h1 {
 .headerLinks {
     display: flex;
     gap: 40px;
+    list-style-type: none;
+}
+
+.headerLinks li a {
+    color: var(--lightGray)
 }
 
 .body {
@@ -143,9 +156,46 @@ h1 {
 }
 
 .footer {
-    padding: 20px 200px;
+    padding: 20px 100px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     background-color: var(--darkPurple);
-    color: white;
+    color: var(--lightGray);
+}
+
+.footerText {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+.githubLink {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
+.footerLists {
+    display: flex;
+    gap: 32px;
+}
+
+.footerLinkList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footerLinkList ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.footerLinkList ul li a {
+    color: var(--aqua);
+    text-decoration: none;
 }
