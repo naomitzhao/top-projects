@@ -23,6 +23,14 @@ h1 {
     font-size: 72px;
 }
 
+h2 {
+    font-size: 48px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
 .header {
     background-color: var(--darkPurple);
     color: var(--lightGray);
@@ -109,16 +117,30 @@ h1 {
 }
 
 .cardImage {
-    padding: 100px;
-    background-color: gray;
-    border: solid 2px black;
-    border-radius: 10px;
+    height: 25vh;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.cardText {
+    font-size: 24px;
 }
 
 .quote {
     background-color: var(--mediumGray);
     color: var(--darkPurple);
     padding: 80px 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quoteContent {
+    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .quoteText {
