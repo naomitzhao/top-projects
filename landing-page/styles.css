@@ -66,11 +66,10 @@ h3 {
     background-color: var(--darkPurple);
     color: var(--lightGray);
     padding: 80px 200px;
-}
-
-.heroContent {
     display: flex;
-    gap: 100px;
+    gap: 50px;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .heroText {
@@ -88,8 +87,8 @@ h3 {
 }
 
 .cypherLogo {
-    height: 25vh;
-    width: auto;
+    height: 30vh;
+    aspect-ratio: 1.5;
 }
 
 .info {
@@ -109,7 +108,12 @@ h3 {
     gap: 40px;
 }
 
-.cardContainer div {
+.cardContainerlets {
+    display: flex;
+    gap: 40px;
+}
+
+.cardContainerLets div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -165,6 +169,7 @@ h3 {
     padding: 40px 160px;
     display: flex;
     justify-content: space-between;
+    gap: 40px;
 }
 
 .actionWidget.styledButton {
@@ -220,4 +225,101 @@ h3 {
 .footerLinkList ul li a {
     color: var(--aqua);
     text-decoration: none;
+}
+
+@media screen and (max-width: 1000px) {
+    .actionWidget {
+        padding: 40px 80px;
+    }
+    .cardContainer {
+        flex-direction: column;
+    }
+    .footer {
+        padding: 20px 50px;
+        flex-direction: column;
+        gap: 32px;
+    }
+    .footer .textLogo {
+        width: 20%;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 840px) {
+    * {
+        font-size: 16px;
+    }
+    
+    h1 {
+        font-size: 60px;
+    }
+    .hero {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+    }
+    .heroText{
+        align-items: center;
+    }
+    .cypherLogo {
+        width: 50%;
+        height: auto;
+    }
+    .hero, .quote, .info, .action {
+        padding: 40px 100px;
+    }
+    .header {
+        padding: 20px 50px;
+    }
+    
+    .actionWidget {
+        padding: 20px 40px;
+    }
+    .quoteText {
+        font-size: 30px;
+    }
+    .quoteName {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .cardImage {
+        width: 100%;
+        height: auto;
+    }
+    h1 {
+        font-size: 48px;
+    }
+    h2 {
+        font-size: 36px;
+    }
+    .quoteText {
+        font-size: 20px;
+    }
+    .quoteName {
+        font-size: 16px;
+    }
+    .headerLinks {
+        gap: 8px;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    * {
+        font-size: 24px;
+    }
+    h1 {
+        font-size: 84px;
+    }
+    h2 {
+        font-size: 60px;
+    }
+    h3 {
+        font-size: 36px;
+    }
+    .actionWidget {
+        padding: 80px 160px;
+        justify-content: space-around;
+    }
 }
