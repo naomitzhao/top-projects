@@ -41,8 +41,7 @@ h3 {
 }
 
 .textLogo {
-    height: 10vh;
-    width: auto;
+    width: 80px;
 }
 
 .headerLinks {
@@ -53,6 +52,11 @@ h3 {
 
 .headerLinks li a {
     color: var(--lightGray)
+}
+
+.menuIcon {
+    display: none;
+    width: 40px;
 }
 
 .body {
@@ -87,7 +91,7 @@ h3 {
 }
 
 .cypherLogo {
-    height: 30vh;
+    width: 50%;
     aspect-ratio: 1.5;
 }
 
@@ -144,7 +148,7 @@ h3 {
     max-width: 1280px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 16px;
 }
 
 .quoteText {
@@ -239,10 +243,6 @@ h3 {
         flex-direction: column;
         gap: 32px;
     }
-    .footer .textLogo {
-        width: 20%;
-        height: auto;
-    }
 }
 
 @media screen and (max-width: 840px) {
@@ -263,7 +263,6 @@ h3 {
     }
     .cypherLogo {
         width: 50%;
-        height: auto;
     }
     .hero, .quote, .info, .action {
         padding: 40px 100px;
@@ -284,6 +283,12 @@ h3 {
 }
 
 @media screen and (max-width: 600px) {
+    .hero, .quote, .info, .action {
+        padding: 20px 40px;
+    }
+    .cardContainer{
+        gap: 20px;
+    }
     .cardImage {
         width: 100%;
         height: auto;
@@ -301,7 +306,32 @@ h3 {
         font-size: 16px;
     }
     .headerLinks {
-        gap: 8px;
+        display: none;
+    }
+    .menuIcon {
+        display: block;
+    }
+    .actionWidget{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .hero, .quote, .info, .action {
+        padding: 20px 30px;
+    }
+    .githubLink {
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+    .footerLists {
+        text-align: center;
+    }
+    .footerLinkList ul {
+        align-items: center;
     }
 }
 
