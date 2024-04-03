@@ -55,6 +55,11 @@ h3 {
     color: var(--lightGray)
 }
 
+.menuIcon {
+    display: none;
+    width: 40px;
+}
+
 .body {
     display: flex;
     flex-direction: column;
@@ -284,6 +289,12 @@ h3 {
 }
 
 @media screen and (max-width: 600px) {
+    .hero, .quote, .info, .action {
+        padding: 20px 40px;
+    }
+    .cardContainer{
+        gap: 20px;
+    }
     .cardImage {
         width: 100%;
         height: auto;
@@ -301,7 +312,15 @@ h3 {
         font-size: 16px;
     }
     .headerLinks {
-        gap: 8px;
+        display: none;
+    }
+    .menuIcon {
+        display: block;
+    }
+    .actionWidget{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 }
 
