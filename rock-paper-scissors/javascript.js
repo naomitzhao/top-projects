@@ -51,10 +51,9 @@ function game() {
     console.log("welcome to rock paper scissors!");
     for (let i = 0; i<5; i++){
         let computerChoice = getComputerChoice();
-
+        let userChoice = getUserChoice();
+        rockPaperScissors(userChoice, computerChoice);
     }
 }
 
-console.log(getComputerChoice());
-console.log(getComputerChoice());
-console.log(getComputerChoice());
+game();
