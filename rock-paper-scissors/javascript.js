@@ -1,5 +1,5 @@
 function getComputerChoice() {
-    var roll = Math.floor(Math.random() * 3);
+    let roll = Math.floor(Math.random() * 3);
     if (roll == 0){
         return "rock";
     }
@@ -12,7 +12,7 @@ function getComputerChoice() {
 }
 
 function rockPaperScissors(playerSelection, computerSelection) {
-    var choice = playerSelection.toLowerCase();
+    let choice = playerSelection.toLowerCase();
     if (choice == computerSelection) {
         console.log("tie! you both chose " + computerSelection);
     }
@@ -44,7 +44,10 @@ function rockPaperScissors(playerSelection, computerSelection) {
 }
 
 function game() {
-    console.log("welcome to rock paper scissors! what is your first move? (type 'rock', 'paper', or 'scissors')")
+    console.log("welcome to rock paper scissors! what is your first move? (type 'rock', 'paper', or 'scissors')");
+    for (let i = 0; i<5; i++){
+
+    }
 }
 
 console.log(getComputerChoice());
