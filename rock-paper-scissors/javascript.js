@@ -43,9 +43,14 @@ function rockPaperScissors(playerSelection, computerSelection) {
     }
 }
 
+function getUserChoice() {
+    return prompt("what is your move? (type 'rock', 'paper', or 'scissors')");
+}
+
 function game() {
-    console.log("welcome to rock paper scissors! what is your first move? (type 'rock', 'paper', or 'scissors')");
+    console.log("welcome to rock paper scissors!");
     for (let i = 0; i<5; i++){
+        let computerChoice = getComputerChoice();
 
     }
 }
