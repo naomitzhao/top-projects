@@ -33,7 +33,7 @@ function rockPaperScissors(playerSelection, computerSelection) {
             console.log("scissors beats paper, you lose")
         }
     }
-    else {
+    else if (choice == "scissors") {
         if (computerSelection == "rock") {
             console.log("rock beats scissors, you lose")
         }
@@ -41,23 +41,29 @@ function rockPaperScissors(playerSelection, computerSelection) {
             console.log("scissors beats paper, you win")
         }
     }
+    else {
+        console.log("no input provided, ending game. press play to play again!")
+        return false;
+    }
+    return true;
 }
 
 function getUserChoice() {
     let ans = "";
-    const valid = ["rock", "paper", "scissors"];
+    const valid = ["rock", "paper", "scissors", null];
     while (!valid.includes(ans)) {
         ans = prompt("what is your move? (type 'rock', 'paper', or 'scissors')");
-        ans = (ans == "")? "" : ans.toLowerCase();
+        if (ans != null) ans = ans.toLowerCase();
     }
     return ans;
 }
 
 function game() {
     console.log("welcome to rock paper scissors!");
-    for (let i = 0; i<5; i++){
+    let playAgain = true;
+    while (playAgain){
         let computerChoice = getComputerChoice();
         let userChoice = getUserChoice();
-        rockPaperScissors(userChoice, computerChoice);
+        playAgain = rockPaperScissors(userChoice, computerChoice);
     }
 }
