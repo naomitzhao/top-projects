@@ -12,7 +12,7 @@ function getComputerChoice() {
 }
 
 function rockPaperScissors(playerSelection, computerSelection) {
-    let choice = playerSelection.toLowerCase();
+    let choice = playerSelection;
     if (choice == computerSelection) {
         console.log("tie! you both chose " + computerSelection);
     }
@@ -44,7 +44,13 @@ function rockPaperScissors(playerSelection, computerSelection) {
 }
 
 function getUserChoice() {
-    return prompt("what is your move? (type 'rock', 'paper', or 'scissors')");
+    let ans = "";
+    const valid = ["rock", "paper", "scissors"];
+    while (!valid.includes(ans)) {
+        ans = prompt("what is your move? (type 'rock', 'paper', or 'scissors')");
+        ans = (ans == "")? "" : ans.toLowerCase();
+    }
+    return ans;
 }
 
 function game() {
@@ -55,5 +61,3 @@ function game() {
         rockPaperScissors(userChoice, computerChoice);
     }
 }
-
-game();
