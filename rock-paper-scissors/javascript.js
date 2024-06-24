@@ -102,13 +102,3 @@ function rockPaperScissors(playerSelection, computerSelection) {
         endGame(false);
     }
 }
-
-function game() {
-    console.log("welcome to rock paper scissors!");
-    let playAgain = true;
-    while (playAgain){
-        let computerChoice = getComputerChoice();
-        let userChoice = getUserChoice();
-        playAgain = rockPaperScissors(userChoice, computerChoice);
-    }
-}
