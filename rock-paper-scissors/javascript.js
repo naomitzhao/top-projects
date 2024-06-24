@@ -15,10 +15,10 @@ function getComputerChoice() {
         return "rock";
     }
     else if (roll == 1) {
-        return "paper"
+        return "paper";
     }
     else if (roll == 2) {
-        return "scissors"
+        return "scissors";
     }
 }
 
@@ -34,14 +34,30 @@ function appendScores(){
     textDiv.appendChild(newText);
 }
 
-function clearAndAnnounce(announcement) {
+function clearChildren() {
     for (i = 0; i < 3; i++) {
         textDiv.removeChild(textDiv.firstElementChild);
     }
-    let newText = document.createElement("p");
+}
+
+function clearAndAnnounce(announcement) {
+    clearChildren();
+    const newText = document.createElement("p");
     newText.textContent = announcement;
     textDiv.appendChild(newText);
     appendScores();
+}
+
+function endGame(playerWin){
+    if (playerWin) {
+        clearAndAnnounce("congrats, you win! refresh to play again.");
+    }
+    else {
+        clearAndAnnounce("you lost (L (skill issue))... refresh to play again.");
+    }
+    buttons.forEach((button) => {
+        button.remove();
+    });
 }
 
 function rockPaperScissors(playerSelection, computerSelection) {
@@ -79,11 +95,12 @@ function rockPaperScissors(playerSelection, computerSelection) {
             clearAndAnnounce("scissors beats paper, you win");
         }
     }
-    else {
-        clearAndAnnounce("error :(");
-        return false;
+    if (playerScore == 5) {
+        endGame(true);
     }
-    return true;
+    if (computerScore == 5) {
+        endGame(false);
+    }
 }
 
 function game() {
