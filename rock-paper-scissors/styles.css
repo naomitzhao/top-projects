@@ -26,6 +26,10 @@
     text-align: center;
 }
 
+.buttonContainer {
+    flex-direction: row;
+}
+
 button {
     background-color: lightblue;
     border: none;
