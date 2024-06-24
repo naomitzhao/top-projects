@@ -1,69 +1,104 @@
+let playerScore = 0;
+let computerScore = 0;
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        rockPaperScissors(button.id, getComputerChoice());
+    });
+});
+
+
 function getComputerChoice() {
     let roll = Math.floor(Math.random() * 3);
     if (roll == 0){
         return "rock";
     }
     else if (roll == 1) {
-        return "paper"
+        return "paper";
     }
     else if (roll == 2) {
-        return "scissors"
+        return "scissors";
     }
+}
+
+const textDiv = document.querySelector("#textDiv");
+
+function appendScores(){
+    let newText = document.createElement("p");
+    newText = document.createElement("p");
+    newText.textContent = "you: " + playerScore;
+    textDiv.appendChild(newText);
+    newText = document.createElement("p");
+    newText.textContent = "computer: " + computerScore;
+    textDiv.appendChild(newText);
+}
+
+function clearChildren() {
+    for (i = 0; i < 3; i++) {
+        textDiv.removeChild(textDiv.firstElementChild);
+    }
+}
+
+function clearAndAnnounce(announcement) {
+    clearChildren();
+    const newText = document.createElement("p");
+    newText.textContent = announcement;
+    textDiv.appendChild(newText);
+    appendScores();
+}
+
+function endGame(playerWin){
+    if (playerWin) {
+        clearAndAnnounce("congrats, you win! refresh to play again.");
+    }
+    else {
+        clearAndAnnounce("you lost (L (skill issue))... refresh to play again.");
+    }
+    buttons.forEach((button) => {
+        button.remove();
+    });
 }
 
 function rockPaperScissors(playerSelection, computerSelection) {
     let choice = playerSelection;
     if (choice == computerSelection) {
-        console.log("tie! you both chose " + computerSelection);
+        clearAndAnnounce("tie! you both chose " + computerSelection);
     }
     else if (choice == "rock") {
         if (computerSelection == "paper") {
-            console.log("paper beats rock, you lose")
-            
+            computerScore += 1;
+            clearAndAnnounce("paper beats rock, you lose");
         }
         else {
-            console.log("rock beats scissors, you win")
+            playerScore += 1;
+            clearAndAnnounce("rock beats scissors, you win");
         }
     }
     else if (choice == "paper") {
         if (computerSelection == "rock") {
-            console.log("paper beats rock, you win")
+            playerScore += 1;
+            clearAndAnnounce("paper beats rock, you win");
         }
         else {
-            console.log("scissors beats paper, you lose")
+            computerScore += 1;
+            clearAndAnnounce("scissors beats paper, you lose");
         }
     }
     else if (choice == "scissors") {
         if (computerSelection == "rock") {
-            console.log("rock beats scissors, you lose")
+            computerScore += 1;
+            clearAndAnnounce("rock beats scissors, you lose");
         }
         else {
-            console.log("scissors beats paper, you win")
+            playerScore += 1;
+            clearAndAnnounce("scissors beats paper, you win");
         }
     }
-    else {
-        console.log("no input provided, ending game. press play to play again!")
-        return false;
+    if (playerScore == 5) {
+        endGame(true);
     }
-    return true;
-}
-
-function getUserChoice() {
-    let ans = "";
-    const valid = ["rock", "paper", "scissors", null];
-    while (!valid.includes(ans)) {
-        ans = prompt("what is your move? (type 'rock', 'paper', or 'scissors')");
-        if (ans != null) ans = ans.toLowerCase();
-    }
-    return ans;
-}
-
-function game() {
-    console.log("welcome to rock paper scissors!");
-    let playAgain = true;
-    while (playAgain){
-        let computerChoice = getComputerChoice();
-        let userChoice = getUserChoice();
-        playAgain = rockPaperScissors(userChoice, computerChoice);
+    if (computerScore == 5) {
+        endGame(false);
     }
 }

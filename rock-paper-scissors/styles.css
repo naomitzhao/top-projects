@@ -26,11 +26,16 @@
     text-align: center;
 }
 
+.buttonContainer {
+    flex-direction: row;
+}
+
 button {
     background-color: lightblue;
     border: none;
     padding: 10px 30px;
     border-radius: 20px;
+    cursor:pointer;
 }
 
 button:hover {
