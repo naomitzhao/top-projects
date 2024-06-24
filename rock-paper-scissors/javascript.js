@@ -1,3 +1,11 @@
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        rockPaperScissors(button.id, getComputerChoice());
+    });
+});
+
+
 function getComputerChoice() {
     let roll = Math.floor(Math.random() * 3);
     if (roll == 0){
@@ -19,7 +27,6 @@ function rockPaperScissors(playerSelection, computerSelection) {
     else if (choice == "rock") {
         if (computerSelection == "paper") {
             console.log("paper beats rock, you lose")
-            
         }
         else {
             console.log("rock beats scissors, you win")
@@ -46,16 +53,6 @@ function rockPaperScissors(playerSelection, computerSelection) {
         return false;
     }
     return true;
-}
-
-function getUserChoice() {
-    let ans = "";
-    const valid = ["rock", "paper", "scissors", null];
-    while (!valid.includes(ans)) {
-        ans = prompt("what is your move? (type 'rock', 'paper', or 'scissors')");
-        if (ans != null) ans = ans.toLowerCase();
-    }
-    return ans;
 }
 
 function game() {
