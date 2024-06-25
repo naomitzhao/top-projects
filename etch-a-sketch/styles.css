@@ -16,8 +16,8 @@
 #sketchContainer {
     display: flex;
     flex-direction: column;
-    height: 400px;
-    width: 400px;
+    height: 500px;
+    width: 500px;
     background-color: rgb(245, 242, 242);
 }
 
