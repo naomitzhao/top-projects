@@ -8,5 +8,8 @@ for (i = 0; i < 16; i++) {
         const tile = document.createElement("div");
         tile.classList.add("tile");
         row.appendChild(tile);
+        tile.addEventListener("mouseover", () => {
+            tile.classList.add("inkedTile");
+        });
     }
 }
