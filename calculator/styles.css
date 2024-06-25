@@ -54,6 +54,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 5px 5px 0px black;
+    user-select: none;
 }
 
 .activeButton {
