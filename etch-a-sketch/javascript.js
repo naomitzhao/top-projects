@@ -38,7 +38,12 @@ function clearGrid(){
 const newGridButton = document.querySelector('#newGridButton');
 newGridButton.addEventListener("click", () => {
     newGridSize = prompt("type the dimension of your new grid (how many squares on one side)");
-    makeNewGrid(newGridSize);
+    if (isNaN(parseInt(newGridSize)) || newGridSize < 1 || newGridSize > 100) {
+        alert("invalid: dimension must be integer between 1 and 100 (inclusive)");
+    }
+    else{
+        makeNewGrid(newGridSize);
+    }
 });
 
 makeNewGrid(16);
