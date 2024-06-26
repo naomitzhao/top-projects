@@ -5,11 +5,60 @@ function operate(a, b, operator) {
     else if (operator == "-") {
         return a - b;
     }
-    else if (operator == "*") {
+    else if (operator == "x") {
         return a * b;
     }
     else if (operator == "/") {
         return a / b;
+    }
+}
+
+function displayOnMain(content) {
+    const mainDisplay = document.querySelector("#mainDisplay");
+    mainDisplay.textContent = content;
+}
+
+let a = null;
+let b = null;
+let op = null;
+let result = null;
+
+ops = ["+", "-", "x", "/"];
+
+function handleButtonPress(func){
+    const funcInt = parseInt(func);
+    if (isNaN(funcInt)) {
+        if (ops.includes(func)){
+            if (op == null){
+                op = func;
+                displayOnMain(a + " " + op);
+            }
+        }
+        else if (func == "="){
+            if (a != null && b != null && op != null) {
+                result = operate(a, b, op);
+                displayOnMain(result);
+                a = result;
+                b = null;
+                op = null;
+            }
+        }
+    }
+    else {
+        if (op == null) {
+            if (a == null || a == result){
+                a = 0;
+            }
+            a = a * 10 + funcInt;
+            displayOnMain(a);
+        }
+        else {
+            if (b == null) {
+                b = 0;
+            }
+            b = b * 10 + funcInt;
+            displayOnMain(a + " " + op + " " + b);
+        }
     }
 }
 
@@ -27,8 +76,12 @@ for (i = 0; i < 5; i ++) {
     for (j = 0; j < 4; j ++) {
         const btn = document.createElement("div");
         btn.classList.add("calculatorButton");
+        btn.id = layout[layoutIdx];
+        btn.textContent = layout[layoutIdx];
+        layoutIdx ++;
         btn.addEventListener("mousedown", () => {
             btn.classList.add("activeButton");
+            handleButtonPress(btn.id);
         });
         btn.addEventListener("mouseup", () => {
             btn.classList.remove("activeButton");
@@ -36,9 +89,6 @@ for (i = 0; i < 5; i ++) {
         btn.addEventListener("mouseleave", () => {
             btn.classList.remove("activeButton");
         });
-        btn.id = layout[layoutIdx];
-        btn.textContent = layout[layoutIdx];
-        layoutIdx ++;
         buttonRow.appendChild(btn);
     }
     buttonDiv.appendChild(buttonRow);
