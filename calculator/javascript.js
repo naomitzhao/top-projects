@@ -18,14 +18,25 @@ function displayOnMain(content) {
     mainDisplay.textContent = content;
 }
 
+function displayHistory(content) {
+    const history = document.querySelector("#history");
+    history.textContent = content;
+}
+
 let a = null;
 let b = null;
 let op = null;
 let result = null;
+let newHistory = null;
 
 ops = ["+", "-", "x", "/"];
 
 function handleButtonPress(func){
+    console.log(newHistory);
+    if (newHistory != null) {
+        displayHistory(newHistory);
+        newHistory = null;
+    }
     const funcInt = parseInt(func);
     if (isNaN(funcInt)) {
         if (ops.includes(func)){
@@ -38,6 +49,8 @@ function handleButtonPress(func){
             if (a != null && b != null && op != null) {
                 result = operate(a, b, op);
                 displayOnMain(result);
+                newHistory = a + " " + op + " " + b + " = " + result;
+                console.log(newHistory);
                 a = result;
                 b = null;
                 op = null;
@@ -61,8 +74,6 @@ function handleButtonPress(func){
         }
     }
 }
-
-console.log(operate(18, 6, "/"));
 
 const buttonDiv = document.querySelector(".buttonDiv");
 
