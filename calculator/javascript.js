@@ -27,20 +27,22 @@ let a = null;
 let b = null;
 let op = null;
 let result = null;
-let newHistory = null;
 
 ops = ["+", "-", "x", "/"];
 
 function handleButtonPress(func){
-    console.log(newHistory);
-    if (newHistory != null) {
-        displayHistory(newHistory);
-        newHistory = null;
-    }
     const funcInt = parseInt(func);
     if (isNaN(funcInt)) {
         if (ops.includes(func)){
             if (op == null){
+                op = func;
+                displayOnMain(a + " " + op);
+            }
+            else if (a != null && b != null && op != null){
+                result = operate(a, b, op);
+                displayHistory(a + " " + op + " " + b + " = " + result);
+                a = result;
+                b = null;
                 op = func;
                 displayOnMain(a + " " + op);
             }
@@ -49,8 +51,7 @@ function handleButtonPress(func){
             if (a != null && b != null && op != null) {
                 result = operate(a, b, op);
                 displayOnMain(result);
-                newHistory = a + " " + op + " " + b + " = " + result;
-                console.log(newHistory);
+                displayHistory(a + " " + op + " " + b + " = " + result);
                 a = result;
                 b = null;
                 op = null;
