@@ -57,6 +57,36 @@ function handleButtonPress(func){
                 op = null;
             }
         }
+        else if (func == "√") {
+            if (op != null || a == null){
+
+            }
+            else {
+                result = Math.sqrt(a);
+                displayOnMain(result);
+                displayHistory("√" + a + " = " + result);
+                a = result;
+            }
+        }
+        else if (func == "+/-") {
+            if (op != null || a == null){
+
+            }
+            else {
+                result = a * -1;
+                displayOnMain(result);
+                displayHistory("-(" + a + ") = " + result);
+                a = result;
+            }
+        }
+        else if (func == "AC") {
+            a = null;
+            b = null;
+            op = null;
+            result = null;
+            displayOnMain("");
+            displayHistory("");
+        }
     }
     else {
         if (op == null) {
