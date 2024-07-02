@@ -13,12 +13,39 @@ function operate(a, b, operator) {
     }
 }
 
-function displayOnMain(content) {
+// function displayOnMain(content) {
+//     const mainDisplay = document.querySelector("#mainDisplay");
+//     mainDisplay.textContent = content;
+// }
+
+function displayOnMain(a, op = null, b = null){
+    content = a;
+    if (op != null){
+        content += " " + op;
+    }
+    if (b != null){
+        content += " " + b;
+    }
     const mainDisplay = document.querySelector("#mainDisplay");
     mainDisplay.textContent = content;
 }
 
-function displayHistory(content) {
+// function displayHistory(content) {
+//     const history = document.querySelector("#history");
+//     history.textContent = content;
+// }
+
+function displayHistory(a, op, result, b = null){
+    content = ""
+    if (op == "√") {
+        content = op + a + " = " + result;
+    }
+    else if (op == "+/-") {
+        content = "-(" + a + ") = " + result;
+    }
+    else {
+        content = a + " " + op + " " + b + " = " + result;
+    }
     const history = document.querySelector("#history");
     history.textContent = content;
 }
@@ -36,22 +63,22 @@ function handleButtonPress(func){
         if (ops.includes(func)){
             if (op == null){
                 op = func;
-                displayOnMain(a + " " + op);
+                displayOnMain(a, op);
             }
             else if (a != null && b != null && op != null){
                 result = operate(a, b, op);
-                displayHistory(a + " " + op + " " + b + " = " + result);
+                displayHistory(a, op, result, b);
                 a = result;
                 b = null;
                 op = func;
-                displayOnMain(a + " " + op);
+                displayOnMain(a, op);
             }
         }
         else if (func == "="){
             if (a != null && b != null && op != null) {
                 result = operate(a, b, op);
                 displayOnMain(result);
-                displayHistory(a + " " + op + " " + b + " = " + result);
+                displayHistory(a, op, result, b);
                 a = result;
                 b = null;
                 op = null;
@@ -64,7 +91,7 @@ function handleButtonPress(func){
             else {
                 result = Math.sqrt(a);
                 displayOnMain(result);
-                displayHistory("√" + a + " = " + result);
+                displayHistory(a, "√", result);
                 a = result;
             }
         }
@@ -75,7 +102,7 @@ function handleButtonPress(func){
             else {
                 result = a * -1;
                 displayOnMain(result);
-                displayHistory("-(" + a + ") = " + result);
+                displayHistory(a, "+/-", result);
                 a = result;
             }
         }
@@ -101,7 +128,7 @@ function handleButtonPress(func){
                 b = 0;
             }
             b = b * 10 + funcInt;
-            displayOnMain(a + " " + op + " " + b);
+            displayOnMain(a, op, b);
         }
     }
 }
