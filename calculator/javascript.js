@@ -119,6 +119,18 @@ for (i = 0; i < 5; i ++) {
         const btn = document.createElement("div");
         btn.classList.add("calculatorButton");
         btn.id = layout[layoutIdx];
+        if (i == 0 && j == 0) {
+            btn.style.backgroundColor = "var(--ac-button)";
+            btn.style.boxShadow = "5px 5px 0px var(--bs-ac)"; 
+            btn.style.color = "var(--text-ac)";
+            btn.style.border = "1px solid var(--bs-ac)";
+        }
+        else {
+            btn.style.backgroundColor = "var(--row-" + i + ")";
+            btn.style.boxShadow = "5px 5px 0px var(--bs-" + i + ")"; 
+            btn.style.color = "var(--text-" + i + ")";
+            btn.style.border = "1px solid var(--bs-" + i + ")";
+        }
         btn.textContent = layout[layoutIdx];
         layoutIdx ++;
         btn.addEventListener("mousedown", () => {
