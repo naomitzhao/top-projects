@@ -103,7 +103,7 @@ function handleButtonPress(func){
     if (funcInt == 0 && place != 1){
         extraZeros ++;
     }
-    else {
+    else if (func != "<") {
         extraZeros = 0;
     }
     if (isNaN(funcInt)) {
@@ -197,9 +197,11 @@ function handleButtonPress(func){
         }
         else if (func == "<") {
             if (b == null && op == null) { // backspace a
+                if (extraZeros != 0){
+                    extraZeros --;
+                }
                 if (place == 0.1) {
                     place = 1;
-                    displayOnMain(a);
                 }
                 else {
                     let deletePlace = place * 10;
@@ -214,13 +216,15 @@ function handleButtonPress(func){
                             place = 1;
                         }
                     }
-                    displayOnMain(a);
                 }
+                displayOnMain(a);
             }
             else if (op != null && b != null) { // backspace b
+                if (extraZeros != 0){
+                    extraZeros --;
+                }
                 if (place == 0.1) {
                     place = 1;
-                    displayOnMain(a, op, b);
                 }
                 else {
                     let deletePlace = place * 10;
@@ -235,8 +239,8 @@ function handleButtonPress(func){
                             place = 1;
                         }
                     }
-                    displayOnMain(a, op, b);
                 }
+                displayOnMain(a, op, b);
             }
             else {
                 errorMessage();
