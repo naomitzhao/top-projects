@@ -300,6 +300,9 @@ const eventToButton = new Map([
     ["=", "="],
     ["Enter", "="],
     ["Backspace", "<"],
+    ["s", "√"], 
+    ["c", "AC"],
+    ["_", "+/-"],
 ]);
 
 document.addEventListener("keydown", (event) => {
