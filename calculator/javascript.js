@@ -3,7 +3,8 @@ const ops = ["+", "-", "x", "/"];
 let ab = [null, null];
 let op = null;
 let result = null;
-let place = 1;
+let place = [1, 1];
+let leadingZeros = [0, 0];
 
 let mainMessage = "";
 let historyMessage = "";
@@ -37,6 +38,16 @@ function operate(operator) {
     }
 }
 
+function findPlace(num) {
+    res = 0;
+    for (i = 1; i < 8; i++) {
+        if ((num * Math.pow(10, i)) % 10 != 0) {
+            res = i;
+        }
+    }
+    return 1 / Math.pow(10, res);
+}
+
 function roundNum(a){
     const PLACES = 7;
     if (a > Math.pow(10, PLACES)) {
@@ -60,9 +71,10 @@ function reset(){
     ab[1] = null;
     op = null;
     result = null;
-    place = 1;
+    place = [1, 1];
     mainMessage = "";
     historyMessage = "";
+    leadingZeros = [0, 0];
 }
 
 function errorMessage() {
@@ -98,13 +110,14 @@ function operateAndWrite(operator){
         errorMessage();
         return;
     }
-    mainMessage = result;
+    mainMessage = roundNum(result);
     refreshHistory();
     refreshMain();
     ab[0] = result;
     op = null;
     ab[1] = null;
-    place = 1;
+    place = [findPlace(result) / 10, 1];
+    leadingZeros = [1, 0];
 }
 
 function handleButtonPress(func){
@@ -115,7 +128,6 @@ function handleButtonPress(func){
     b = ab[1];
     const funcInt = parseInt(func);
     if (isNaN(funcInt)){ // not number key
-        place = 1;
         if (a == null && func != "AC" && func != ".") {
             errorMessage();
         }
@@ -150,13 +162,50 @@ function handleButtonPress(func){
                         ab[1] = 0;
                         appendToMain("0");
                     }
-                    place /= 10;
+                    if (op == null) {
+                        place[0] /= 10;
+                    }
+                    else {
+                        place[1] /= 10;
+                    }
                     appendToMain(".");
                 }
             }
             else if (func == "AC") {
                 reset();
                 refreshHistory();
+                refreshMain();
+            }
+            else if (func == "<") {
+                if (b == null && op != null) { // delete op
+                    mainMessage = mainMessage.slice(0, -3);
+                    op = null;
+                }
+                else { // delete a or b
+                    let abIdx = 0; // default to delete a
+                    if (b != null) { // actually, delete b
+                        abIdx = 1;
+                    }
+                    if (place[abIdx] == 1){
+                        if (ab[abIdx] == 0 && ab[abIdx] % 10 == 0) {
+                            leadingZeros[abIdx] --;
+                        }
+                        else {
+                            ab[abIdx] = Math.floor(ab[abIdx]/10);
+                        }
+                    }
+                    else {
+                        place[abIdx] *= 10;
+                        if (place[abIdx] != 1) {
+                            ab[abIdx] = Math.floor ((ab[abIdx] / place[abIdx]) / 10);
+                            ab[abIdx] *= place[abIdx] * 10;
+                        }
+                    }
+                    if (ab[abIdx] == 0 && place[abIdx] == 1 && leadingZeros[abIdx] == 0) {
+                        ab[abIdx] = null;
+                    }
+                    mainMessage = String(mainMessage).slice(0, -1);
+                }
                 refreshMain();
             }
             else { 
@@ -172,15 +221,19 @@ function handleButtonPress(func){
         if (ab[abIdx] == null) {
             ab[abIdx] = 0;
         }
-        if (place == 1){ // not writing decimal
+        if (place[abIdx] == 1){ // not writing decimal
             ab[abIdx] = ab[abIdx] * 10 + funcInt;
+            if (ab[abIdx] == 0) {
+                leadingZeros[abIdx] ++;
+            }
         }
         else { // writing decimal
-            ab[abIdx] = ab[abIdx] + funcInt * place;
+            ab[abIdx] = ab[abIdx] + funcInt * place[abIdx];
+            place[abIdx] /= 10;
         }
         appendToMain(func);
     }
-    console.log("a: " + ab[0] + "\nb: " + ab[1] + "\nresult: " + result + "\nop: " + op + "\nplace: " + place);
+    // console.log("a: " + ab[0] + "\nb: " + ab[1] + "\nresult: " + result + "\nop: " + op + "\nplace: " + place + "\nleading zeros: " + leadingZeros);
 }
 
 const buttonDiv = document.querySelector(".buttonDiv");
