@@ -239,7 +239,7 @@ function handleButtonPress(func){
         }
         appendToMain(func);
     }
-    console.log("a: " + ab[0] + "\nb: " + ab[1] + "\nresult: " + result + "\nop: " + op + "\nplace: " + place + "\nleading zeros: " + leadingZeros);
+    // console.log("a: " + ab[0] + "\nb: " + ab[1] + "\nresult: " + result + "\nop: " + op + "\nplace: " + place + "\nleading zeros: " + leadingZeros);
 }
 
 const buttonDiv = document.querySelector(".buttonDiv");
@@ -280,3 +280,30 @@ for (i = 0; i < 5; i ++) {
     }
     buttonDiv.appendChild(buttonRow);
 }
+
+const eventToButton = new Map([
+    ["0", "0"],
+    ["1", "1"],
+    ["2", "2"],
+    ["3", "3"],
+    ["4", "4"],
+    ["5", "5"],
+    ["6", "6"],
+    ["7", "7"],
+    ["8", "8"],
+    ["9", "9"],
+    ["+", "+"],
+    ["-", "-"],
+    ["x", "x"],
+    ["*", "x"],
+    ["/", "/"],
+    ["=", "="],
+    ["Enter", "="],
+    ["Backspace", "<"],
+]);
+
+document.addEventListener("keydown", (event) => {
+    if (eventToButton.has(event.key)) {
+        handleButtonPress(eventToButton.get(event.key));
+    }
+});
