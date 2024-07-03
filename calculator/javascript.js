@@ -20,6 +20,9 @@ function operate(a, b, operator) {
 
 function roundNum(a){
     PLACES = 7;
+    if (a > 10000000000) {
+        return Number.parseFloat(a).toExponential(PLACES);
+    }
     return Math.round(a * Math.pow(10, PLACES)) / Math.pow(10, PLACES);
 }
 
@@ -27,7 +30,6 @@ function displayOnMain(a, op = null, b = null, round = true){
     content = a;
     if (round) {
         content = roundNum(a);
-        console.log(roundNum(a));
     }
     if (op != null){
         content += " " + op;
@@ -159,13 +161,13 @@ for (i = 0; i < 5; i ++) {
             btn.style.backgroundColor = "var(--ac-button)";
             btn.style.boxShadow = "5px 5px 0px var(--bs-ac)"; 
             btn.style.color = "var(--text-ac)";
-            btn.style.border = "1px solid var(--bs-ac)";
+            //btn.style.border = "1px solid var(--bs-ac)";
         }
         else {
             btn.style.backgroundColor = "var(--row-" + i + ")";
             btn.style.boxShadow = "5px 5px 0px var(--bs-" + i + ")"; 
             btn.style.color = "var(--text-" + i + ")";
-            btn.style.border = "1px solid var(--bs-" + i + ")";
+            //btn.style.border = "1px solid var(--bs-" + i + ")";
         }
         btn.textContent = layout[layoutIdx];
         layoutIdx ++;
