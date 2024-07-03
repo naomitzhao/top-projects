@@ -161,10 +161,12 @@ function handleButtonPress(func){
                         result = null;
                         ab[0] = 0;
                         appendToMain("0");
+                        leadingZeros[0] = 1;
                     }
                     else if (op != null && b == null) { // start new b
                         ab[1] = 0;
                         appendToMain("0");
+                        leadingZeros[1] = 1;
                     }
                     if (op == null) {
                         place[0] /= 10;
