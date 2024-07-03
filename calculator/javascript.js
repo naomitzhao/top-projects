@@ -18,8 +18,17 @@ function operate(a, b, operator) {
 //     mainDisplay.textContent = content;
 // }
 
-function displayOnMain(a, op = null, b = null){
+function roundNum(a){
+    PLACES = 7;
+    return Math.round(a * Math.pow(10, PLACES)) / Math.pow(10, PLACES);
+}
+
+function displayOnMain(a, op = null, b = null, round = true){
     content = a;
+    if (round) {
+        content = roundNum(a);
+        console.log(roundNum(a));
+    }
     if (op != null){
         content += " " + op;
     }
@@ -38,13 +47,13 @@ function displayOnMain(a, op = null, b = null){
 function displayHistory(a, op, result, b = null){
     content = ""
     if (op == "√") {
-        content = op + a + " = " + result;
+        content = op + roundNum(a) + " = " + roundNum(result);
     }
     else if (op == "+/-") {
-        content = "-(" + a + ") = " + result;
+        content = "-(" + roundNum(a) + ") = " + roundNum(result);
     }
     else {
-        content = a + " " + op + " " + b + " = " + result;
+        content = roundNum(a) + " " + op + " " + roundNum(b) + " = " + roundNum(result);
     }
     const history = document.querySelector("#history");
     history.textContent = content;
@@ -77,7 +86,7 @@ function handleButtonPress(func){
         else if (func == "="){
             if (a != null && b != null && op != null) {
                 result = operate(a, b, op);
-                displayOnMain(result);
+                displayOnMain(result, null, null, true);
                 displayHistory(a, op, result, b);
                 a = result;
                 b = null;
