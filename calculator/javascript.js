@@ -1,3 +1,11 @@
+const ops = ["+", "-", "x", "/"];
+
+let a = null;
+let b = null;
+let op = null;
+let result = null;
+let place = 1;
+
 function operate(a, b, operator) {
     if (operator == "+") {
         return a + b;
@@ -16,14 +24,9 @@ function operate(a, b, operator) {
     }
 }
 
-// function displayOnMain(content) {
-//     const mainDisplay = document.querySelector("#mainDisplay");
-//     mainDisplay.textContent = content;
-// }
-
 function roundNum(a){
     const PLACES = 7;
-    if (a > 10000000000) {
+    if (a > Math.pow(10, PLACES)) {
         return Number.parseFloat(a).toExponential(PLACES);
     }
     return Math.round(a * Math.pow(10, PLACES)) / Math.pow(10, PLACES);
@@ -42,11 +45,6 @@ function displayOnMain(a, op = null, b = null, round = true){
     }
     displayMainMessage(content);
 }
-
-// function displayHistory(content) {
-//     const history = document.querySelector("#history");
-//     history.textContent = content;
-// }
 
 function displayHistory(a, op, result, b = null){
     content = ""
@@ -72,12 +70,6 @@ function displayHistoryMessage(content){
     history.textContent = content;
 }
 
-let a = null;
-let b = null;
-let op = null;
-let result = null;
-let place = 1;
-
 function reset(){
     a = null;
     b = null;
@@ -92,7 +84,6 @@ function errorMessage() {
     displayHistoryMessage("");
 }
 
-const ops = ["+", "-", "x", "/"];
 
 function handleButtonPress(func){
     const funcInt = parseInt(func);
@@ -215,7 +206,6 @@ function handleButtonPress(func){
 
 const buttonDiv = document.querySelector(".buttonDiv");
 
-let rowIdx = 0;
 let layoutIdx = 0;
 const layout = ["AC", "√", "<", "+/-", "7", "8", "9", "/", "4", "5", "6", "x", "1", "2", "3", "-", "0", ".", "=", "+"]
 
@@ -230,13 +220,11 @@ for (i = 0; i < 5; i ++) {
             btn.style.backgroundColor = "var(--ac-button)";
             btn.style.boxShadow = "5px 5px 0px var(--bs-ac)"; 
             btn.style.color = "var(--text-ac)";
-            //btn.style.border = "1px solid var(--bs-ac)";
         }
         else {
             btn.style.backgroundColor = "var(--row-" + i + ")";
             btn.style.boxShadow = "5px 5px 0px var(--bs-" + i + ")"; 
             btn.style.color = "var(--text-" + i + ")";
-            //btn.style.border = "1px solid var(--bs-" + i + ")";
         }
         btn.textContent = layout[layoutIdx];
         layoutIdx ++;
