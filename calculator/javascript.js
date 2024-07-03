@@ -91,7 +91,7 @@ function appendToMain(content) {
 }
 
 function operateAndWrite(operator){
-    result = operate(operator);
+    result = roundNum(operate(operator));
     if (ops.includes(operator)){
         historyMessage = mainMessage + " = " + result;
     }
@@ -110,7 +110,7 @@ function operateAndWrite(operator){
         errorMessage();
         return;
     }
-    mainMessage = roundNum(result);
+    mainMessage = result;
     refreshHistory();
     refreshMain();
     ab[0] = result;
