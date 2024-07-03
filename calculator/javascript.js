@@ -128,7 +128,7 @@ function handleButtonPress(func){
     b = ab[1];
     const funcInt = parseInt(func);
     if (isNaN(funcInt)){ // not number key
-        if (a == null && func != "AC" && func != ".") {
+        if (a == null && func != "AC" && func != "." && func != "<") {
             errorMessage();
         }
         else {
