@@ -308,6 +308,15 @@ const eventToButton = new Map([
 
 document.addEventListener("keydown", (event) => {
     if (eventToButton.has(event.key)) {
-        handleButtonPress(eventToButton.get(event.key));
+        const downedKey = eventToButton.get(event.key);
+        handleButtonPress(downedKey);
+        const downedButton = document.getElementById(downedKey);
+        downedButton.classList.add("activeButton");
+    }
+});
+
+document.addEventListener("keyup", (event) => {
+    if (eventToButton.has(event.key)) {
+        document.getElementById(eventToButton.get(event.key)).classList.remove("activeButton");
     }
 });
