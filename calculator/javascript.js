@@ -32,16 +32,21 @@ function roundNum(a){
     return Math.round(a * Math.pow(10, PLACES)) / Math.pow(10, PLACES);
 }
 
-function displayOnMain(a, op = null, b = null, round = true){
+function displayOnMain(a, op = null, b = null, roundA = true, roundB = true){
     content = a;
-    if (round) {
+    if (roundA) {
         content = roundNum(a);
     }
     if (op != null){
         content += " " + op;
     }
     if (b != null){
-        content += " " + roundNum(b);
+        if (roundB) {
+            content += " " + roundNum(b);
+        }
+        else {
+            content += " " + roundNum(b);
+        }
     }
     displayMainMessage(content);
 }
@@ -170,6 +175,53 @@ function handleButtonPress(func){
                 }
             }
             else{
+                errorMessage();
+            }
+        }
+        else if (func == "<") {
+            if (b == null && op == null) { // backspace a
+                if (place == 0.1) {
+                    place = 1;
+                    displayOnMain(a);
+                }
+                else {
+                    let deletePlace = place * 10;
+                    if (place == 1){
+                        deletePlace = 1;
+                    }
+                    a = Math.floor((a / deletePlace) / 10) * deletePlace;
+                    if (place != 1){
+                        a *= 10;
+                        place *= 10;
+                        if (place == 0.1) {
+                            place = 1;
+                        }
+                    }
+                    displayOnMain(a);
+                }
+            }
+            else if (op != null && b != null) { // backspace b
+                if (place == 0.1) {
+                    place = 1;
+                    displayOnMain(a, op, b);
+                }
+                else {
+                    let deletePlace = place * 10;
+                    if (place == 1){
+                        deletePlace = 1;
+                    }
+                    b = Math.floor((b / deletePlace) / 10) * deletePlace;
+                    if (place != 1){
+                        b *= 10;
+                        place *= 10;
+                        if (place == 0.1) {
+                            place = 1;
+                        }
+                    }
+                    displayOnMain(a, op, b);
+                }
+            }
+            else {
                 errorMessage();
             }
         }
