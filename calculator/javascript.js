@@ -1,13 +1,16 @@
 const ops = ["+", "-", "x", "/"];
 
-let a = null;
-let b = null;
+let ab = [null, null];
 let op = null;
 let result = null;
 let place = 1;
-let extraZeros = 0;
 
-function operate(a, b, operator) {
+let mainMessage = "";
+let historyMessage = "";
+
+function operate(operator) {
+    a = ab[0];
+    b = ab[1];
     if (operator == "+") {
         return a + b;
     }
@@ -23,6 +26,15 @@ function operate(a, b, operator) {
         }
         return a / b;
     }
+    else if (operator == "√") {
+        return Math.sqrt(a);
+    }
+    else if (operator == "+/-") {
+        return -a;
+    }
+    else if (operator == null) {
+        return a;
+    }
 }
 
 function roundNum(a){
@@ -33,248 +45,142 @@ function roundNum(a){
     return Math.round(a * Math.pow(10, PLACES)) / Math.pow(10, PLACES);
 }
 
-function displayOnMain(a, op = null, b = null, roundA = true, roundB = true){
-    content = a;
-    if (roundA) {
-        content = roundNum(a);
-    }
-    if (op != null){
-        content += " " + op;
-    }
-    if (b != null){
-        if (roundB) {
-            content += " " + roundNum(b);
-        }
-        else {
-            content += " " + roundNum(b);
-        }
-    }
-    if (extraZeros != 0){
-        content += ".";
-        for (i = 0; i < extraZeros; i++){
-            content += "0";
-        }
-    }
-    displayMainMessage(content);
-}
-
-function displayHistory(a, op, result, b = null){
-    content = ""
-    if (op == "√") {
-        content = op + roundNum(a) + " = " + roundNum(result);
-    }
-    else if (op == "+/-") {
-        content = "-(" + roundNum(a) + ") = " + roundNum(result);
-    }
-    else {
-        content = roundNum(a) + " " + op + " " + roundNum(b) + " = " + roundNum(result);
-    }
-    displayHistoryMessage(content);
-}
-
-function displayMainMessage(content){
+function refreshMain(){
     const mainDisplay = document.querySelector("#mainDisplay");
-    mainDisplay.textContent = content;
+    mainDisplay.textContent = mainMessage;
 }
 
-function displayHistoryMessage(content){
+function refreshHistory(){
     const history = document.querySelector("#history");
-    history.textContent = content;
+    history.textContent = historyMessage;
 }
 
 function reset(){
-    a = null;
-    b = null;
+    ab[0] = null;
+    ab[1] = null;
     op = null;
     result = null;
     place = 1;
-    extraZeros = 0;
+    mainMessage = "";
+    historyMessage = "";
 }
 
 function errorMessage() {
     reset();
-    displayMainMessage("ERROR");
-    displayHistoryMessage("");
+    mainMessage = "ERROR";
+    historyMessage = "";
+    refreshMain();
+    refreshHistory();
 }
 
+function appendToMain(content) {
+    mainMessage += content;
+    refreshMain();
+}
+
+function operateAndWrite(operator){
+    result = operate(operator);
+    if (ops.includes(operator)){
+        historyMessage = mainMessage + " = " + result;
+    }
+    else {
+        if (operator == "√") {
+            historyMessage = "√" + a + " = " + result;
+        }
+        else if (operator == "+/-") {
+            historyMessage = "-(" + a + ") = " + result;
+        }
+        else if (operator == null) {
+            historyMessage = result + " = " + result;
+        }
+    }
+    if (isNaN(result)) {
+        errorMessage();
+        return;
+    }
+    mainMessage = result;
+    refreshHistory();
+    refreshMain();
+    ab[0] = result;
+    op = null;
+    ab[1] = null;
+    place = 1;
+}
 
 function handleButtonPress(func){
+    if (mainMessage == "ERROR") {
+        mainMessage = "";
+    }
+    a = ab[0];
+    b = ab[1];
     const funcInt = parseInt(func);
-    if (funcInt == 0 && place != 1){
-        extraZeros ++;
-    }
-    else if (func != "<") {
-        extraZeros = 0;
-    }
-    if (isNaN(funcInt)) {
-        if (ops.includes(func)){ // + - x /
-            if (op == null){
-                if (a == null) {
-                    errorMessage();
-                }
-                else {
+    if (isNaN(funcInt)){ // not number key
+        place = 1;
+        if (a == null && func != "AC" && func != ".") {
+            errorMessage();
+        }
+        else {
+            if (ops.includes(func)){ // + - x /
+                if (op == null) { // first operation
                     op = func;
-                    place = 1;
-                    displayOnMain(a, op);
+                    appendToMain(" " + func + " ");
                 }
-            }
-            else if (a != null && b != null && op != null){ // full expression
-                result = operate(a, b, op);
-                if (isNaN(result)) {
-                    errorMessage();
-                }
-                else {
-                    displayHistory(a, op, result, b);
-                    a = result;
-                    b = null;
-                    op = func;
-                    place = 1;
-                    displayOnMain(a, op);
-                }
-            }
-            else { // tried to operate without full expression
-                errorMessage();
-            }
-        }
-        else if (func == "="){
-            if (a != null && b != null && op != null) {
-                result = operate(a, b, op);
-                if (isNaN(result)) {
-                    errorMessage();
-                }
-                else {
-                    displayOnMain(result, null, null, true);
-                    displayHistory(a, op, result, b);
-                    a = result;
-                    b = null;
-                    op = null;
-                    place = 1;
-                }
-            }
-        }
-        else if (func == "√") {
-            if (op == null && a != null) {
-                result = Math.sqrt(a);
-                if (isNaN(result)) {
-                    errorMessage();
-                }
-                else {
-                    displayOnMain(result);
-                    displayHistory(a, "√", result);
-                    a = result;
-                }
-            }
-        }
-        else if (func == "+/-") {
-            if (op == null && a != null) {
-                result = a * -1;
-                displayOnMain(result);
-                displayHistory(a, "+/-", result);
-                a = result;
-            }
-        }
-        else if (func == "AC") {
-            reset();
-            displayMainMessage("");
-            displayHistoryMessage("");
-        }
-        else if (func == ".") {
-            if (place == 1){
-                place /= 10;
-                if (op == null){
-                    if (a == null || (a == result && place == 1)){
-                        a = 0;
-                    }
-                    displayMainMessage(a + ".");
-                }
-                else {
-                    displayMainMessage(roundNum(a) + " " + op + " " + roundNum(b) + ".");
-                }
-            }
-            else{
-                errorMessage();
-            }
-        }
-        else if (func == "<") {
-            if (b == null && op == null) { // backspace a
-                if (extraZeros != 0){
-                    extraZeros --;
-                }
-                if (place == 0.1) {
-                    place = 1;
-                }
-                else {
-                    let deletePlace = place * 10;
-                    if (place == 1){
-                        deletePlace = 1;
-                    }
-                    a = Math.floor((a / deletePlace) / 10) * deletePlace;
-                    if (place != 1){
-                        a *= 10;
-                        place *= 10;
-                        if (place == 0.1) {
-                            place = 1;
-                        }
+                else { // not first operation
+                    if (b != null) { // chained operation
+                        operateAndWrite(op);
+                        op = func;
+                    } // result is still a
+                    else { // trying to use two ops when b not defined yet
+                        errorMessage();
                     }
                 }
-                displayOnMain(a);
             }
-            else if (op != null && b != null) { // backspace b
-                if (extraZeros != 0){
-                    extraZeros --;
-                }
-                if (place == 0.1) {
-                    place = 1;
-                }
-                else {
-                    let deletePlace = place * 10;
-                    if (place == 1){
-                        deletePlace = 1;
+            else if (func == "=") { // calculate
+                operateAndWrite(op);
+            } // result is still a
+            else if (func == ".") { 
+                // if already writing decimal, do nothing.
+                if (place == 1) { // not already writing decimals
+                    if ((a == result && op == null) || a == null) { // need to start new a
+                        result = null;
+                        ab[0] = 0;
+                        appendToMain("0");
                     }
-                    b = Math.floor((b / deletePlace) / 10) * deletePlace;
-                    if (place != 1){
-                        b *= 10;
-                        place *= 10;
-                        if (place == 0.1) {
-                            place = 1;
-                        }
+                    else if (op != null && b == null) { // start new b
+                        ab[1] = 0;
+                        appendToMain("0");
                     }
+                    place /= 10;
+                    appendToMain(".");
                 }
-                displayOnMain(a, op, b);
             }
-            else {
-                errorMessage();
+            else if (func == "AC") {
+                reset();
+                refreshHistory();
+                refreshMain();
+            }
+            else { 
+                operateAndWrite(func);
             }
         }
     }
-    else { // number button
-        if (op == null) { // write a
-            if (a == null || (a == result && place == 1)){
-                a = 0;
-            }
-            if (place == 1){
-                a = a * 10 + funcInt;
-            }
-            else {
-                a = a + funcInt * place;
-                place /= 10;
-            }
-            displayOnMain(a);
+    else { // is number key
+        let abIdx = 0;
+        if (op != null) { // write b
+            abIdx = 1;
         }
-        else { // write b
-            if (b == null) {
-                b = 0;
-            }
-            if (place == 1){
-                b = b * 10 + funcInt;
-            }
-            else {
-                b = b + funcInt * place;
-                place /= 10;
-            }
-            displayOnMain(a, op, b);
+        if (ab[abIdx] == null) {
+            ab[abIdx] = 0;
         }
+        if (place == 1){ // not writing decimal
+            ab[abIdx] = ab[abIdx] * 10 + funcInt;
+        }
+        else { // writing decimal
+            ab[abIdx] = ab[abIdx] + funcInt * place;
+        }
+        appendToMain(func);
     }
+    console.log("a: " + ab[0] + "\nb: " + ab[1] + "\nresult: " + result + "\nop: " + op + "\nplace: " + place);
 }
 
 const buttonDiv = document.querySelector(".buttonDiv");
