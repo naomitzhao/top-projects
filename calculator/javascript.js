@@ -303,6 +303,7 @@ const eventToButton = new Map([
     ["s", "√"], 
     ["c", "AC"],
     ["_", "+/-"],
+    [".", "."], 
 ]);
 
 document.addEventListener("keydown", (event) => {
