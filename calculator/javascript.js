@@ -152,7 +152,11 @@ function handleButtonPress(func){
             } // result is still a
             else if (func == ".") { 
                 // if already writing decimal, do nothing.
-                if (place == 1) { // not already writing decimals
+                abIdx = 0;
+                if (op != null) {
+                    abIdx = 1;
+                }
+                if (place[abIdx] == 1) { // not already writing decimals
                     if ((a == result && op == null) || a == null) { // need to start new a
                         result = null;
                         ab[0] = 0;
@@ -233,7 +237,7 @@ function handleButtonPress(func){
         }
         appendToMain(func);
     }
-    // console.log("a: " + ab[0] + "\nb: " + ab[1] + "\nresult: " + result + "\nop: " + op + "\nplace: " + place + "\nleading zeros: " + leadingZeros);
+    console.log("a: " + ab[0] + "\nb: " + ab[1] + "\nresult: " + result + "\nop: " + op + "\nplace: " + place + "\nleading zeros: " + leadingZeros);
 }
 
 const buttonDiv = document.querySelector(".buttonDiv");
