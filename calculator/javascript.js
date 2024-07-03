@@ -5,7 +5,9 @@ let b = null;
 let op = null;
 let result = null;
 let place = 1;
-let extraZeros = 0;
+
+let mainMessage = "";
+let historyMessage = "";
 
 function operate(a, b, operator) {
     if (operator == "+") {
@@ -33,53 +35,14 @@ function roundNum(a){
     return Math.round(a * Math.pow(10, PLACES)) / Math.pow(10, PLACES);
 }
 
-function displayOnMain(a, op = null, b = null, roundA = true, roundB = true){
-    content = a;
-    if (roundA) {
-        content = roundNum(a);
-    }
-    if (op != null){
-        content += " " + op;
-    }
-    if (b != null){
-        if (roundB) {
-            content += " " + roundNum(b);
-        }
-        else {
-            content += " " + roundNum(b);
-        }
-    }
-    if (extraZeros != 0){
-        content += ".";
-        for (i = 0; i < extraZeros; i++){
-            content += "0";
-        }
-    }
-    displayMainMessage(content);
-}
-
-function displayHistory(a, op, result, b = null){
-    content = ""
-    if (op == "√") {
-        content = op + roundNum(a) + " = " + roundNum(result);
-    }
-    else if (op == "+/-") {
-        content = "-(" + roundNum(a) + ") = " + roundNum(result);
-    }
-    else {
-        content = roundNum(a) + " " + op + " " + roundNum(b) + " = " + roundNum(result);
-    }
-    displayHistoryMessage(content);
-}
-
-function displayMainMessage(content){
+function refreshMain(){
     const mainDisplay = document.querySelector("#mainDisplay");
-    mainDisplay.textContent = content;
+    mainDisplay.textContent = mainMessage;
 }
 
-function displayHistoryMessage(content){
+function refreshHistory(){
     const history = document.querySelector("#history");
-    history.textContent = content;
+    history.textContent = historyMessage;
 }
 
 function reset(){
@@ -88,24 +51,21 @@ function reset(){
     op = null;
     result = null;
     place = 1;
-    extraZeros = 0;
+    mainMessage = "";
+    historyMessage = "";
 }
 
 function errorMessage() {
     reset();
-    displayMainMessage("ERROR");
-    displayHistoryMessage("");
+    mainMessage = "ERROR";
+    historyMessage = "";
+    refreshMain();
+    refreshHistory();
 }
 
 
 function handleButtonPress(func){
     const funcInt = parseInt(func);
-    if (funcInt == 0 && place != 1){
-        extraZeros ++;
-    }
-    else if (func != "<") {
-        extraZeros = 0;
-    }
     if (isNaN(funcInt)) {
         if (ops.includes(func)){ // + - x /
             if (op == null){
@@ -115,21 +75,24 @@ function handleButtonPress(func){
                 else {
                     op = func;
                     place = 1;
-                    displayOnMain(a, op);
+                    mainMessage += " " + op + " ";
+                    refreshMain();
                 }
             }
-            else if (a != null && b != null && op != null){ // full expression
+            else if (a != null && b != null && op != null){ // + - x / with full expression
                 result = operate(a, b, op);
                 if (isNaN(result)) {
                     errorMessage();
                 }
                 else {
-                    displayHistory(a, op, result, b);
+                    historyMessage = mainMessage + " = " + result;
+                    refreshHistory();
                     a = result;
                     b = null;
                     op = func;
                     place = 1;
-                    displayOnMain(a, op);
+                    mainMessage = result + " " + op;
+                    refreshMain();
                 }
             }
             else { // tried to operate without full expression
@@ -143,8 +106,10 @@ function handleButtonPress(func){
                     errorMessage();
                 }
                 else {
-                    displayOnMain(result, null, null, true);
-                    displayHistory(a, op, result, b);
+                    historyMessage = mainMessage + " = " + result;
+                    mainMessage = result;
+                    refreshMain();
+                    refreshHistory();
                     a = result;
                     b = null;
                     op = null;
@@ -159,8 +124,10 @@ function handleButtonPress(func){
                     errorMessage();
                 }
                 else {
-                    displayOnMain(result);
-                    displayHistory(a, "√", result);
+                    mainMessage = result;
+                    historyMessage = "√" + result;
+                    refreshMain();
+                    refreshHistory();
                     a = result;
                 }
             }
@@ -168,28 +135,28 @@ function handleButtonPress(func){
         else if (func == "+/-") {
             if (op == null && a != null) {
                 result = a * -1;
-                displayOnMain(result);
-                displayHistory(a, "+/-", result);
+                historyMessage = "-(" + a + ") = " + result;
+                mainMessage = result;
+                refreshMain();
+                refreshHistory();
                 a = result;
             }
         }
         else if (func == "AC") {
             reset();
-            displayMainMessage("");
-            displayHistoryMessage("");
+            refreshMain();
+            refreshHistory();
         }
         else if (func == ".") {
             if (place == 1){
                 place /= 10;
-                if (op == null){
+                if (op == null){ // add decimal to a
                     if (a == null || (a == result && place == 1)){
                         a = 0;
                     }
-                    displayMainMessage(a + ".");
                 }
-                else {
-                    displayMainMessage(roundNum(a) + " " + op + " " + roundNum(b) + ".");
-                }
+                mainMessage += ".";
+                refreshMain();
             }
             else{
                 errorMessage();
@@ -197,9 +164,6 @@ function handleButtonPress(func){
         }
         else if (func == "<") {
             if (b == null && op == null) { // backspace a
-                if (extraZeros != 0){
-                    extraZeros --;
-                }
                 if (place == 0.1) {
                     place = 1;
                 }
@@ -217,12 +181,10 @@ function handleButtonPress(func){
                         }
                     }
                 }
-                displayOnMain(a);
+                mainMessage = mainMessage.slice(0, -1);
+                refreshMain();
             }
             else if (op != null && b != null) { // backspace b
-                if (extraZeros != 0){
-                    extraZeros --;
-                }
                 if (place == 0.1) {
                     place = 1;
                 }
@@ -240,7 +202,8 @@ function handleButtonPress(func){
                         }
                     }
                 }
-                displayOnMain(a, op, b);
+                mainMessage = mainMessage.slice(0, -1);
+                refreshMain();
             }
             else {
                 errorMessage();
@@ -259,7 +222,6 @@ function handleButtonPress(func){
                 a = a + funcInt * place;
                 place /= 10;
             }
-            displayOnMain(a);
         }
         else { // write b
             if (b == null) {
@@ -272,8 +234,9 @@ function handleButtonPress(func){
                 b = b + funcInt * place;
                 place /= 10;
             }
-            displayOnMain(a, op, b);
         }
+        mainMessage += func;
+        refreshMain();
     }
 }
 
