@@ -116,8 +116,17 @@ function operateAndWrite(operator){
     ab[0] = result;
     op = null;
     ab[1] = null;
-    place = [findPlace(result) / 10, 1];
-    leadingZeros = [1, 0];
+    let newPlace = findPlace(result);
+    if (newPlace != 1){
+        newPlace /= 10;
+    }
+    place = [newPlace, 1];
+    if (result < 0) {
+        leadingZeros = [1, 0];
+    }
+    else {
+        leadingZeros = [0, 0];
+    }
 }
 
 function handleButtonPress(func){
@@ -239,7 +248,7 @@ function handleButtonPress(func){
         }
         appendToMain(func);
     }
-    // console.log("a: " + ab[0] + "\nb: " + ab[1] + "\nresult: " + result + "\nop: " + op + "\nplace: " + place + "\nleading zeros: " + leadingZeros);
+    console.log("a: " + ab[0] + "\nb: " + ab[1] + "\nresult: " + result + "\nop: " + op + "\nplace: " + place + "\nleading zeros: " + leadingZeros);
 }
 
 const buttonDiv = document.querySelector(".buttonDiv");
