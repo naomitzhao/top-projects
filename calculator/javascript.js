@@ -5,6 +5,7 @@ let b = null;
 let op = null;
 let result = null;
 let place = 1;
+let extraZeros = 0;
 
 function operate(a, b, operator) {
     if (operator == "+") {
@@ -48,6 +49,12 @@ function displayOnMain(a, op = null, b = null, roundA = true, roundB = true){
             content += " " + roundNum(b);
         }
     }
+    if (extraZeros != 0){
+        content += ".";
+        for (i = 0; i < extraZeros; i++){
+            content += "0";
+        }
+    }
     displayMainMessage(content);
 }
 
@@ -81,6 +88,7 @@ function reset(){
     op = null;
     result = null;
     place = 1;
+    extraZeros = 0;
 }
 
 function errorMessage() {
@@ -92,6 +100,12 @@ function errorMessage() {
 
 function handleButtonPress(func){
     const funcInt = parseInt(func);
+    if (funcInt == 0 && place != 1){
+        extraZeros ++;
+    }
+    else {
+        extraZeros = 0;
+    }
     if (isNaN(funcInt)) {
         if (ops.includes(func)){ // + - x /
             if (op == null){
@@ -167,7 +181,10 @@ function handleButtonPress(func){
         else if (func == ".") {
             if (place == 1){
                 place /= 10;
-                if (b == null){
+                if (op == null){
+                    if (a == null || (a == result && place == 1)){
+                        a = 0;
+                    }
                     displayMainMessage(a + ".");
                 }
                 else {
@@ -227,7 +244,7 @@ function handleButtonPress(func){
         }
     }
     else { // number button
-        if (op == null) {
+        if (op == null) { // write a
             if (a == null || (a == result && place == 1)){
                 a = 0;
             }
@@ -240,7 +257,7 @@ function handleButtonPress(func){
             }
             displayOnMain(a);
         }
-        else {
+        else { // write b
             if (b == null) {
                 b = 0;
             }
