@@ -9,6 +9,9 @@ function operate(a, b, operator) {
         return a * b;
     }
     else if (operator == "/") {
+        if (b == 0){
+            return NaN;
+        }
         return a / b;
     }
 }
@@ -37,8 +40,7 @@ function displayOnMain(a, op = null, b = null, round = true){
     if (b != null){
         content += " " + b;
     }
-    const mainDisplay = document.querySelector("#mainDisplay");
-    mainDisplay.textContent = content;
+    displayMainMessage(content);
 }
 
 // function displayHistory(content) {
@@ -57,8 +59,22 @@ function displayHistory(a, op, result, b = null){
     else {
         content = roundNum(a) + " " + op + " " + roundNum(b) + " = " + roundNum(result);
     }
+    displayHistoryMessage(content);
+}
+
+function displayMainMessage(content){
+    const mainDisplay = document.querySelector("#mainDisplay");
+    mainDisplay.textContent = content;
+}
+
+function displayHistoryMessage(content){
     const history = document.querySelector("#history");
     history.textContent = content;
+}
+
+function errorMessage() {
+    displayMainMessage("ERROR");
+    displayHistoryMessage("");
 }
 
 let a = null;
@@ -73,44 +89,81 @@ function handleButtonPress(func){
     if (isNaN(funcInt)) {
         if (ops.includes(func)){
             if (op == null){
-                op = func;
-                displayOnMain(a, op);
+                if (a == null) {
+                    a = null;
+                    b = null;
+                    op = null;
+                    result = null;
+                    errorMessage();
+                }
+                else {
+                    op = func;
+                    displayOnMain(a, op);
+                }
             }
             else if (a != null && b != null && op != null){
                 result = operate(a, b, op);
-                displayHistory(a, op, result, b);
-                a = result;
+                if (isNaN(result)) {
+                    a = null;
+                    b = null;
+                    op = null;
+                    result = null;
+                    errorMessage();
+                }
+                else {
+                    displayHistory(a, op, result, b);
+                    a = result;
+                    b = null;
+                    op = func;
+                    displayOnMain(a, op);
+                }
+            }
+            else {
+                a = null;
                 b = null;
-                op = func;
-                displayOnMain(a, op);
+                op = null;
+                result = null;
+                errorMessage();
             }
         }
         else if (func == "="){
             if (a != null && b != null && op != null) {
                 result = operate(a, b, op);
-                displayOnMain(result, null, null, true);
-                displayHistory(a, op, result, b);
-                a = result;
-                b = null;
-                op = null;
+                if (isNaN(result)) {
+                    a = null;
+                    b = null;
+                    op = null;
+                    result = null;
+                    errorMessage();
+                }
+                else {
+                    displayOnMain(result, null, null, true);
+                    displayHistory(a, op, result, b);
+                    a = result;
+                    b = null;
+                    op = null;
+                }
             }
         }
         else if (func == "√") {
-            if (op != null || a == null){
-
-            }
-            else {
+            if (op == null && a != null) {
                 result = Math.sqrt(a);
-                displayOnMain(result);
-                displayHistory(a, "√", result);
-                a = result;
+                if (isNaN(result)) {
+                    a = null;
+                    b = null;
+                    op = null;
+                    result = null;
+                    errorMessage();
+                }
+                else {
+                    displayOnMain(result);
+                    displayHistory(a, "√", result);
+                    a = result;
+                }
             }
         }
         else if (func == "+/-") {
-            if (op != null || a == null){
-
-            }
-            else {
+            if (op == null && a != null) {
                 result = a * -1;
                 displayOnMain(result);
                 displayHistory(a, "+/-", result);
@@ -122,8 +175,8 @@ function handleButtonPress(func){
             b = null;
             op = null;
             result = null;
-            displayOnMain("");
-            displayHistory("");
+            displayMainMessage("");
+            displayHistoryMessage("");
         }
     }
     else {
