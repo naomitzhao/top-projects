@@ -22,7 +22,7 @@ function operate(a, b, operator) {
 // }
 
 function roundNum(a){
-    PLACES = 7;
+    const PLACES = 7;
     if (a > 10000000000) {
         return Number.parseFloat(a).toExponential(PLACES);
     }
@@ -38,7 +38,7 @@ function displayOnMain(a, op = null, b = null, round = true){
         content += " " + op;
     }
     if (b != null){
-        content += " " + b;
+        content += " " + roundNum(b);
     }
     displayMainMessage(content);
 }
@@ -72,42 +72,45 @@ function displayHistoryMessage(content){
     history.textContent = content;
 }
 
-function errorMessage() {
-    displayMainMessage("ERROR");
-    displayHistoryMessage("");
-}
-
 let a = null;
 let b = null;
 let op = null;
 let result = null;
+let place = 1;
 
-ops = ["+", "-", "x", "/"];
+function reset(){
+    a = null;
+    b = null;
+    op = null;
+    result = null;
+    place = 1;
+}
+
+function errorMessage() {
+    reset();
+    displayMainMessage("ERROR");
+    displayHistoryMessage("");
+}
+
+const ops = ["+", "-", "x", "/"];
 
 function handleButtonPress(func){
     const funcInt = parseInt(func);
     if (isNaN(funcInt)) {
-        if (ops.includes(func)){
+        if (ops.includes(func)){ // + - x /
             if (op == null){
                 if (a == null) {
-                    a = null;
-                    b = null;
-                    op = null;
-                    result = null;
                     errorMessage();
                 }
                 else {
                     op = func;
+                    place = 1;
                     displayOnMain(a, op);
                 }
             }
-            else if (a != null && b != null && op != null){
+            else if (a != null && b != null && op != null){ // full expression
                 result = operate(a, b, op);
                 if (isNaN(result)) {
-                    a = null;
-                    b = null;
-                    op = null;
-                    result = null;
                     errorMessage();
                 }
                 else {
@@ -115,14 +118,11 @@ function handleButtonPress(func){
                     a = result;
                     b = null;
                     op = func;
+                    place = 1;
                     displayOnMain(a, op);
                 }
             }
-            else {
-                a = null;
-                b = null;
-                op = null;
-                result = null;
+            else { // tried to operate without full expression
                 errorMessage();
             }
         }
@@ -130,10 +130,6 @@ function handleButtonPress(func){
             if (a != null && b != null && op != null) {
                 result = operate(a, b, op);
                 if (isNaN(result)) {
-                    a = null;
-                    b = null;
-                    op = null;
-                    result = null;
                     errorMessage();
                 }
                 else {
@@ -142,6 +138,7 @@ function handleButtonPress(func){
                     a = result;
                     b = null;
                     op = null;
+                    place = 1;
                 }
             }
         }
@@ -149,10 +146,6 @@ function handleButtonPress(func){
             if (op == null && a != null) {
                 result = Math.sqrt(a);
                 if (isNaN(result)) {
-                    a = null;
-                    b = null;
-                    op = null;
-                    result = null;
                     errorMessage();
                 }
                 else {
@@ -171,27 +164,50 @@ function handleButtonPress(func){
             }
         }
         else if (func == "AC") {
-            a = null;
-            b = null;
-            op = null;
-            result = null;
+            reset();
             displayMainMessage("");
             displayHistoryMessage("");
         }
+        else if (func == ".") {
+            if (place == 1){
+                place /= 10;
+                if (b == null){
+                    displayMainMessage(a + ".");
+                }
+                else {
+                    displayMainMessage(roundNum(a) + " " + op + " " + roundNum(b) + ".");
+                }
+            }
+            else{
+                errorMessage();
+            }
+        }
     }
-    else {
+    else { // number button
         if (op == null) {
-            if (a == null || a == result){
+            if (a == null || (a == result && place == 1)){
                 a = 0;
             }
-            a = a * 10 + funcInt;
+            if (place == 1){
+                a = a * 10 + funcInt;
+            }
+            else {
+                a = a + funcInt * place;
+                place /= 10;
+            }
             displayOnMain(a);
         }
         else {
             if (b == null) {
                 b = 0;
             }
-            b = b * 10 + funcInt;
+            if (place == 1){
+                b = b * 10 + funcInt;
+            }
+            else {
+                b = b + funcInt * place;
+                place /= 10;
+            }
             displayOnMain(a, op, b);
         }
     }
