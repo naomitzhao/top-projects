@@ -169,7 +169,8 @@ function handleButtonPress(func){
                     if ((a == result && op == null) || a == null) { // need to start new a
                         result = null;
                         ab[0] = 0;
-                        appendToMain("0");
+                        mainMessage = "0";
+                        refreshMain();
                         leadingZeros[0] = 1;
                     }
                     else if (op != null && b == null) { // start new b
@@ -248,7 +249,7 @@ function handleButtonPress(func){
         }
         appendToMain(func);
     }
-    console.log("a: " + ab[0] + "\nb: " + ab[1] + "\nresult: " + result + "\nop: " + op + "\nplace: " + place + "\nleading zeros: " + leadingZeros);
+    // console.log("a: " + ab[0] + "\nb: " + ab[1] + "\nresult: " + result + "\nop: " + op + "\nplace: " + place + "\nleading zeros: " + leadingZeros);
 }
 
 const buttonDiv = document.querySelector(".buttonDiv");
