@@ -311,7 +311,7 @@ const eventToButton = new Map([
     ["Enter", "="],
     ["Backspace", "<"],
     ["s", "√"], 
-    ["c", "AC"],
+    ["Escape", "AC"],
     ["_", "+/-"],
     [".", "."], 
 ]);
@@ -328,5 +328,11 @@ document.addEventListener("keydown", (event) => {
 document.addEventListener("keyup", (event) => {
     if (eventToButton.has(event.key)) {
         document.getElementById(eventToButton.get(event.key)).classList.remove("activeButton");
+    }
+    else if (event.key == "Shift") {
+        const calculatorButtons = document.querySelectorAll(".calculatorButton");
+        calculatorButtons.forEach((btn) => {
+            btn.classList.remove("activeButton");
+        });
     }
 });
