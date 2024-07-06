@@ -311,7 +311,7 @@ const eventToButton = new Map([
     ["Enter", "="],
     ["Backspace", "<"],
     ["s", "√"], 
-    ["c", "AC"],
+    ["Escape", "AC"],
     ["_", "+/-"],
     [".", "."], 
 ]);
