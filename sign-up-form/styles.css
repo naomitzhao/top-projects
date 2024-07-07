@@ -1,0 +1,33 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main {
+    background-color: lightgray;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+#leftContainer {
+    height: 100vh;
+    width: 40%;
+    border: 2px solid green;
+}
+
+#rightContainer {
+    height: 100vh;
+    width: 60%;
+    border: 2px solid blue;
+}
