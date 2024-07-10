@@ -11,14 +11,16 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: "Lexend";
+    font-family: "Lexend", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 400;
 }
 
 :root {
     --pale-gray: #e9ebed;
-    --water-blue: #164866;
+    --water-blue: #156689;
     --leaf-green: #518249;
+    --dark-gray: #3c4142;
+    font-size: 16px;
 }
 
 body {
@@ -89,14 +91,8 @@ h3 {
     flex-direction: column;
     margin: 0 -40px;
     padding: 20px 40px;
-    gap: 40px;
-    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
-}
-
-#formFields {
-    display: flex;
-    flex-direction: column;
     gap: 20px;
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
 form {
@@ -109,22 +105,31 @@ form {
 .formPair {
     display: flex;
     flex-direction: row;
-    gap: 40px;
+    gap: 80px;
 }
 
 .labelInput {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    width: 300px;
+    width: 250px;
+}
+
+label {
+    font-size: 0.85rem;
+    color: var(--dark-gray);
 }
 
 input {
-    width: 250px;
     height: 10px;
     padding: 10px;
     border: 1px solid var(--pale-gray);
     border-radius: 5px;
+}
+
+input:focus {
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--water-blue);
 }
 
 button {
@@ -134,4 +139,106 @@ button {
     color: white;
     border: none;
     border-radius: 8px;
+    font-size: 1rem;
+}
+
+a {
+    color: var(--water-blue);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+@media screen and (max-width: 1000px) {
+    :root {
+        font-size: 12px;
+    }
+
+    #overlay {
+        gap: 10px;
+    }
+
+    h2 {
+        font-size: 4rem;
+    }
+
+    img {
+        height: 40px;
+    }
+
+    #rightContainer {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    #formWhiteBg {
+        margin: 0 -20px;
+        padding: 10px 20px;
+    }
+
+    .formPair {
+        gap: 20px;
+    }
+
+    .labelInput {
+        width: 200px
+    }
+}
+
+@media screen and (max-width: 750px) {
+    :root {
+        font-size: 16px;
+    }
+
+    #leftContainer {
+        display: none;
+    }
+
+    #rightContainer {
+        width: 100%;
+        padding: 20px 80px;
+        gap: 20px;
+    }
+
+    #formWhiteBg {
+        margin: 0 -80px;
+        padding: 40px 80px;
+    }
+
+    .formPair {
+        gap: 40px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    :root {
+        font-size: 14px;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    #leftContainer {
+        display: none;
+    }
+
+    #rightContainer {
+        width: 100%;
+        padding: 20px 40px;
+        gap: 20px;
+    }
+
+    #formWhiteBg {
+        margin: 0 -40px;
+        padding: 20px 40px;
+    }
+
+    .labelInput{
+        width: 100%;
+    }
+
+    .formPair {
+        gap: 20px;
+        flex-direction: column;
+    }
 }
