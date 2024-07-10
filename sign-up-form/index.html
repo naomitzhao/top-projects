@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sign-up-form</title>
     <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <main>
@@ -12,13 +16,53 @@
             <div id="overlayContainer">
                 <div id="overlay">
                     <img src="assets/flower.svg">
-                    <p id="overlayText">Elysia Laur</p>
+                    <h2 id="overlayText">Elysia</h2>
                 </div>
             </div>
         </div>
         <div id="rightContainer">
-            <a href="https://www.fontspace.com/salisbury-bold-font-f116345">Salisbury Bold font</a>
-            <a href="https://www.svgrepo.com/svg/165289/flower-with-rounded-petals">flower svg</a>
+                <h3>This is not a real online service! You know you need something like this in your life to help you realize your deepest dreams. Sign up <em>now</em> to get started.</h3>
+                <h3>You <em>know</em> you want to.</h3>
+                <form>
+                    <div id="formWhiteBg">
+                        <h3>Let's do this!</h3>
+                        <div id="formFields">
+                            <div class="formPair">
+                                <div class="labelInput">
+                                    <label>FIRST NAME</label>
+                                    <input type="text" class="inputBox">
+                                </div>
+                                <div class="labelInput">
+                                    <label>LAST NAME</label>
+                                    <input type="text" class="inputBox">
+                                </div>
+                            </div>
+                            <div class="formPair">
+                                <div class="labelInput">
+                                    <label>EMAIL</label>
+                                    <input type="email" class="inputBox">
+                                </div>
+                                <div class="labelInput">
+                                    <label>PHONE NUMBER</label>
+                                    <input type="text" class="inputBox">
+                                </div>
+                            </div>
+                            <div class="formPair">
+                                <div class="labelInput">
+                                    <label>PASSWORD</label>
+                                    <input type="password" class="inputBox">
+                                </div>
+                                <div class="labelInput">
+                                    <label>CONFIRM PASSWORD</label>
+                                    <input type="password" class="inputBox">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit">Create Account</button>
+                </form>
+                <p>Already have an account? <a>Log in</a></p> 
         </div>
     </main>
 </body>
