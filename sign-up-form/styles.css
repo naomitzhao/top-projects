@@ -242,3 +242,17 @@ a {
         flex-direction: column;
     }
 }
+
+@media screen and (min-width: 1500px) {
+    :root {
+        font-size: 18px;
+    }
+
+    .labelInput {
+        width: 400px;
+    }
+
+    input {
+        height: 20px;
+    }
+}
