@@ -127,9 +127,24 @@ input {
     border-radius: 5px;
 }
 
+input ~ p {
+    display: none;
+}
+
+input:invalid ~ p {
+    color: red;
+    font-weight: 200;
+    font-size: 0.7rem;
+    display: block;
+}
+
 input:focus {
     box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.1);
     border: 1px solid var(--water-blue);
+}
+
+input:invalid {
+    border: 1px solid red;
 }
 
 button {
