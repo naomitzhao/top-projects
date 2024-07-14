@@ -12,6 +12,9 @@
     --medium-dark-background: #943c4b;
     --medium-background: #F1D0D6;
     --light-background: #F9EAEC;
+    --lightest-background: #fbf2f3;
+
+    --darkest-accent: #873745;
 
     --shadow: 5px 5px 5px 0px rgba(114, 35, 35, 0.2);
 }
@@ -45,6 +48,16 @@ h5 {
     font-weight: 600;
 }
 
+strong {
+    font-weight: 600;
+    color: var(--darkest-accent);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
 #sidebar {
     background-color: var(--dark-background);
     grid-area: 1 / 1 / 3 / 2;
@@ -61,6 +74,9 @@ h5 {
     grid-template-columns: 1fr 5fr;
     gap: 10px;
     align-items: center;
+    cursor: pointer;
+    user-select: none;
+    color: white;
 }
 
 #sidebar-title img {
@@ -90,6 +106,8 @@ h5 {
     align-items: center;
 
     padding: 5px;
+    cursor: pointer;
+    user-select: none;
 }
 
 #sidebar ul li:hover {
@@ -121,6 +139,8 @@ h5 {
 
 #searchbar img {
     height: 30px;
+    cursor: pointer;
+    user-select: none;
 }
 
 #searchbar input {
@@ -145,6 +165,8 @@ h5 {
     grid-column: 2 / 3;
 
     height: 30px;
+    cursor: pointer;
+    user-select: none;
 }
 
 #upper-right-icon {
@@ -152,12 +174,16 @@ h5 {
 
     height: 50px;
     border-radius: 50px;
+    cursor: pointer;
+    user-select: none;
 }
 
 #upper-right p {
     grid-column: 4 / 5;
     font-size: 1.2rem;
     color: black;
+    cursor: pointer;
+    user-select: none;
 }
 
 #greeting-box {
@@ -206,6 +232,8 @@ button {
     font-weight: 700;
     letter-spacing: 0.7px;
     font-size: 1rem;
+    cursor: pointer;
+    user-select: none;
 }
 
 button:hover {
@@ -245,6 +273,12 @@ main {
     padding: 30px 20px;
     border-radius: 10px;
     box-shadow: var(--shadow);
+
+    overflow: hidden;
+}
+
+.project-card:hover {
+    background-color: var(--lightest-background);
 }
 
 .project-text {
@@ -285,6 +319,8 @@ main {
 
 .announcement {
     display: grid;
+    cursor: pointer;
+    user-select: none;
 }
 
 #trending {
@@ -307,6 +343,8 @@ main {
     display: grid;
     grid-template-columns: 1fr 3fr;
     gap: 10px;
+    cursor: pointer;
+    user-select: none;
 }
 
 .trend img {
