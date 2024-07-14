@@ -7,12 +7,18 @@
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 16px;
 
+    --light-text: #94676f;
     --dark-background: #A44E5C;
     --medium-dark-background: #943c4b;
     --medium-background: #F1D0D6;
     --light-background: #F9EAEC;
 
     --shadow: 5px 5px 5px 0px rgba(114, 35, 35, 0.2);
+}
+
+p {
+    color: var(--light-text);
+    text-overflow: ellipsis;
 }
 
 body {
@@ -28,6 +34,15 @@ body > div {
 
 h1 {
     font-size: 1.75rem;
+}
+
+h4 {
+    font-weight: 600;
+}
+
+h5 {
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 #sidebar {
@@ -141,13 +156,14 @@ h1 {
 
 #upper-right p {
     grid-column: 4 / 5;
-    font-size: 1.125rem;
+    font-size: 1.2rem;
+    color: black;
 }
 
 #greeting-box {
     display: grid;
-    grid-template-columns: 75px 1fr;
-    gap: 40px;
+    grid-template-columns: 100px 400px;
+    gap: 20px;
 }
 
 #greeting-text {
@@ -166,10 +182,8 @@ h1 {
 }
 
 #greeting-box img {
-    grid-area: 1 / 1 / 3 / 2;
-
     height: 100px;
-    border-radius: 75px;
+    border-radius: 50px;
 }
 
 #post-buttons {
@@ -203,7 +217,7 @@ main {
     grid-area: 2 / 2 / 3 / 3;
 
     display: grid;
-    grid-template: 1fr 1fr / 1fr min(30%, 300px);
+    grid-template: 1fr 1fr / 1fr 300px;
     gap: 20px;
 
     padding: 30px;
@@ -269,6 +283,10 @@ main {
     box-shadow: var(--shadow);
 }
 
+.announcement {
+    display: grid;
+}
+
 #trending {
     display: grid;
     grid-template-rows: 30px 1fr;
@@ -288,9 +306,19 @@ main {
 .trend {
     display: grid;
     grid-template-columns: 1fr 3fr;
+    gap: 10px;
 }
 
 .trend img {
     height: 40px;
     border-radius: 40px;
+}
+
+.trend-name {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.friend-name {
+    color: black;
 }
