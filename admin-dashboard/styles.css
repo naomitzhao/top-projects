@@ -621,14 +621,13 @@ main {
     #sidebar {
         position: fixed;
         bottom: 0;
-        width: 96%;
-        aspect-ratio: 8;
+        width: 100%;
         max-height: 40px;
         
         grid-template: 1fr / 2fr 1fr;
         gap: 0;
         
-        padding: 2%;
+        padding: 2% 3% 2% 1%;
     }
 
     #sidebar-title {
@@ -649,6 +648,7 @@ main {
         display: grid;
         grid-template: 1fr / 1fr;
     
+        aspect-ratio: 1;
         padding: 5px;
         cursor: pointer;
         user-select: none;
@@ -659,9 +659,11 @@ main {
     }
 
     #sidebar ul li img {
-        height: auto;
+        height: 100%;
         max-height: 30px;
-        min-height: 10px;
+        min-height: 20px;
+        align-self: center;
+        justify-self: center;
     }
 
     main {
