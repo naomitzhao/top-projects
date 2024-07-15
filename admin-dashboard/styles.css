@@ -110,6 +110,10 @@ a {
     user-select: none;
 }
 
+#sidebar ul li p {
+    color: white;
+}
+
 #sidebar ul li:hover {
     background-color: var(--medium-dark-background);
 }
@@ -363,4 +367,311 @@ main {
 
 .friend-name {
     color: black;
+}
+
+@media screen and (max-width: 1240px) {
+    h1 {
+        font-size: 1.25rem;
+    }
+
+    body {
+        grid-template: 150px 1fr / 190px 1fr;
+    }
+
+    #sidebar {
+        grid-template-rows: 40px 250px 125px 1fr;
+        gap: 20px;
+    }
+
+    #sidebar-title {
+        gap: 5px;
+        margin-left: -10px
+    }
+
+    #sidebar-title img {
+        height: 30px;
+    }
+
+    #sidebar ul {
+        font-size: 1.125rem;
+    }
+
+    #sidebar ul li {
+        gap: 5px;
+    }
+
+    #sidebar ul li img {
+        height: 15px;
+    }
+
+    #navbar {
+        gap: 5px;
+        grid-template: 1fr 3fr / 2fr 1fr;
+    
+        padding: 10px 20px;
+    }
+
+    #searchbar img {
+        height: 25px;
+    }
+
+    #searchbar input {
+        height: 15px;
+        padding: 5px 10px;
+        border-radius: 15px;
+    }
+
+    #upper-right {
+        display: grid;
+        grid-template-columns: 1fr 40px 40px 100px;
+        align-items: center;
+        justify-items: center;
+        gap: 20px;
+    
+    }
+    
+    #notifications-icon {
+        height: 25px;
+    }
+    
+    #upper-right-icon {
+        height: 40px;
+        border-radius: 40px;
+    }
+    
+    #upper-right p {
+        font-size: 1.125rem;
+    }
+
+    #greeting-box {
+        display: grid;
+        grid-template-columns: 80px 320px;
+        gap: 20px;
+    }
+    
+    #greeting-text {
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        padding: 10px 0;
+    }
+    
+    #greeting-box p {
+        font-size: 1.25rem;
+    }
+    
+    #greeting-box h1 {
+        font-size: 1.5rem;
+    }
+    
+    #greeting-box img {
+        height: 80px;
+        border-radius: 40px;
+    }
+
+    #post-buttons {
+        grid-template-columns: 1fr repeat(3, 75px);
+        gap: 15px;
+    }
+    
+    button {
+        height: 30px;
+        width: 75px;
+        border: none;
+        border-radius: 20px;
+        background-color: var(--dark-background);
+        color: white;
+        font-weight: 700;
+        letter-spacing: 0.7px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    main {
+        grid-template-columns: 1fr 220px;
+        gap: 20px;
+    
+        padding: 30px;
+        box-shadow: inset 0px 5px 5px rgba(114, 35, 35, 0.1);
+    }
+
+    #announcements {
+        display: grid;
+        grid-template-rows: 1fr 300px;
+        gap: 5px;
+    
+        margin-bottom: 20px;
+    }
+
+    #third-divider {
+        display: none;
+    }
+
+    #third-announcement {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    #navbar {
+        grid-template: 1fr 3fr / 1fr 25px;
+    }
+
+    #upper-right {
+        grid-template: 1fr / 1fr;
+    }
+
+    #notifications-icon {
+        grid-column: 1 / 2;
+    }
+
+    #upper-right-icon {
+        display: none;
+    }
+    
+    #upper-right p {
+        display: none;
+    }
+
+    #greeting-box {
+        grid-area: 2 / 1 / 3 / 3;
+    }
+
+    #post-buttons {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        grid-template: 130px 1fr / 190px 1fr;
+    }
+
+    main {
+        grid-template: 1fr / 1fr;
+    }
+
+    #greeting-box {
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        gap: 15px;
+    }
+    
+    #greeting-text {
+        display: grid;
+        grid-template-rows: 20px 1fr;
+        gap: 5px;
+        padding: 10px 0;
+    }
+    
+    #greeting-box p {
+        font-size: 1rem;
+    }
+    
+    #greeting-box h1 {
+        font-size: 1.25rem;
+    }
+    
+    #greeting-box img {
+        height: 60px;
+        border-radius: 30px;
+    }
+
+    #project-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .project-card {
+        grid-template: 1fr / 1fr;
+    
+        background-color: white;
+        padding: 30px 20px;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        min-height: 100px;
+        max-height: 300px;
+    
+        overflow: hidden;
+    }
+
+    .project-icons {
+        display: none;
+    }
+
+    #announcements {
+        display: none;
+    }
+
+    #trending {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    body {
+        grid-template: 130px 1fr / 1fr;
+    }
+
+    #navbar {
+        grid-area: 1 / 1 / 2 / 1;
+    }
+
+    #sidebar {
+        position: fixed;
+        bottom: 0;
+        width: 96%;
+        aspect-ratio: 8;
+        max-height: 40px;
+        
+        grid-template: 1fr / 2fr 1fr;
+        gap: 0;
+        
+        padding: 2%;
+    }
+
+    #sidebar-title {
+        display: none;
+    }
+
+    #sidebar-upper-links {
+        display: grid;
+        grid-template: 1fr / repeat(6, 1fr);
+    }
+    
+    #sidebar-lower-links {
+        display: grid;
+        grid-template: 1fr / repeat(3, 1fr);
+    }
+    
+    #sidebar ul li {
+        display: grid;
+        grid-template: 1fr / 1fr;
+    
+        padding: 5px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    #sidebar ul li p {
+        display: none;
+    }
+
+    #sidebar ul li img {
+        height: auto;
+        max-height: 30px;
+        min-height: 10px;
+    }
+
+    main {
+        grid-area: 2 / 1 / 3 / 2;
+        padding-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    span {
+        display: none;
+    }
 }
