@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>admin dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="sidebar">
+        <a id="sidebar-title" href="index.html">
+            <img src="assets/dashboard.svg">
+            <h1>Dashboard</h1>
+        </a>
+        <ul id="sidebar-upper-links">
+            <li><img src="assets/home.svg"> <p>Home</p></li>
+            <li><img src="assets/profile.svg"> <p>Profile</p></li>
+            <li><img src="assets/messages.svg"> <p>Messages</p></li>
+            <li><img src="assets/history.svg"> <p>History</p></li>
+            <li><img src="assets/tasks.svg"> <p>Tasks</p></li>
+            <li><img src="assets/communities.svg"> <p>Communities</p></li>
+        </ul>
+        <ul id="sidebar-lower-links">
+            <li><img src="assets/settings.svg"> <p>Settings</p></li>
+            <li><img src="assets/support.svg"> <p>Support</p></li>
+            <li><img src="assets/privacy.svg"> <p>Privacy</p></li>
+        </ul>
+    </div>
+    <div id="navbar">
+        <div id="searchbar">
+            <img src="assets/search.svg">
+            <input type="text">
+        </div>
+        <div id="upper-right">
+            <img src="assets/notifications.svg" id="notifications-icon">
+            <img src="assets/profile_photo.jpg" id="upper-right-icon">
+            <p>Naomi Zhao</p>
+        </div>
+        <div id="greeting-box">
+            <img src="assets/profile_photo.jpg">
+            <div id="greeting-text">
+                <p>Hi there,</p>
+                <h1>Naomi Zhao <span>(@naomi)</span></h1>
+            </div>
+        </div>
+        <div id="post-buttons">
+            <div></div>
+            <button>New</button>
+            <button>Upload</button>
+            <button>Share</button>
+        </div>
+    </div>
+    <main>
+        <div id="projects">
+            <h3>Your Projects</h3>
+            <div id="project-container">
+                <a class="project-card" href="https://naomitzhao.github.io/top-projects/landing-page/">
+                    <div class="project-text">
+                        <h4>Landing Page</h4>
+                        <p>Classic website landing page which practices <strong>basic HTML, CSS, the box model, and flexbox</strong>! I also tried to add some <strong>media queries</strong> for responsiveness.</p>
+                    </div>
+                    <div class="project-icons">
+                        <img src="assets/favorite.svg">
+                        <img src="assets/visibility.svg">
+                        <img src="assets/share.svg">
+                    </div>
+                </a>
+                <a class="project-card" href="https://naomitzhao.github.io/top-projects/rock-paper-scissors/">
+                    <div class="project-text">
+                        <h4>Rock Paper Scissors</h4>
+                        <p>A simple 5-round rock-paper-scissors game against the computer. An introductory project for <strong>foundational Javascript</strong> and <strong>DOM manipulation</strong>.</p>
+                    </div>
+                    <div class="project-icons">
+                        <img src="assets/favorite.svg">
+                        <img src="assets/visibility.svg">
+                        <img src="assets/share.svg">
+                    </div>
+                </a>
+                <a class="project-card" href="https://naomitzhao.github.io/top-projects/etch-a-sketch/">
+                    <div class="project-text">
+                        <h4>Etch-A-Sketch</h4>
+                        <p>Inspired by the classic drawing toy. This project showcases further practice of <strong>Javascript DOM manipulation</strong>.</p>
+                    </div>
+                    <div class="project-icons">
+                        <img src="assets/favorite.svg">
+                        <img src="assets/visibility.svg">
+                        <img src="assets/share.svg">
+                    </div>
+                </a>
+                <a class="project-card" href="https://naomitzhao.github.io/top-projects/calculator/">
+                    <div class="project-text">
+                        <h4>Calculator</h4>
+                        <p>A four function calculator showcasing further practice of <strong>Javascript DOM manipulation</strong>.</p>
+                    </div>
+                    <div class="project-icons">
+                        <img src="assets/favorite.svg">
+                        <img src="assets/visibility.svg">
+                        <img src="assets/share.svg">
+                    </div>
+                </a>
+                <a class="project-card" href="https://naomitzhao.github.io/top-projects/sign-up-form/">
+                    <div class="project-text">
+                        <h4>Sign-up Form</h4>
+                        <p>A form website featuring <strong>form HTML and CSS</strong> and <strong>HTML input validation</strong>. Later, I hope to add <strong>Javascript input validation</strong>. This project also features responsive <strong>media queries</strong>!</r></p>
+                    </div>
+                    <div class="project-icons">
+                        <img src="assets/favorite.svg">
+                        <img src="assets/visibility.svg">
+                        <img src="assets/share.svg">
+                    </div>
+                </a>
+                <a class="project-card" href="https://naomitzhao.github.io/top-projects/admin-dashboard/">
+                    <div class="project-text">
+                        <h4>Admin Dashboard</h4>
+                        <p>You are here! :) <br>After using only flexbox, this project is my first grid experience, using <strong>grid layouts</strong> only. It also uses <strong>media queries</strong>. Try resizing your window!</p>
+                    </div>
+                    <div class="project-icons">
+                        <img src="assets/favorite.svg">
+                        <img src="assets/visibility.svg">
+                        <img src="assets/share.svg">
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <div id="announcements">
+                <h3>Announcements</h3>
+                <div id="announcements-panel">
+                    <div class="announcement">
+                        <h5>Site Maintenance</h5>
+                        <p>This site will undergo maintenance on July 14, 2024 for the launch...</p>
+                    </div>
+                    <hr>
+                    <div class="announcement">
+                        <h5>Community Share Day</h5>
+                        <p>Get ready for community share day! Bring a friend and prepare for...</p>
+                    </div>
+                    <hr id="third-divider">
+                    <div class="announcement" id="third-announcement">
+                        <h5>Updated Privacy Policy</h5>
+                        <p>Privacy policy last updated 07/14/2024. Make sure to stay up...</p>
+                    </div>
+                </div>
+            </div>
+            <div id="trending">
+                <h3>Friends</h3>
+                <div id="trending-panel">
+                    <div class="trend">
+                        <img src="assets/bunni_icon.jpg">
+                        <div class="trend-name">
+                            <p class="friend-name">Bunni</p>
+                            <p>@Bunni</p>
+                        </div>
+                    </div>
+                    <div class="trend">
+                        <img src="assets/bunbun_icon.jpg">
+                        <div class="trend-name">
+                            <p class="friend-name">BUNBUN</p>
+                            <p>@COFFEE_LEGEND_123</p>
+                        </div>
+                    </div>
+                    <div class="trend">
+                        <img src="assets/divine_swine_icon.jpg">
+                        <div class="trend-name">
+                            <p class="friend-name">divine swine</p>
+                            <p>@thingswithwings</p>
+                        </div>
+                    </div>
+                    <div class="trend">
+                        <img src="assets/bread_djuckling_icon.jpg">
+                        <div class="trend-name">
+                            <p class="friend-name">bread djuckling</p>
+                            <p>@loaf</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

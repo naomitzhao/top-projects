@@ -9,7 +9,7 @@ feel free to reach out if there are any bugs.
 - basic css styling
 - flexbox
 - extra: css variables
-- extra: (mostly) responsive
+- extra: media queries
 
 ### [rock paper scissors](https://naomitzhao.github.io/top-projects/rock-paper-scissors/)
 - basic javascript
@@ -34,3 +34,10 @@ feel free to reach out if there are any bugs.
 - relative and absolute positioning
 - SVG
 - basic form validation
+- media queries
+
+### [admin dashboard](https://naomitzhao.github.io/top-projects/admin-dashboard/)
+- grid
+- absolute positioning
+- SVG
+- media queries
