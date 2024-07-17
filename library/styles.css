@@ -9,6 +9,8 @@
     
     --header-height: 100px;
     --footer-height: 50px;
+
+    --padding-size: 20px;
 }
 
 header {
@@ -23,7 +25,15 @@ body {
 }
 
 main {
-    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    min-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--padding-size) * 2);
+    padding: var(--padding-size);
+}
+
+.book-card {
+    background-color: white;
+    max-width: 300px;
+    padding: var(--padding-size);
+    border-radius: 10px;
 }
 
 footer {
