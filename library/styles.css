@@ -1,16 +1,28 @@
 * {
     padding: 0;
     margin: 0;
+
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 :root {
     --main-background: rgb(235, 235, 235);
-    --main-accent: rgb(183, 215, 235);
+    --main-accent: rgb(207, 212, 216);
+    --dark-accent: rgb(47, 76, 156);
+    --darker-accent: rgb(15, 37, 99);
+
+    --book-read: rgb(71, 130, 71);
+    --book-unread: rgb(156, 72, 72);
     
     --header-height: 100px;
     --footer-height: 50px;
 
     --padding-size: 20px;
+    
+}
+
+p {
+    font-size: 1rem;
 }
 
 header {
@@ -18,22 +30,91 @@ header {
     height: var(--header-height);
 }
 
+header h1 {
+    padding: var(--padding-size);
+    color: var(--dark-accent);
+}
+
 body {
     background-color: var(--main-background);
     display: flex;
     flex-direction: column;
+    align-items: stretch;
 }
 
 main {
     min-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--padding-size) * 2);
     padding: var(--padding-size);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-size);
+}
+
+#button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#button-container button {
+    background-color: var(--dark-accent);
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 32px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#button-container button:hover {
+    background-color: var(--darker-accent);
+    color: white;
+}
+
+#books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--padding-size);
 }
 
 .book-card {
     background-color: white;
-    max-width: 300px;
     padding: var(--padding-size);
     border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.book-card span {
+    font-weight: 700;
+}
+
+.title-author {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.description {
+    flex: 1;
+}
+
+.book-card button {
+    padding: 10px 24px;
+    background-color: var(--book-unread);
+    color: white;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.read-book {
+    background-color: var(--book-read) !important;
 }
 
 footer {
