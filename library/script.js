@@ -1,4 +1,5 @@
 const myLibrary = [];
+idx = 0;
 
 function Book(title, author, pages, read, description) {
     this.title = title;
@@ -6,6 +7,8 @@ function Book(title, author, pages, read, description) {
     this.pages = pages;
     this.read = read;
     this.description = description;
+    this.id = idx;
+    idx ++;
 
     this.info = function(){
         res = this.title + " by " + this.author + ", " + this.pages + " pages, ";
@@ -31,6 +34,7 @@ const booksContainer = document.getElementById("books-container");
 myLibrary.forEach((book) => {
     const bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
+    bookCard.id = "book" + book.id;
 
     const titleAuthor = document.createElement("div");
     titleAuthor.classList.add("title-author");
@@ -57,6 +61,7 @@ myLibrary.forEach((book) => {
     bookCard.append(desc);
 
     const readButton = document.createElement("button");
+    readButton.classList.add("read-button");
     if (book.read) {
         readButton.textContent = "Read";
     }
@@ -74,6 +79,24 @@ myLibrary.forEach((book) => {
             readButton.classList.add("read-book");
             readButton.textContent = "Read";
         }
+    });
+
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-button");
+    deleteButton.textContent = "Delete";
+    bookCard.append(deleteButton);
+    
+    deleteButton.addEventListener("click", () => {
+        const deleteIdx = myLibrary.indexOf(book);
+        const cards = document.querySelectorAll(".book-card");
+        
+        cards.forEach((card) => {
+            if (card.id == "book" + myLibrary[deleteIdx].id) {
+                booksContainer.removeChild(card);
+                return;
+            }
+        });
+        myLibrary.splice(deleteIdx, 1);
     });
 
     booksContainer.appendChild(bookCard);
