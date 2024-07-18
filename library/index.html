@@ -22,33 +22,33 @@
     <div id="dialog-overlay"></div>
     <dialog open>
         <h2>Add Book</h2>
-        <form>
+        <form id="add-form">
             <div class="form-item">
                 <label>Title</label>
-                <input type="text" class="form-input">
+                <input type="text" name="title" class="form-input">
             </div>
 
             <div class="form-item">
                 <label>Author</label>
-                <input type="text" class="form-input">
+                <input type="text" name="author" class="form-input">
             </div>
 
             <div class="form-item">
                 <label>Page Count</label>
-                <input type="number" class="form-input">
+                <input type="number" name="pages" class="form-input">
             </div>
 
             <div class="form-item">
                 <label>Description</label>
-                <textarea class="form-input" rows="10"></textarea>
+                <textarea class="form-input" name="description" rows="10"></textarea>
             </div>
 
             <div id="form-read">
                 <label>Read?</label>
-                <input type="checkbox">
+                <input type="checkbox" name="read">
             </div>
 
-            <button type="submit">Submit</button>
+            <button type="submit" id="form-button">Submit</button>
         </form>
     </dialog>
     <footer></footer>

@@ -23,7 +23,9 @@ function Book(title, author, pages, read, description) {
 }
 
 function addBookToLibrary(title, author, pages, description, read = false) {
-  myLibrary.push(new Book(title, author, pages, read, description));
+    const newBook = new Book(title, author, pages, read, description)
+    myLibrary.push(newBook);
+    return newBook;
 }
 
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 255, "A great adventure story");
@@ -31,7 +33,8 @@ addBookToLibrary("The Hello Goodbye Window", "Norton Juster", 32, "Caldecott Med
 addBookToLibrary("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 224, "The beginning of it all! text text hello hello filler text to see what happens if i put a lot of filler text here what the heck");
 
 const booksContainer = document.getElementById("books-container");
-myLibrary.forEach((book) => {
+
+function addBookToDom(book) {
     const bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
     bookCard.id = "book" + book.id;
@@ -64,6 +67,7 @@ myLibrary.forEach((book) => {
     readButton.classList.add("read-button");
     if (book.read) {
         readButton.textContent = "Read";
+        readButton.classList.add("read-book");
     }
     else {
         readButton.textContent = "Unread";
@@ -100,20 +104,43 @@ myLibrary.forEach((book) => {
     });
 
     booksContainer.appendChild(bookCard);
+}
+
+myLibrary.forEach((book) => {
+    addBookToDom(book);
 });
 
 const dialog = document.querySelector("dialog");
 dialog.style.display = "none";
 
+function hideDialog() {
+    dialog.style.display = "none";
+    dialogOverlay.style.display = "none";
+}
+
 const dialogOverlay = document.getElementById("dialog-overlay");
 dialogOverlay.style.display = "none";
 dialogOverlay.addEventListener("click", () => {
-    dialog.style.display = "none";
-    dialogOverlay.style.display = "none";
+    hideDialog();
 });
 
 const addButton = document.getElementById("add-button");
 addButton.addEventListener("click", () => {
     dialogOverlay.style.display = "block";
     dialog.style.display = "flex";
+});
+
+const addForm = document.getElementById("add-form");
+addForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const title = addForm.elements["title"].value;
+    const author = addForm.elements["author"].value;
+    const pages = addForm.elements["pages"].value;
+    const description = addForm.elements["description"].value;
+    const read = addForm.elements["read"].value;
+
+    const newBook = addBookToLibrary(title, author, pages, description, read);
+    addBookToDom(newBook);
+    hideDialog();
 });
