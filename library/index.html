@@ -12,13 +12,45 @@
     </header>
     <main>
         <div id="button-container">
-            <button>Add Book</button>
+            <button id="add-button">Add Book</button>
         </div>
         
         <div id="books-container">
 
         </div>
     </main>
+    <div id="dialog-overlay"></div>
+    <dialog open>
+        <h2>Add Book</h2>
+        <form>
+            <div class="form-item">
+                <label>Title</label>
+                <input type="text" class="form-input">
+            </div>
+
+            <div class="form-item">
+                <label>Author</label>
+                <input type="text" class="form-input">
+            </div>
+
+            <div class="form-item">
+                <label>Page Count</label>
+                <input type="number" class="form-input">
+            </div>
+
+            <div class="form-item">
+                <label>Description</label>
+                <textarea class="form-input" rows="10"></textarea>
+            </div>
+
+            <div id="form-read">
+                <label>Read?</label>
+                <input type="checkbox">
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </dialog>
     <footer></footer>
 </body>
 </html>

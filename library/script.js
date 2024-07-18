@@ -101,3 +101,19 @@ myLibrary.forEach((book) => {
 
     booksContainer.appendChild(bookCard);
 });
+
+const dialog = document.querySelector("dialog");
+dialog.style.display = "none";
+
+const dialogOverlay = document.getElementById("dialog-overlay");
+dialogOverlay.style.display = "none";
+dialogOverlay.addEventListener("click", () => {
+    dialog.style.display = "none";
+    dialogOverlay.style.display = "none";
+});
+
+const addButton = document.getElementById("add-button");
+addButton.addEventListener("click", () => {
+    dialogOverlay.style.display = "block";
+    dialog.style.display = "flex";
+});

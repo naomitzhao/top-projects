@@ -19,6 +19,8 @@
 
     --padding-size: 20px;
     
+    --dialog-width: 400px;
+    --dialog-height: 550px;
 }
 
 p {
@@ -57,17 +59,17 @@ main {
     align-items: center;
 }
 
-#button-container button {
+#add-button {
     background-color: var(--dark-accent);
     border: none;
     color: white;
-    padding: 16px 32px;
-    border-radius: 32px;
+    padding: 12px 24px;
+    border-radius: 12px;
     font-size: 1rem;
     cursor: pointer;
 }
 
-#button-container button:hover {
+#add-button:hover {
     background-color: var(--darker-accent);
     color: white;
 }
@@ -125,6 +127,68 @@ main {
     border-radius: 10px;
     border: none;
     cursor: pointer;
+}
+
+#dialog-overlay {
+    position: fixed;
+    min-height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog {
+    position: fixed;
+    top: calc(50% - var(--dialog-height) * 0.5 - var(--padding-size) * 2);
+    left: calc(50% - var(--dialog-width) * 0.5 - var(--padding-size) * 2);
+    height: var(--dialog-height);
+    width: var(--dialog-width);
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: var(--padding-size);
+    border: none;
+    border-radius: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#form-read {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.form-input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--main-background);
+}
+
+textarea {
+    resize: none;
+}
+
+form button {
+    background-color: var(--dark-accent);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: center;
 }
 
 footer {
