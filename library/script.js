@@ -142,7 +142,7 @@ addForm.addEventListener("submit", (e) => {
     const author = addForm.elements["author"].value;
     const pages = addForm.elements["pages"].value;
     const description = addForm.elements["description"].value;
-    const read = addForm.elements["read"].value;
+    const read = addForm.elements["read"].checked;
 
     const newBook = addBookToLibrary(title, author, pages, description, read);
     addBookToDom(newBook);
