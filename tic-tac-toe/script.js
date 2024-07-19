@@ -131,7 +131,7 @@ const displayController = (function () {
             rowDiv.appendChild(slot);
 
             slot.addEventListener("click", () => {
-                if (active) {
+                if (active && slot.textContent == '') {
                     const r = slot.id[1];
                     const c = slot.id[3];
                     editSlot(game.getCurrPlayer(), r, c);
