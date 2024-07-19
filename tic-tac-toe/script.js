@@ -70,9 +70,19 @@ const board = (function () {
         return res;
     }
 
+    // clear all symbols from board
+    const clear = () => {
+        for (i = 0; i < 3; i ++) {
+            for (j = 0; j < 3; j ++) {
+                board[i][j] = '';
+            }
+        }
+        movesDone = 0;
+    }
+
     const getMovesDone = () => movesDone;
 
-    return { board, makeMove, getMovesDone, checkWin, toString};
+    return { board, makeMove, getMovesDone, checkWin, toString, clear};
 })();
 
 // game factory
@@ -96,9 +106,15 @@ const game = (function () {
         return board.checkWin();
     };
 
+    // get rid of this game's data
+    const reset = () => {
+        currPlayer = 'X';
+        board.clear();
+    }
+
     const boardAsString = () => board.toString();
 
-    return { board, getCurrPlayer, makeTurn, boardAsString };
+    return { board, getCurrPlayer, makeTurn, reset, boardAsString };
 })();
 
 const displayController = (function () {
@@ -110,6 +126,7 @@ const displayController = (function () {
         slot.textContent = symbol;
     }
 
+    // display end text and change active status
     const endGame = (symbol) => {
         const endText = document.getElementById("end-text");
         if (symbol == 'T') {
@@ -118,9 +135,23 @@ const displayController = (function () {
         else {
             endText.textContent = symbol + " wins!";
         }
-        endText.style.display = "block";
+        active = false;
     }
 
+    // clear slots and end text, get new game started
+    const restartGame = () => {
+        game.reset();
+        active = true;
+        const slots = document.querySelectorAll(".slot");
+        slots.forEach((slot) => {
+            slot.textContent = '';
+            
+        });
+        const endText = document.getElementById("end-text");
+        endText.textContent = " ";
+    }
+
+    // slot contents
     for (i = 1; i <= 3; i ++) {
         const rowDiv = document.createElement("div");
         rowDiv.classList.add("row");
@@ -138,13 +169,16 @@ const displayController = (function () {
                     const response = game.makeTurn(r, c);
                     if (response) {
                         endGame(response);
-                        active = false;
                     }
                 }
             });
         }
         boardDiv.appendChild(rowDiv);
     }
-
-    return { editSlot };
+    
+    // new game button
+    const btn = document.querySelector("button");
+    btn.addEventListener("click", () => {
+        restartGame();
+    });
 })();

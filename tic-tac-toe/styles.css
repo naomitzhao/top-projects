@@ -10,6 +10,7 @@
 
     --primary-text: rgb(222, 222, 222);
     --primary-accent: rgb(119, 37, 87);
+    --secondary-accent: rgb(167, 56, 124);
     --primary-background: rgb(29, 26, 27);
     --secondary-background: rgb(48, 45, 46);
 
@@ -67,8 +68,21 @@ h1 {
 }
 
 #end-text {
-    display: block;
     font-size: 2rem;
+}
+
+button {
+    background-color: var(--primary-accent);
+    color: var(--primary-text);
+    padding: 20px 40px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--secondary-accent);
 }
 
 footer {
