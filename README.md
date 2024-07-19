@@ -47,3 +47,9 @@ feel free to reach out if there are any bugs.
 - grid
 - DOM manipulation and events
 - javascript **objects and constructors**
+
+### [tic-tac-toe](https://naomitzhao.github.io/top-projects/tic-tac-toe/)
+- flexbox
+- DOM manipulation and events
+- **factory functions**
+- **module pattern**
