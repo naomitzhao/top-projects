@@ -1,6 +1,10 @@
+// contains all our books
 const myLibrary = [];
+
+// used to give unique id to every book
 idx = 0;
 
+// constructor for book objects
 function Book(title, author, pages, read, description) {
     this.title = title;
     this.author = author;
@@ -9,17 +13,6 @@ function Book(title, author, pages, read, description) {
     this.description = description;
     this.id = idx;
     idx ++;
-
-    this.info = function(){
-        res = this.title + " by " + this.author + ", " + this.pages + " pages, ";
-        if (this.read) {
-            res += "already read";
-        }
-        else {
-            res += "not read yet";
-        }
-        return res;
-    }
 }
 
 function addBookToLibrary(title, author, pages, description, read = false) {
@@ -28,17 +21,21 @@ function addBookToLibrary(title, author, pages, description, read = false) {
     return newBook;
 }
 
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 255, "A great adventure story");
-addBookToLibrary("The Hello Goodbye Window", "Norton Juster", 32, "Caldecott Medal Winner!")
-addBookToLibrary("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 224, "The beginning of it all! text text hello hello filler text to see what happens if i put a lot of filler text here what the heck");
+// default books
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 255, "Children's fantasy novel published in 1937 to wide critical acclaim.");
+addBookToLibrary("The Hello Goodbye Window", "Norton Juster", 32, "Published in 2005, the children's picture book book tells the story of a little girl who enjoys visiting her grandparents. Won the 2006 Caldecott Medal.")
+addBookToLibrary("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 224, "Fantasy novel and beginning of the Harry Potter series.");
 
 const booksContainer = document.getElementById("books-container");
 
+// given book object, add it to the DOM
 function addBookToDom(book) {
+    // card that holds book info
     const bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
     bookCard.id = "book" + book.id;
 
+    // grouping of title and author of book
     const titleAuthor = document.createElement("div");
     titleAuthor.classList.add("title-author");
 
@@ -51,6 +48,7 @@ function addBookToDom(book) {
     titleAuthor.appendChild(authorText);
     bookCard.appendChild(titleAuthor);
 
+    // page count
     const pagesElement = document.createElement("p");
     const pageLabel = document.createElement("span");
     pageLabel.textContent = "Page count: ";
@@ -58,11 +56,13 @@ function addBookToDom(book) {
     pagesElement.append(book.pages);
     bookCard.append(pagesElement);
 
+    // description
     const desc = document.createElement("p");
     desc.classList.add("description");
     desc.textContent = book.description;
     bookCard.append(desc);
 
+    // button that toggles book's read status
     const readButton = document.createElement("button");
     readButton.classList.add("read-button");
     if (book.read) {
@@ -85,6 +85,7 @@ function addBookToDom(book) {
         }
     });
 
+    // button that deletes the book from the library and removes it from the DOM
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete-button");
     deleteButton.textContent = "Delete";
@@ -130,6 +131,7 @@ addButton.addEventListener("click", () => {
     dialog.style.display = "flex";
 });
 
+// form within dialog to add books
 const addForm = document.getElementById("add-form");
 addForm.addEventListener("submit", (e) => {
     e.preventDefault();
