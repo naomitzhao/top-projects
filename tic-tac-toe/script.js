@@ -1,5 +1,5 @@
 // board factory
-function createBoard () { 
+const board = (function () { 
     let movesDone = 0;
     const board = [['', '', ''], ['', '', ''], ['', '', '']];
 
@@ -73,11 +73,10 @@ function createBoard () {
     const getMovesDone = () => movesDone;
 
     return { board, makeMove, getMovesDone, checkWin, toString};
-}
+})();
 
 // game factory
-function createGame () {
-    const board = createBoard();
+const game = (function () {
     let currPlayer = 'X';
 
     const getCurrPlayer = () => currPlayer;
@@ -100,4 +99,4 @@ function createGame () {
     const boardAsString = () => board.toString();
 
     return { board, getCurrPlayer, makeTurn, boardAsString };
-}
+})();
