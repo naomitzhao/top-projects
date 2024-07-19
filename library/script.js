@@ -138,11 +138,19 @@ const addForm = document.getElementById("add-form");
 addForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    // get data from form
     const title = addForm.elements["title"].value;
     const author = addForm.elements["author"].value;
     const pages = addForm.elements["pages"].value;
     const description = addForm.elements["description"].value;
     const read = addForm.elements["read"].checked;
+
+    // clear form fields
+    addForm.elements["title"].value = "";
+    addForm.elements["author"].value = "";
+    addForm.elements["pages"].value = "";
+    addForm.elements["description"].value = "";
+    addForm.elements["read"].checked = false;
 
     const newBook = addBookToLibrary(title, author, pages, description, read);
     addBookToDom(newBook);
