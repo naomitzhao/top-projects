@@ -148,7 +148,7 @@ const displayController = (function () {
             
         });
         const endText = document.getElementById("end-text");
-        endText.textContent = " ";
+        endText.textContent = "X's turn";
     }
 
     // slot contents
@@ -162,6 +162,7 @@ const displayController = (function () {
             rowDiv.appendChild(slot);
 
             slot.addEventListener("click", () => {
+                const endText = document.getElementById("end-text");
                 if (active && slot.textContent == '') {
                     const r = slot.id[1];
                     const c = slot.id[3];
@@ -169,6 +170,9 @@ const displayController = (function () {
                     const response = game.makeTurn(r, c);
                     if (response) {
                         endGame(response);
+                    }
+                    else {
+                        endText.textContent = game.getCurrPlayer() + "'s turn"
                     }
                 }
             });
