@@ -1,0 +1,207 @@
+* {
+    padding: 0;
+    margin: 0;
+
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --main-background: rgb(235, 235, 235);
+    --main-accent: rgb(207, 212, 216);
+    --dark-accent: rgb(47, 76, 156);
+    --darker-accent: rgb(15, 37, 99);
+
+    --book-read: rgb(71, 130, 71);
+    --book-unread: rgb(156, 72, 72);
+    
+    --header-height: 100px;
+    --footer-height: 50px;
+
+    --padding-size: 20px;
+    
+    --dialog-width: 400px;
+    --dialog-height: 550px;
+}
+
+p {
+    font-size: 1rem;
+}
+
+header {
+    background-color: var(--main-accent);
+    height: var(--header-height);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    padding: 0 var(--padding-size);
+}
+
+header h1 {
+    color: var(--dark-accent);
+}
+
+body {
+    background-color: var(--main-background);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+main {
+    min-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--padding-size) * 2);
+    padding: var(--padding-size);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-size);
+}
+
+#button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#add-button {
+    background-color: var(--dark-accent);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#add-button:hover {
+    background-color: var(--darker-accent);
+    color: white;
+}
+
+#books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--padding-size);
+}
+
+.book-card {
+    background-color: white;
+    padding: var(--padding-size);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.book-card span {
+    font-weight: 700;
+}
+
+.title-author {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.description {
+    flex: 1;
+}
+
+.read-button {
+    padding: 10px 24px;
+    background-color: var(--book-unread);
+    color: white;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.read-book {
+    background-color: var(--book-read);
+}
+
+.delete-button {
+    background-color: var(--main-accent);
+    color: black;
+    padding: 10px 24px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+#dialog-overlay {
+    position: fixed;
+    min-height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog {
+    position: fixed;
+    top: calc(50% - var(--dialog-height) * 0.5 - var(--padding-size) * 2);
+    left: calc(50% - var(--dialog-width) * 0.5 - var(--padding-size) * 2);
+    height: var(--dialog-height);
+    width: var(--dialog-width);
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: var(--padding-size);
+    border: none;
+    border-radius: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#form-read {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.form-input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--main-background);
+}
+
+textarea {
+    resize: none;
+}
+
+#form-button {
+    background-color: var(--dark-accent);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: center;
+}
+
+footer {
+    background-color: var(--main-accent);
+    height: var(--footer-height);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

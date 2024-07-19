@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>library</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Library</h1>
+    </header>
+    <main>
+        <div id="button-container">
+            <button id="add-button">Add Book</button>
+        </div>
+        
+        <div id="books-container">
+
+        </div>
+    </main>
+    <div id="dialog-overlay"></div>
+    <dialog open>
+        <h2>Add Book</h2>
+        <form id="add-form">
+            <div class="form-item">
+                <label>Title</label>
+                <input type="text" name="title" class="form-input">
+            </div>
+
+            <div class="form-item">
+                <label>Author</label>
+                <input type="text" name="author" class="form-input">
+            </div>
+
+            <div class="form-item">
+                <label>Page Count</label>
+                <input type="number" name="pages" class="form-input">
+            </div>
+
+            <div class="form-item">
+                <label>Description</label>
+                <textarea class="form-input" name="description" rows="10"></textarea>
+            </div>
+
+            <div id="form-read">
+                <label>Read?</label>
+                <input type="checkbox" name="read">
+            </div>
+
+            <button type="submit" id="form-button">Submit</button>
+        </form>
+    </dialog>
+    <footer>made with 💗 by naomitzhao</footer>
+</body>
+</html>
+<script src="script.js"></script>
