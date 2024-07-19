@@ -100,3 +100,51 @@ const game = (function () {
 
     return { board, getCurrPlayer, makeTurn, boardAsString };
 })();
+
+const displayController = (function () {
+    let active = true;
+    const boardDiv = document.getElementById("board");
+
+    const editSlot = (symbol, row, col) => {
+        const slot = document.getElementById('r' + row + 'c' + col);
+        slot.textContent = symbol;
+    }
+
+    const endGame = (symbol) => {
+        const endText = document.getElementById("end-text");
+        if (symbol == 'T') {
+            endText.textContent = "tie!";
+        }
+        else {
+            endText.textContent = symbol + " wins!";
+        }
+        endText.style.display = "block";
+    }
+
+    for (i = 1; i <= 3; i ++) {
+        const rowDiv = document.createElement("div");
+        rowDiv.classList.add("row");
+        for (j = 1; j <= 3; j ++) {
+            const slot = document.createElement("div");
+            slot.classList.add("slot");
+            slot.id = 'r' + i + 'c' + j;
+            rowDiv.appendChild(slot);
+
+            slot.addEventListener("click", () => {
+                if (active) {
+                    const r = slot.id[1];
+                    const c = slot.id[3];
+                    editSlot(game.getCurrPlayer(), r, c);
+                    const response = game.makeTurn(r, c);
+                    if (response) {
+                        endGame(response);
+                        active = false;
+                    }
+                }
+            });
+        }
+        boardDiv.appendChild(rowDiv);
+    }
+
+    return { editSlot };
+})();
