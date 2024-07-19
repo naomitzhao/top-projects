@@ -1,0 +1,113 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --footer-height: 100px;
+    --padding-size: 40px;
+    --board-gap: 5px;   
+
+    --primary-text: rgb(222, 222, 222);
+    --primary-accent: rgb(119, 37, 87);
+    --secondary-accent: rgb(167, 56, 124);
+    --primary-background: rgb(29, 26, 27);
+    --secondary-background: rgb(48, 45, 46);
+
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--primary-text);
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--primary-background);
+
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    min-height: calc(100vh - var(--footer-height) - var(--padding-size) * 2);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--padding-size);
+    gap: var(--padding-size);
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+#board {
+    display: flex;
+    flex-direction: column;
+    gap: var(--board-gap);
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: var(--board-gap);
+}
+
+.slot {
+    height: 120px;
+    aspect-ratio: 1;
+
+    font-size: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    background-color: var(--secondary-background);
+    border-radius: var(--board-gap);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+#end-text {
+    font-size: 2rem;
+}
+
+button {
+    background-color: var(--primary-accent);
+    color: var(--primary-text);
+    padding: 20px 40px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--secondary-accent);
+}
+
+footer {
+    height: var(--footer-height);
+    background-color: var(--primary-accent);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+}
+
+@media screen and (max-width: 420px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .slot {
+        height: 80px;
+        font-size: 3rem;
+    }
+
+    footer {
+        font-size: 1rem;
+    }
+}
