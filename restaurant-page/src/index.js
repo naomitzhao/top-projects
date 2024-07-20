@@ -1,3 +1,4 @@
 import './style.css';
+import loadHome from './modules/homepage.js'
 
-console.log("hullo world :3");
+loadHome();
