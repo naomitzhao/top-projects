@@ -1,0 +1,125 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --main-padding: 20px;
+    --large-padding: 40px;
+    
+    --main-accent: rgb(122, 42, 42);
+    --main-background: rgb(235, 235, 216);
+    --secondary-background: rgb(143, 174, 143);
+
+    --header-height: 40px;
+    --footer-height: 80px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+p {
+    font-family: Helvetica, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: var(--header-height);
+
+    background-color: var(--main-accent);
+    padding: var(--main-padding) var(--large-padding);
+    color: white;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    gap: var(--main-padding);
+}
+
+nav button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-family: Helvetica, sans-serif;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    
+    background-color: var(--main-background);
+}
+
+#hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--main-padding);
+
+    padding: var(--large-padding);
+
+    background-color: var(--secondary-background);
+    height: 200px;
+}
+
+#hero h2 {
+    font-size: 2rem;
+}
+
+#hero p {
+    font-size: 1.5rem;
+}
+
+.panel {
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    padding: var(--large-padding);
+}
+
+.panel img {
+    background: url('mushroom.svg');
+    
+    flex: 1;
+    max-width: 15%;
+    aspect-ratio: 1;
+}
+
+.panel-text {
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--main-padding);
+}
+
+.panel h2 {
+    font-size: 2rem;
+}
+
+.panel p {
+    font-size: 1.25rem;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+
+    background-color: var(--main-accent);
+    height: var(--footer-height);
+}
