@@ -1,3 +1,5 @@
+import FrogMushroom from '../assets/frog_mushroom.png';
+
 export default function loadHome() {
     const content = document.querySelector("#content");
     loadHero();
@@ -22,13 +24,15 @@ function loadPanel() {
     const panelHeaders = [
         "immersive environment and elegant dining experience", 
         "hand-crafted dishes to delight your tastebuds", 
-        "coming soon: truffle butter mushroom delight"
+        "coming soon: truffle butter pancake stacc"
     ];
     const panelSubtexts = [
         "beautiful ambiance and live music every day! join us to experience our adorable and ethereal themes, featuring frogs, mushrooms, and fairies",
         "fresh ingredients used every day, in every signature recipe.",
-        "featuring fresh mushrooms, handmade mushroom pasta, and deliciously aromatic truffle butter."
+        "featuring fresh mushrooms, handmade buttermilk pancakes, and deliciously aromatic truffle butter."
     ];
+
+    const panelImages = [FrogMushroom, FrogMushroom, FrogMushroom];
 
     for (let i = 0; i < 3; i ++) {
         console.log(i);
@@ -37,6 +41,7 @@ function loadPanel() {
         panel.id = "panel-" + i;
         
         const panelImg = document.createElement("img");
+        panelImg.src = panelImages[i];
         panel.appendChild(panelImg);
 
         const panelText = document.createElement("div");

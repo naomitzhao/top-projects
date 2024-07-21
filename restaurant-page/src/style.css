@@ -6,6 +6,7 @@
 :root {
     --main-padding: 20px;
     --large-padding: 40px;
+    --largest-padding: 80px;
     
     --main-accent: rgb(122, 42, 42);
     --main-background: rgb(235, 235, 216);
@@ -50,6 +51,7 @@ nav button {
     border: none;
     color: white;
     font-family: Helvetica, sans-serif;
+    font-size: 1rem;
 }
 
 #content {
@@ -86,15 +88,16 @@ nav button {
     align-items: center;
     justify-content: space-around;
 
-    padding: var(--large-padding);
+    padding: var(--largest-padding);
 }
 
-.panel img {
-    background: url('mushroom.svg');
-    
+#panel-1 {
+    flex-direction: row-reverse;
+}
+
+.panel img { 
     flex: 1;
-    max-width: 15%;
-    aspect-ratio: 1;
+    max-width: 30%;
 }
 
 .panel-text {
