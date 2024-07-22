@@ -19,11 +19,11 @@
     --footer-height: 250px;
 
     font-size: 18px;
-    font-family: Helvetica, sans-serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 body {
@@ -128,7 +128,7 @@ nav button:hover {
 }
 
 .panel h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 #menu-container {
@@ -167,7 +167,7 @@ nav button:hover {
 }
 
 #menu h2 {
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 #item-container {
@@ -182,7 +182,7 @@ nav button:hover {
 }
 
 .menu-column h3 {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .menu-item {
@@ -196,10 +196,6 @@ nav button:hover {
     display: flex;
     flex-direction: column;
     align-items: start;
-}
-
-.menu-item h4 {
-    font-size: 1.25rem;
 }
 
 #story-container {
@@ -256,7 +252,7 @@ footer {
 }
 
 footer h3 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 
 footer nav {
