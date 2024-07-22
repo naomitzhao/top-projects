@@ -9,6 +9,9 @@ export default function loadHome() {
 }
 
 function loadHero(homepage) {
+    const heroBackground = document.createElement("div");
+    heroBackground.id = "hero-background";
+    
     const hero = document.createElement("div");
     hero.id = "hero";
     
@@ -19,7 +22,8 @@ function loadHero(homepage) {
     heroSubtext.textContent = "join us for a beautiful culinary adventure in the land of frogs and mushrooms";
 
     hero.append(heroHeader, heroSubtext);
-    homepage.appendChild(hero);
+    heroBackground.appendChild(hero);
+    homepage.appendChild(heroBackground);
 }
 
 function loadPanel(homepage) {
@@ -29,7 +33,7 @@ function loadPanel(homepage) {
         "coming soon: truffle butter pancake stacc"
     ];
     const panelSubtexts = [
-        "beautiful ambiance and live music every day! join us to experience our adorable and ethereal themes, featuring frogs, mushrooms, and fairies",
+        "beautiful ambiance and live music every day! experience our adorable and ethereal themes, featuring frogs, mushrooms, and fairies",
         "fresh ingredients used every day, in every signature recipe.",
         "featuring fresh mushrooms, handmade buttermilk pancakes, and deliciously aromatic truffle butter."
     ];

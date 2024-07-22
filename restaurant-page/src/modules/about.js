@@ -7,6 +7,9 @@ export default function loadAbout() {
 }
 
 function loadHero(about) {
+    const heroBackground = document.createElement("div");
+    heroBackground.id = "hero-background";
+
     const hero = document.createElement("div");
     hero.id = "hero";
     
@@ -14,7 +17,8 @@ function loadHero(about) {
     heroHeader.textContent = "our story";
 
     hero.append(heroHeader);
-    about.appendChild(hero);
+    heroBackground.append(hero);
+    about.appendChild(heroBackground);
 }
 
 function loadStory(about) {

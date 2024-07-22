@@ -1,8 +1,11 @@
 export default function loadMenu() {
     const menu = document.createElement("div");
+    menu.id = "menu-container";
     menu.classList.add("content-page");
 
-    menu.id = "menu-container";
+    const menuBackground = document.createElement("div");
+    menuBackground.id = "menu-background";
+
     const menuCard = document.createElement("div");
     menuCard.id = "menu";
 
@@ -81,6 +84,7 @@ export default function loadMenu() {
     itemContainer.appendChild(drinkContainer);
 
     menuCard.appendChild(itemContainer);
-    menu.appendChild(menuCard);
+    menuBackground.appendChild(menuCard);
+    menu.appendChild(menuBackground);
     return menu;
 }

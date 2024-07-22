@@ -11,11 +11,14 @@
     --main-accent: rgb(122, 42, 42);
     --main-background: rgb(235, 235, 216);
     --secondary-background: rgb(143, 174, 143);
+    --overlay: rgba(210, 227, 200, 0.7);
 
     --content-height: calc(100vh - var(--header-height) - var(--footer-height));
 
     --header-height: 80px;
     --footer-height: 80px;
+
+    font-size: 18px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -54,7 +57,12 @@ nav button {
     border: none;
     color: white;
     font-family: Helvetica, sans-serif;
-    font-size: 1rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+nav button:hover {
+    text-decoration: underline;
 }
 
 #content {
@@ -65,24 +73,35 @@ nav button {
     background-color: var(--main-background);
 }
 
+#hero-background {
+    background: url('./assets/french_cottage.png') no-repeat center;
+    background-attachment: fixed;
+    height: 300px;
+
+    display: flex;
+    flex-direction: row;
+}
+
 #hero {
+    flex: 1;
+    
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     gap: var(--main-padding);
 
     padding: var(--large-padding);
-
-    background-color: var(--secondary-background);
-    height: 200px;
+    background-color: rgba(210, 227, 200, 0.7);
 }
 
 #hero h2 {
     font-size: 4rem;
+    text-shadow: 2px 2px 0 white;
 }
 
 #hero p {
     font-size: 1.5rem;
+    text-shadow: 1px 1px 0 white;
 }
 
 .panel {
@@ -112,17 +131,24 @@ nav button {
 }
 
 .panel h2 {
-    font-size: 2rem;
-}
-
-.panel p {
-    font-size: 1.25rem;
+    font-size: 2.5rem;
 }
 
 #menu-container {
-    background-color: var(--secondary-background);
+    background: url('./assets/french_cottage.png') no-repeat center;
+    background-attachment: fixed;
+    min-height: var(--content-height);
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+#menu-background {
+    background-color: var(--overlay);
+    min-height: calc(var(--content-height) - var(--largest-padding) * 2);
+    width: calc(100% - var(--largest-padding) * 2);
     padding: var(--largest-padding);
-    height: calc(var(--content-height) - var(--largest-padding) * 2);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -132,6 +158,7 @@ nav button {
 #menu {
     background-color: var(--main-background);
     padding: var(--largest-padding);
+    padding-top: var(--large-padding);
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -140,11 +167,10 @@ nav button {
     flex: 1;
 
     border-radius: 10px;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 #menu h2 {
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 #item-container {
@@ -159,13 +185,14 @@ nav button {
 }
 
 .menu-column h3 {
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 .menu-item {
     display: flex;
     flex-direction: row;
-    gap: var(--largest-padding);
+    justify-content: space-between;
+    gap: var(--largest-padding)
 }
 
 .menu-item div {
