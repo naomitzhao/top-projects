@@ -12,7 +12,9 @@
     --main-background: rgb(235, 235, 216);
     --secondary-background: rgb(143, 174, 143);
 
-    --header-height: 40px;
+    --content-height: calc(100vh - var(--header-height) - var(--footer-height));
+
+    --header-height: 80px;
     --footer-height: 80px;
 }
 
@@ -33,10 +35,11 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     height: var(--header-height);
 
     background-color: var(--main-accent);
-    padding: var(--main-padding) var(--large-padding);
+    padding: 0 var(--main-padding);
     color: white;
 }
 
@@ -58,6 +61,7 @@ nav button {
     display: flex;
     flex-direction: column;
     
+    min-height: var(--content-height);
     background-color: var(--main-background);
 }
 
@@ -112,6 +116,65 @@ nav button {
 }
 
 .panel p {
+    font-size: 1.25rem;
+}
+
+#menu-container {
+    background-color: var(--secondary-background);
+    padding: var(--largest-padding);
+    height: calc(var(--content-height) - var(--largest-padding) * 2);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#menu {
+    background-color: var(--main-background);
+    padding: var(--largest-padding);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: var(--main-padding);
+    max-width: 800px;
+    flex: 1;
+
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+#menu h2 {
+    font-size: 2rem;
+}
+
+#item-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--main-padding);
+}
+
+.menu-column h3 {
+    font-size: 1.5rem;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: row;
+    gap: var(--largest-padding);
+}
+
+.menu-item div {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.menu-item h4 {
     font-size: 1.25rem;
 }
 

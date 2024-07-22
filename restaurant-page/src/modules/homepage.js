@@ -2,11 +2,11 @@ import FrogMushroom from '../assets/frog_mushroom.png';
 
 export default function loadHome() {
     const content = document.querySelector("#content");
-    loadHero();
-    loadPanel();
+    loadHero(content);
+    loadPanel(content);
 }
 
-function loadHero() {
+function loadHero(content) {
     const hero = document.createElement("div");
     hero.id = "hero";
     
@@ -20,7 +20,7 @@ function loadHero() {
     content.appendChild(hero);
 }
 
-function loadPanel() {
+function loadPanel(content) {
     const panelHeaders = [
         "immersive environment and elegant dining experience", 
         "hand-crafted dishes to delight your tastebuds", 
