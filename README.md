@@ -53,3 +53,10 @@ feel free to reach out if there are any bugs.
 - DOM manipulation and events
 - **factory functions**
 - **module pattern**
+
+### [restaurant page](https://naomitzhao.github.io/top-projects/restaurant-page/)
+- flexbox
+- DOM manipulation and events
+- **ES6 modules**
+- **webpack**
+- **tab switching**
