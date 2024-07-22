@@ -9,9 +9,11 @@ export default function loadHome() {
 }
 
 function loadHero(homepage) {
+    // background image
     const heroBackground = document.createElement("div");
     heroBackground.id = "hero-background";
     
+    // overlay and hero content
     const hero = document.createElement("div");
     hero.id = "hero";
     
@@ -26,6 +28,8 @@ function loadHero(homepage) {
     homepage.appendChild(heroBackground);
 }
 
+// panel: one div containing a header, description, and image
+// loadPanel loads all of the panels on the homepage.
 function loadPanel(homepage) {
     const panelHeaders = [
         "immersive environment and elegant dining experience", 
@@ -40,22 +44,28 @@ function loadPanel(homepage) {
 
     const panelImages = [FrogMushroom, FrogMushroom, FrogMushroom];
 
+    // iterate over all panel contents
     for (let i = 0; i < 3; i ++) {
+        // contains header, description, and image
         const panel = document.createElement("div");
         panel.classList.add("panel");
         panel.id = "panel-" + i;
         
+        // panel image only
         const panelImg = document.createElement("img");
         panelImg.src = panelImages[i];
         panel.appendChild(panelImg);
 
+        // header and description
         const panelText = document.createElement("div");
         panelText.classList.add("panel-text");
 
+        // header
         const panelHeader = document.createElement("h2");
         panelHeader.textContent = panelHeaders[i];
         panelText.append(panelHeader);
 
+        // description
         const panelSubtext = document.createElement("p");
         panelSubtext.textContent = panelSubtexts[i];
         panelText.append(panelSubtext);

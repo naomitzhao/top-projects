@@ -167,7 +167,7 @@ nav button:hover, #dropdown button:hover {
     flex-direction: row;
 }
 
-#menu-background {
+#menu-overlay {
     background-color: var(--overlay);
     min-height: calc(var(--content-height) - var(--largest-padding) * 2);
     width: calc(100% - var(--largest-padding) * 2);
