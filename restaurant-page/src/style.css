@@ -68,7 +68,7 @@ nav button {
 #hero {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     gap: var(--main-padding);
 
     padding: var(--large-padding);
@@ -78,7 +78,7 @@ nav button {
 }
 
 #hero h2 {
-    font-size: 2rem;
+    font-size: 4rem;
 }
 
 #hero p {
@@ -176,6 +176,24 @@ nav button {
 
 .menu-item h4 {
     font-size: 1.25rem;
+}
+
+#story-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: var(--largest-padding);
+}
+
+#story-container h2 {
+    font-size: 2rem;
+}
+
+#story-container div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.125rem;
 }
 
 footer {
