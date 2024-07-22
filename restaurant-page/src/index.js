@@ -3,6 +3,7 @@ import loadHome from './modules/homepage.js';
 import loadMenu from './modules/menu.js';
 import loadAbout from './modules/about.js';
 import FrogMushroom from './assets/frog_mushroom.png';
+import NavMenu from './assets/nav_menu.svg';
 
 let content = document.querySelector("#content");
 
@@ -23,3 +24,6 @@ content.append(loadHome());
 
 const footerImg = document.getElementById("footer-img");
 footerImg.src = FrogMushroom;
+
+const navIcon = document.getElementById("nav-icon");
+navIcon.src = NavMenu;
