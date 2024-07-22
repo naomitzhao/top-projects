@@ -54,7 +54,7 @@ feel free to reach out if there are any bugs.
 - **factory functions**
 - **module pattern**
 
-### [restaurant page](https://naomitzhao.github.io/top-projects/restaurant-page/)
+### [restaurant page](https://naomitzhao.github.io/top-projects/restaurant-page/dist)
 - flexbox
 - DOM manipulation and events
 - **ES6 modules**
