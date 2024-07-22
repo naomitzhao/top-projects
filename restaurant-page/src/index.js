@@ -9,7 +9,7 @@ import { showDropdown, hideDropdown } from './modules/dropdown.js';
 
 let content = document.querySelector("#content");
 
-function replaceContent(newChild) {
+export function replaceContent(newChild) {
     content.removeChild(document.querySelector(".content-page"));
     content.appendChild(newChild);
 }
@@ -20,7 +20,10 @@ function loadImages() {
 }
 
 const navButtons = document.querySelectorAll("nav button");
-const navFunctions = [loadHome, loadMenu, loadAbout]
+
+const navFunctions = [loadHome, loadMenu, loadAbout];
+const navNames = ["home", "menu", "about"];
+
 for (let i = 0; i < navButtons.length; i ++) {
     navButtons[i].addEventListener("click", () => {
         replaceContent(navFunctions[i]());
@@ -29,9 +32,16 @@ for (let i = 0; i < navButtons.length; i ++) {
 
 let dropdownOpen = false;
 
+export function closeDropdown(){
+    dropdownOpen = false;
+
+    const navIcon = document.getElementById("nav-icon");
+    navIcon.src = NavMenu;
+}
+
 function showNavIcon () {
     const header = document.querySelector("header");
-    const navIcon = document.createElement("img");
+    const navIcon = document.getElementById("nav-icon");
     navIcon.src = NavMenu;
     header.appendChild(navIcon);
     navIcon.id = "nav-icon";
@@ -41,7 +51,7 @@ function showNavIcon () {
             navIcon.src = NavMenu;
         }
         else {
-            showDropdown();
+            showDropdown(navFunctions, navNames);
             navIcon.src = Close;
         }
         dropdownOpen = !dropdownOpen;
