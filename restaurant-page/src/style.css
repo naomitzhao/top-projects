@@ -141,9 +141,13 @@ nav button:hover, #dropdown button:hover {
     padding-bottom: calc(var(--largest-padding) * 1.5);
 }
 
-.panel img { 
+.panelImgContainer {
     flex: 1;
     max-width: 30%;
+}
+
+.panel img {
+    max-width: 100%;
 }
 
 .panel-text {
@@ -409,7 +413,7 @@ footer ul li {
         gap: 10px;
     }
 
-    .panel img {
+    .panelImgContainer {
         max-width: 80%;
     }
 

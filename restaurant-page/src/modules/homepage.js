@@ -52,9 +52,12 @@ function loadPanel(homepage) {
         panel.id = "panel-" + i;
         
         // panel image only
+        const panelImgContainer = document.createElement("div");
+        panelImgContainer.classList.add("panelImgContainer");
         const panelImg = document.createElement("img");
         panelImg.src = panelImages[i];
-        panel.appendChild(panelImg);
+        panelImgContainer.appendChild(panelImg);
+        panel.appendChild(panelImgContainer);
 
         // header and description
         const panelText = document.createElement("div");
