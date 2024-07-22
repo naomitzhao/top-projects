@@ -31,6 +31,22 @@ body {
     flex-direction: column;
 }
 
+#dropdown {
+    height: 200px;
+    background-color: var(--main-accent);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: var(--main-padding);
+}
+
+#nav-icon {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
 header {
     display: flex;
     flex-direction: row;
@@ -356,12 +372,14 @@ footer ul li {
         font-size: 1.5rem;
     }
 
-    #nav-icon {
-        display: inline;
-    }
+    
 
     header nav button {
         display: none;
+    }
+
+    #nav-icon {
+        display: inline;
     }
 
     #hero h2 {
@@ -434,11 +452,6 @@ footer ul li {
 @media screen and (max-width: 500px) {
     :root {
         --footer-height: 280px;
-    }
-
-    #nav-icon {
-        height: 30px;
-        width: 30px;
     }
 
     #hero-background {
