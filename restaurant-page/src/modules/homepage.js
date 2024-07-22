@@ -1,12 +1,14 @@
 import FrogMushroom from '../assets/frog_mushroom.png';
 
 export default function loadHome() {
-    const content = document.querySelector("#content");
-    loadHero(content);
-    loadPanel(content);
+    const homepage = document.createElement("div");
+    homepage.classList.add("content-page");
+    loadHero(homepage);
+    loadPanel(homepage);
+    return homepage;
 }
 
-function loadHero(content) {
+function loadHero(homepage) {
     const hero = document.createElement("div");
     hero.id = "hero";
     
@@ -17,10 +19,10 @@ function loadHero(content) {
     heroSubtext.textContent = "join us for a beautiful culinary adventure in the land of frogs and mushrooms";
 
     hero.append(heroHeader, heroSubtext);
-    content.appendChild(hero);
+    homepage.appendChild(hero);
 }
 
-function loadPanel(content) {
+function loadPanel(homepage) {
     const panelHeaders = [
         "immersive environment and elegant dining experience", 
         "hand-crafted dishes to delight your tastebuds", 
@@ -35,7 +37,6 @@ function loadPanel(content) {
     const panelImages = [FrogMushroom, FrogMushroom, FrogMushroom];
 
     for (let i = 0; i < 3; i ++) {
-        console.log(i);
         const panel = document.createElement("div");
         panel.classList.add("panel");
         panel.id = "panel-" + i;
@@ -57,6 +58,6 @@ function loadPanel(content) {
 
         panel.appendChild(panelText);
 
-        content.appendChild(panel);
+        homepage.appendChild(panel);
     }
 }

@@ -1,10 +1,12 @@
 export default function loadAbout() {
-    const content = document.querySelector("#content");
-    loadHero(content);
-    loadStory(content);
+    const about = document.createElement("div");
+    about.classList.add("content-page");
+    loadHero(about);
+    loadStory(about);
+    return about;
 }
 
-function loadHero(content) {
+function loadHero(about) {
     const hero = document.createElement("div");
     hero.id = "hero";
     
@@ -12,10 +14,10 @@ function loadHero(content) {
     heroHeader.textContent = "our story";
 
     hero.append(heroHeader);
-    content.appendChild(hero);
+    about.appendChild(hero);
 }
 
-function loadStory(content) {
+function loadStory(about) {
     const storyContainer = document.createElement("div");
     storyContainer.id = "story-container";
 
@@ -36,5 +38,5 @@ function loadStory(content) {
     }
 
     storyContainer.append(storyHeader, storyTextContainer);
-    content.appendChild(storyContainer);
+    about.appendChild(storyContainer);
 }

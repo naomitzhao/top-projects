@@ -1,13 +1,14 @@
 export default function loadMenu() {
-    const content = document.querySelector("#content");
-    const menuContainer = document.createElement("div");
-    menuContainer.id = "menu-container";
     const menu = document.createElement("div");
-    menu.id = "menu";
+    menu.classList.add("content-page");
+
+    menu.id = "menu-container";
+    const menuCard = document.createElement("div");
+    menuCard.id = "menu";
 
     const menuHeader = document.createElement("h2");
     menuHeader.textContent = "menu";
-    menu.appendChild(menuHeader);
+    menuCard.appendChild(menuHeader);
 
     const itemContainer = document.createElement("div");
     itemContainer.id = "item-container";
@@ -79,7 +80,7 @@ export default function loadMenu() {
 
     itemContainer.appendChild(drinkContainer);
 
-    menu.appendChild(itemContainer);
-    menuContainer.appendChild(menu);
-    content.appendChild(menuContainer);
+    menuCard.appendChild(itemContainer);
+    menu.appendChild(menuCard);
+    return menu;
 }
