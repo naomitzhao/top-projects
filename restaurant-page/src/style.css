@@ -92,7 +92,7 @@ nav button:hover {
 }
 
 #hero h2 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     text-shadow: 2px 2px 0 white;
 }
 
@@ -102,17 +102,20 @@ nav button:hover {
 }
 
 .panel {
-    height: 200px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
     padding: var(--largest-padding);
 }
 
 #panel-1 {
     flex-direction: row-reverse;
+}
+
+#panel-2 {
+    padding-bottom: calc(var(--largest-padding) * 1.5);
 }
 
 .panel img { 
@@ -201,7 +204,8 @@ nav button:hover {
 #story-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    gap: var(--large-padding);
     padding: var(--largest-padding);
 }
 
@@ -300,4 +304,165 @@ footer ul li {
 
 #footer-bar a {
     color: white;
+}
+
+@media screen and (max-width: 1080px) {
+    :root {
+        font-size: 16px;
+        --footer-height: 200px;
+    }
+
+    #hero h2 {
+        font-size: 3rem;
+    }
+
+    #hero p {
+        font-size: 1.25rem;
+    }
+
+    .panel {
+        padding: var(--large-padding);
+    }
+
+    .panel h2 {
+        font-size: 1.5rem;
+    }
+
+    #menu {
+        padding: var(--large-padding);
+    }
+
+    .menu-item {
+        gap: var(--large-padding)
+    }
+
+    footer h3 {
+        font-size: 1.125rem;
+    }
+
+    #footer-content {
+        padding: var(--main-padding);
+    }
+}
+
+@media screen and (max-width: 720px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header nav {
+        display: none;
+    }
+
+    #hero h2 {
+        font-size: 2.5rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+    }
+
+    .panel {
+        flex-direction: column;
+        gap: var(--main-padding);
+    }
+
+    #panel-1 {
+        flex-direction: column;
+    }
+
+    .panel-text {
+        max-width: 100%;
+        gap: 10px;
+    }
+
+    .panel img {
+        max-width: 80%;
+    }
+
+    #menu-background {
+        padding: var(--large-padding);
+        min-height: calc(ar(--content-height) - var(--large-padding) * 2);
+        width: calc(100% - var(--large-padding) * 2);
+    }
+
+    #item-container {
+        flex-direction: column;
+        gap: var(--main-padding);
+    }
+
+    #story-container {
+        padding: var(--large-padding);
+    }
+
+    #story-container h2 {
+        font-size: 1.5rem;
+        max-width: 30%;
+    }
+
+    #story-container p {
+        font-size: 1rem;
+    }
+
+    #footer-fmc {
+        flex-direction: column;
+    }
+
+    #footer-img {
+        display: none;
+    }
+
+    #footer-nav-container {
+        gap: 5px;
+    }
+
+    #footer-image-cred-container {
+        gap: 5px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    :root {
+        --footer-height: 280px;
+    }
+
+    #hero-background {
+        height: 250px;
+    }
+
+    #hero h2 {
+        font-size: 2rem;
+    }
+
+    #menu-background {
+        padding: var(--main-padding);
+        min-height: calc(ar(--content-height) - var(--main-padding) * 2);
+        width: calc(100% - var(--main-padding) * 2);
+    }
+
+    #story-container {
+        flex-direction: column;
+        gap: var(--main-padding);
+    }
+
+    #story-container h2 {
+        max-width: 100%;
+    }
+
+    #footer-content {
+        flex-direction: column;
+        gap: var(--main-padding);
+    }
+
+    #footer-nav-container {
+        align-items: center;
+    }
+
+    #footer-image-cred-container {
+        align-items: center;
+    }
+
+    footer ul {
+        align-items: center;
+    }
 }
