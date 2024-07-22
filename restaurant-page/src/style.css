@@ -379,8 +379,6 @@ footer ul li {
         font-size: 1.5rem;
     }
 
-    
-
     header nav button {
         display: none;
     }
@@ -417,7 +415,8 @@ footer ul li {
 
     #menu-background {
         padding: var(--large-padding);
-        min-height: calc(ar(--content-height) - var(--large-padding) * 2);
+        padding-bottom: var(--largest-padding);
+        min-height: calc(ar(--content-height) - var(--large-padding) - var(--largest-padding));
         width: calc(100% - var(--large-padding) * 2);
     }
 
@@ -471,7 +470,8 @@ footer ul li {
 
     #menu-background {
         padding: var(--main-padding);
-        min-height: calc(ar(--content-height) - var(--main-padding) * 2);
+        padding-bottom: var(--large-padding);
+        min-height: calc(ar(--content-height) - var(--main-padding) - var(--large-padding));
         width: calc(100% - var(--main-padding) * 2);
     }
 
