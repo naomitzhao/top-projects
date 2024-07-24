@@ -23,39 +23,37 @@
         <div id="rightContainer">
                 <h3>Welcome to Nami, gateway to your greatest hopes and dreams. This is not a real online service!</h3>
                 <h3>Sign up <em>now</em> to get started.</h3>
-                <form>
+                <form novalidate>
                     <div id="formWhiteBg">
                         <h3>Let's do this!</h3>
                         <div class="formPair">
-                            <div class="labelInput">
-                                <label>FIRST NAME</label>
-                                <input type="text">
+                            <div class="inputContainer">
+                                <label for="first-name">FIRST NAME*</label>
+                                <input type="text" name="first-name" id="first-name">
                             </div>
-                            <div class="labelInput">
-                                <label>LAST NAME</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="formPair">
-                            <div class="labelInput">
-                                <label>EMAIL</label>
-                                <input type="email">
-                            </div>
-                            <div class="labelInput">
-                                <label>PHONE NUMBER</label>
-                                <input type="text">
+                            <div class="inputContainer">
+                                <label for="last-name">LAST NAME*</label>
+                                <input type="text" name="last-name" id="last-name">
                             </div>
                         </div>
                         <div class="formPair">
-                            <div class="labelInput password">
-                                <label>PASSWORD</label>
-                                <input type="password" required minlength="8">
-                                <p>Password must be at least 8 characters long.</p>
+                            <div class="inputContainer">
+                                <label for="email">EMAIL*</label>
+                                <input type="email" name="email" id="email">
                             </div>
-                            <div class="labelInput password">
-                                <label>CONFIRM PASSWORD</label>
-                                <input type="password" required minlength="8">
-                                <p>Password must be at least 8 characters long.</p>
+                            <div class="inputContainer">
+                                <label for="phone">PHONE NUMBER*</label>
+                                <input type="text" name="phone" id="phone">
+                            </div>
+                        </div>
+                        <div class="formPair">
+                            <div class="inputContainer" id="password-container">
+                                <label for="password">PASSWORD*</label>
+                                <input type="password" name="password" id="password">
+                            </div>
+                            <div class="inputContainer" id="confirm-password-container">
+                                <label for="confirm-password">CONFIRM PASSWORD*</label>
+                                <input type="password" name="confirm-password" id="confirm-password">
                             </div>
                         </div>
                     </div>
@@ -66,4 +64,5 @@
         </div>
     </main>
 </body>
+<script src="script.js"></script>
 </html>

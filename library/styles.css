@@ -13,6 +13,8 @@
 
     --book-read: rgb(71, 130, 71);
     --book-unread: rgb(156, 72, 72);
+
+    --error-color: rgb(169, 24, 24);
     
     --header-height: 100px;
     --footer-height: 50px;
@@ -136,16 +138,15 @@ main {
 
 #dialog-overlay {
     position: fixed;
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
 dialog {
-    position: fixed;
-    top: calc(50% - var(--dialog-height) * 0.5 - var(--padding-size) * 2);
-    left: calc(50% - var(--dialog-width) * 0.5 - var(--padding-size) * 2);
-    height: var(--dialog-height);
+    top: calc(50% - var(--dialog-height) * 0.5 - var(--padding-size) * 2 - 50px);
+    left: calc(50% - var(--dialog-width) * 0.5 - var(--padding-size));
+
     width: var(--dialog-width);
 
     display: flex;
@@ -177,12 +178,25 @@ form {
 .form-input {
     padding: 10px;
     border-radius: 10px;
-    border: none;
+    border: 1px solid var(--main-background);
     background-color: var(--main-background);
+}
+
+.invalid {
+    border: 1px solid var(--error-color);
 }
 
 textarea {
     resize: none;
+}
+
+.error-message {
+    color: var(--error-color);
+    display: none;
+}
+
+.invalid ~ .error-message {
+    display: block;
 }
 
 #form-button {
@@ -204,4 +218,13 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+@media screen and (max-width: 460px) {
+    :root {
+        --dialog-width: 80%;
+    }
+    dialog {
+        top: var(--padding-size);
+    }
 }

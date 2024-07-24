@@ -108,7 +108,7 @@ form {
     gap: 80px;
 }
 
-.labelInput {
+.inputContainer {
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -125,25 +125,23 @@ input {
     padding: 10px;
     border: 1px solid var(--pale-gray);
     border-radius: 5px;
+    outline-style: none;
 }
 
-input ~ p {
-    display: none;
-}
-
-input:invalid ~ p {
+.errorMessage {
     color: red;
     font-weight: 200;
     font-size: 0.7rem;
     display: block;
+    height: 0.7rem;
 }
 
 input:focus {
-    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.1);
     border: 1px solid var(--water-blue);
 }
 
-input:invalid {
+.invalid {
     border: 1px solid red;
 }
 

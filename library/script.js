@@ -113,46 +113,96 @@ myLibrary.forEach((book) => {
     addBookToDom(book);
 });
 
+const dialogOverlay = document.getElementById("dialog-overlay");
 const dialog = document.querySelector("dialog");
+dialogOverlay.style.display = "none";
 dialog.style.display = "none";
+dialog.close();
 
 function hideDialog() {
-    dialog.style.display = "none";
     dialogOverlay.style.display = "none";
+    dialog.close();
+    dialog.style.display = "none";
+    clearForm();
 }
 
-const dialogOverlay = document.getElementById("dialog-overlay");
-dialogOverlay.style.display = "none";
 dialogOverlay.addEventListener("click", () => {
     hideDialog();
 });
 
 const addButton = document.getElementById("add-button");
 addButton.addEventListener("click", () => {
-    dialogOverlay.style.display = "block";
+    dialogOverlay.style.display = "flex";
     dialog.style.display = "flex";
+    dialog.show();
 });
 
 // form within dialog to add books
 const addForm = document.getElementById("add-form");
+
+// add error message but hide it initially
+const formItems = document.querySelectorAll(".form-item");
+formItems.forEach((formItem) => {
+    const errorMessage = document.createElement("span");
+    errorMessage.classList.add("error-message");
+    errorMessage.textContent = "This field is required.";
+    formItem.appendChild(errorMessage);
+
+    let input = formItem.querySelector("input");
+    if (input == null) {
+        input = formItem.querySelector("textarea");
+    }
+    input.addEventListener("input", () => {
+        input.classList.remove("invalid");
+    })
+});
+
 addForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (validateForm()) {
+        // get data from form
+        const title = addForm.elements["title"].value;
+        const author = addForm.elements["author"].value;
+        const pages = addForm.elements["pages"].value;
+        const description = addForm.elements["description"].value;
+        const read = addForm.elements["read"].checked;
 
-    // get data from form
-    const title = addForm.elements["title"].value;
-    const author = addForm.elements["author"].value;
-    const pages = addForm.elements["pages"].value;
-    const description = addForm.elements["description"].value;
-    const read = addForm.elements["read"].checked;
+        // clear form fields
+        clearForm();
 
-    // clear form fields
-    addForm.elements["title"].value = "";
-    addForm.elements["author"].value = "";
-    addForm.elements["pages"].value = "";
-    addForm.elements["description"].value = "";
-    addForm.elements["read"].checked = false;
-
-    const newBook = addBookToLibrary(title, author, pages, description, read);
-    addBookToDom(newBook);
-    hideDialog();
+        const newBook = addBookToLibrary(title, author, pages, description, read);
+        addBookToDom(newBook);
+        hideDialog();
+    } 
 });
+
+function clearForm() {
+    let idx = 0;
+    const defaults = ["", "", "", "", false]
+    formItems.forEach((formItem) => {
+        let input = formItem.querySelector("input");
+        if (input == null) {
+            input = formItem.querySelector("textarea");
+        }
+        input.value = defaults[idx];
+        idx += 1;
+        input.classList.remove("invalid");
+    });
+}
+
+// called when submit button pressed
+// check all forms and apply errors
+function validateForm() {
+    let valid = true;
+    formItems.forEach((formItem) => {
+        let input = formItem.querySelector("input");
+        if (input == null) {
+            input = formItem.querySelector("textarea");
+        }
+        if (input.value.length == 0) {
+            input.classList.add("invalid");
+            valid = false;
+        }
+    });
+    return valid;
+}
