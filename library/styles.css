@@ -141,17 +141,14 @@ main {
     height: 100vh;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-
-    flex-direction: row;
-    align-items: center;
 }
 
 dialog {
     top: calc(50% - var(--dialog-height) * 0.5 - var(--padding-size) * 2 - 50px);
-    min-height: var(--dialog-height);
-    width: clamp(50%, 50%, var(--dialog-width));
+    left: calc(50% - var(--dialog-width) * 0.5 - var(--padding-size));
+
     width: var(--dialog-width);
-    justify-self: center;
+
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -224,8 +221,10 @@ footer {
 }
 
 @media screen and (max-width: 460px) {
+    :root {
+        --dialog-width: 80%;
+    }
     dialog {
-        width: 80%;
         top: var(--padding-size);
     }
 }
