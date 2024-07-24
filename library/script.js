@@ -113,24 +113,28 @@ myLibrary.forEach((book) => {
     addBookToDom(book);
 });
 
+const dialogOverlay = document.getElementById("dialog-overlay");
 const dialog = document.querySelector("dialog");
+dialogOverlay.style.display = "none";
 dialog.style.display = "none";
+dialog.close();
 
 function hideDialog() {
-    dialog.style.display = "none";
     dialogOverlay.style.display = "none";
+    dialog.close();
+    dialog.style.display = "none";
+    clearForm();
 }
 
-const dialogOverlay = document.getElementById("dialog-overlay");
-dialogOverlay.style.display = "none";
 dialogOverlay.addEventListener("click", () => {
     hideDialog();
 });
 
 const addButton = document.getElementById("add-button");
 addButton.addEventListener("click", () => {
-    dialogOverlay.style.display = "block";
+    dialogOverlay.style.display = "flex";
     dialog.style.display = "flex";
+    dialog.show();
 });
 
 // form within dialog to add books
@@ -164,17 +168,27 @@ addForm.addEventListener("submit", (e) => {
         const read = addForm.elements["read"].checked;
 
         // clear form fields
-        addForm.elements["title"].value = "";
-        addForm.elements["author"].value = "";
-        addForm.elements["pages"].value = "";
-        addForm.elements["description"].value = "";
-        addForm.elements["read"].checked = false;
+        clearForm();
 
         const newBook = addBookToLibrary(title, author, pages, description, read);
         addBookToDom(newBook);
         hideDialog();
     } 
 });
+
+function clearForm() {
+    let idx = 0;
+    const defaults = ["", "", "", "", false]
+    formItems.forEach((formItem) => {
+        let input = formItem.querySelector("input");
+        if (input == null) {
+            input = formItem.querySelector("textarea");
+        }
+        input.value = defaults[idx];
+        idx += 1;
+        input.classList.remove("invalid");
+    });
+}
 
 // called when submit button pressed
 // check all forms and apply errors

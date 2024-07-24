@@ -138,18 +138,20 @@ main {
 
 #dialog-overlay {
     position: fixed;
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+
+    flex-direction: row;
+    align-items: center;
 }
 
 dialog {
-    position: fixed;
-    top: calc(50% - var(--dialog-height) * 0.5 - var(--padding-size) * 2);
-    left: calc(50% - var(--dialog-width) * 0.5 - var(--padding-size) * 2);
-    height: var(--dialog-height);
+    top: calc(50% - var(--dialog-height) * 0.5 - var(--padding-size) * 2 - 50px);
+    min-height: var(--dialog-height);
+    width: clamp(50%, 50%, var(--dialog-width));
     width: var(--dialog-width);
-
+    justify-self: center;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -219,4 +221,11 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+@media screen and (max-width: 460px) {
+    dialog {
+        width: 80%;
+        top: var(--padding-size);
+    }
 }
