@@ -2,14 +2,14 @@ web development projects i'm making for the odin project! click the header (link
 
 feel free to reach out if there are any bugs. 
 
+extra: almost all projects feature full responsiveness through media queries! try resizing your window :)
+
 # foundations
 
 ### [landing page](https://naomitzhao.github.io/top-projects/landing-page/)
 - **basic html**
 - **basic css**
 - **flexbox**
-- extra: css variables
-- extra: media queries
 
 ### [rock paper scissors](https://naomitzhao.github.io/top-projects/rock-paper-scissors/)
 - **basic javascript**
@@ -22,8 +22,6 @@ feel free to reach out if there are any bugs.
 ### [calculator](https://naomitzhao.github.io/top-projects/calculator/)
 - flexbox
 - **DOM manipulation and events**
-- extra: keyboard support
-- extra: satisfying keypress animation!
 
 # full stack javascript
 
@@ -33,20 +31,20 @@ feel free to reach out if there are any bugs.
 - flexbox
 - **relative and absolute positioning**
 - SVG
-- basic **form validation**
-- media queries
+- **form validation**
+- **regular expressions**
 
 ### [admin dashboard](https://naomitzhao.github.io/top-projects/admin-dashboard/)
 - **grid**
 - absolute positioning
 - SVG
-- media queries
 
 ### [library](https://naomitzhao.github.io/top-projects/library/)
 - flexbox
 - grid
 - DOM manipulation and events
-- javascript **objects and constructors**
+- form validation
+- **objects and constructors**
 
 ### [tic-tac-toe](https://naomitzhao.github.io/top-projects/tic-tac-toe/)
 - flexbox
