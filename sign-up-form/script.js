@@ -1,9 +1,10 @@
 const MIN_EMAIL_LENGTH = 8;
-const EMAIL_REG_EXP = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const EMAIL_REG_EXP = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; // min example: a@a
 
 addValidationListeners();
 setButtonBehavior();
 
+// add event listeners to all fields
 function addValidationListeners () {
     const inputContainers = document.querySelectorAll(".inputContainer");
     inputContainers.forEach((container) => {
@@ -19,6 +20,8 @@ function addValidationListeners () {
     });
 }
 
+// prevent default button behavior
+// submit button validates all fields, including password matching.
 function setButtonBehavior () {
     const btn = document.querySelector("button");
     btn.addEventListener("click", (event) => {
@@ -27,6 +30,7 @@ function setButtonBehavior () {
     });
 }
 
+// adds invalid class to invalid fields
 function validate(container, input) {
     const error = checkContent(container);
     const errorMessage = container.querySelector("span");
@@ -40,6 +44,7 @@ function validate(container, input) {
     errorMessage.textContent = error;
 }
 
+// check if a field is valid or not
 function checkContent (container) {
     const input = container.querySelector("input");
     const inputValue = input.value;
@@ -59,6 +64,8 @@ function checkContent (container) {
     return error;
 }
 
+// called when button is pressed
+// checks all fields and separately checks for password matching
 function checkAllFields() {
     const inputContainers = document.querySelectorAll(".inputContainer");
     inputContainers.forEach((container) => {
