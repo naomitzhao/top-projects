@@ -13,6 +13,8 @@
 
     --book-read: rgb(71, 130, 71);
     --book-unread: rgb(156, 72, 72);
+
+    --error-color: rgb(169, 24, 24);
     
     --header-height: 100px;
     --footer-height: 50px;
@@ -177,12 +179,25 @@ form {
 .form-input {
     padding: 10px;
     border-radius: 10px;
-    border: none;
+    border: 1px solid var(--main-background);
     background-color: var(--main-background);
+}
+
+.invalid {
+    border: 1px solid var(--error-color);
 }
 
 textarea {
     resize: none;
+}
+
+.error-message {
+    color: var(--error-color);
+    display: none;
+}
+
+.invalid ~ .error-message {
+    display: block;
 }
 
 #form-button {
