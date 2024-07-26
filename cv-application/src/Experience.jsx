@@ -1,20 +1,32 @@
+import './App.css'
+
 export default function Experience () {
     return (
         <form>
-            <label htmlFor="org">Company/Organization</label>
-            <input name="org"></input>
+            <div>
+                <label htmlFor="org">Company/Organization</label>
+                <input name="org"></input>
+            </div>
 
-            <label htmlFor="title">Position Title</label>
-            <input name="title"></input>
+            <div>
+                <label htmlFor="title">Position Title</label>
+                <input name="title"></input>
+            </div>
 
-            <label htmlFor="startDate">Start Date</label>
-            <input name="startDate"></input>
+            <div>
+                <label htmlFor="startDate">Start Date</label>
+                <input name="startDate"></input>
+            </div>
 
-            <label htmlFor="endDate">End Date</label>
-            <input name="endDate"></input>
+            <div>
+                <label htmlFor="endDate">End Date</label>
+                <input name="endDate"></input>
+            </div>
 
-            <label htmlFor="description">Description</label>
-            <textarea name="description"></textarea>
+            <div>
+                <label htmlFor="description">Description</label>
+                <textarea name="description"></textarea>
+            </div>
         </form>
     );
 }

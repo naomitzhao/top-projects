@@ -1,23 +1,37 @@
+import './App.css'
+
 export default function Education () {
     return (
         <form>
-            <label htmlFor="institutionName">Institution Name</label>
-            <input name="institutionName"></input>
+            <div>
+                <label htmlFor="institutionName">Institution Name</label>
+                <input name="institutionName"></input>
+            </div>
 
-            <label htmlFor="startDate">Start Date</label>
-            <input name="startDate"></input>
+            <div>
+                <label htmlFor="startDate">Start Date</label>
+                <input name="startDate"></input>
+            </div>
 
-            <label htmlFor="endDate">End Date</label>
-            <input name="endDate"></input>
+            <div>
+                <label htmlFor="endDate">End Date</label>
+                <input name="endDate"></input>
+            </div>
 
-            <label htmlFor="degree">Degree</label>
-            <input name="degree"></input>
+            <div>
+                <label htmlFor="degree">Degree</label>
+                <input name="degree"></input>
+            </div>
 
-            <label htmlFor="area">Area of Study</label>
-            <input name="area"></input>
+            <div>
+                <label htmlFor="area">Area of Study</label>
+                <input name="area"></input>
+            </div>
 
-            <label htmlFor="description">Description</label>
-            <textarea name="description"></textarea>
+            <div>
+                <label htmlFor="description">Description</label>
+                <textarea name="description"></textarea>
+            </div>
         </form>
     );
 }

@@ -8,22 +8,28 @@ function App() {
   console.log("hello world :3");
 
   return (
-    <>
-      <div id="formContainer">
-        <div id="basicInfo">
-          <BasicInfo />
-        </div>
-        <div id="education">
-          <button>Add Education</button>
-          <Education />
-        </div>
-        <div id="experience">
-          <button>Add Experience</button>
-          <Experience />
+    <main>
+      <div id="formContainerContainer">
+        <div id="formContainer">
+          <div id="basicInfo">
+            <BasicInfo />
+          </div>
+          <div id="education">
+            <button>Add Education</button>
+            <Education />
+          </div>
+          <div id="experience">
+            <button>Add Experience</button>
+            <Experience />
+          </div>
         </div>
       </div>
-      <div id="resumeContainer"></div>
-    </>
+      <div id="resumeContainer">
+        <div id="resume">
+
+        </div>
+      </div>
+    </main>
   )
 }
 

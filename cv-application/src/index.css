@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    font-family: 'Noto Sans';
+}
+
+:root {
+    --background-primary: rgb(232, 232, 232);
+    --background-secondary: white;
+
+    --accent-primary: rgb(44, 120, 56);
+
+    --text-secondary: rgb(122, 152, 123);
+
+    --header-height: 80px;
+    --footer-height: 50px;
+}
