@@ -8,9 +8,11 @@ import Experience from './Experience';
 function App() {
   // eslint-disable-next-line no-unused-vars
   const [content, setContent] = useState({
-    fullName: "naomi z",
-    email: "",
-    phone: "",
+    basicInfo: {
+      name: "naomi z",
+      email: "naomiz.zzzzz@zmail.com",
+      phone: "(555) 555-5555"
+    }, 
     education: [
       {
         name: "University of California, Davis",
@@ -43,15 +45,15 @@ function App() {
       <div id="formContainerContainer">
         <div id="formContainer">
           <div id="basicInfo">
-            <BasicInfo />
+            <BasicInfo content={content.basicInfo}/>
           </div>
           <div id="education">
             <button>Add Education</button>
-            <Education />
+            <Education content={content.education}/>
           </div>
           <div id="experience">
             <button>Add Experience</button>
-            <Experience />
+            <Experience content={content.experience}/>
           </div>
         </div>
       </div>
@@ -59,9 +61,9 @@ function App() {
         <div id="resume">
           <div id="resumeContent">
             <div id="resumeBasicInfo">
-              <h1>{content.fullName}</h1>
-              <p>{content.email}</p>
-              <p>{content.phone}</p>
+              <h1>{content.basicInfo.name}</h1>
+              <p>{content.basicInfo.email}</p>
+              <p>{content.basicInfo.phone}</p>
             </div>
             <div id="resumeEducation">
               <h2>Education</h2>
