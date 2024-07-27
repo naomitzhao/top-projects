@@ -2,33 +2,9 @@ import './styles.css';
 import Plus from './assets/plus.svg';
 
 let idx = 0;
+let currentGroup = "ungrouped";
 
-const todos = [
-    {
-        title: "walk gerald", 
-        date: "fri 7/26", 
-        priority: 2, 
-        category: "ungrouped", 
-        description: "take gerald for a walk", 
-        id: -3
-    },
-    {
-        title: "water the sink", 
-        date: "sat 7/27", 
-        priority: 0, 
-        category: "ungrouped",
-        description: "the sink is thirsty.", 
-        id: -2
-    },
-    {
-        title: "do something cool", 
-        date: "sun 7/29", 
-        priority: 1, 
-        category: "grouped",
-        description: "what is cool?", 
-        id: -1
-    }
-];
+const todos = [];
 
 const categories = new Map();
 categories.set("ungrouped", generateList("ungrouped"));
@@ -36,11 +12,54 @@ categories.set("grouped", generateList("grouped"));
 
 loadAddTask();
 populateNav();
+loadAddCategory();
 
 const content = document.getElementById("content")
 content.append(categories.get("ungrouped"));
 
 addTodo("test todo", "thu 7/25", 0, "grouped", "hello hello!");
+addTodo("walk gerald", "fri 7/26", 2, "ungrouped", "take gerald for a walk");
+addTodo("water the sink", "sat 7/27", 0, "ungrouped", "the sink is thirsty");
+addTodo("do something cool", "sun 7/29", 1, "grouped", "what is cool?");
+
+function loadAddCategory () {
+    const nav = document.querySelector("nav");
+    const addCategory = document.getElementById("addCategory");
+    addCategory.querySelector("img").src = Plus;
+
+    addCategory.addEventListener("click", () => {
+        const name = document.createElement("input");
+        name.type = 'text';
+        name.name = 'name';
+        
+        nav.appendChild(name);
+        name.focus();
+
+        name.addEventListener("keydown", (e) => {
+            if (e.key == 'Enter') {
+                const newCategoryName = name.value;
+                if (newCategoryName) {
+                    categories.set(newCategoryName, generateList(newCategoryName));
+                    addDOMCategory(newCategoryName);
+                    switchTab(newCategoryName);
+                }
+                name.remove();
+            }
+        });
+    });
+}
+
+function addDOMCategory (category) {
+    const nav = document.querySelector("nav");
+    const btn = document.createElement("button");
+    btn.textContent = category;
+
+    btn.addEventListener("click", () => {
+        switchTab(category);
+    });
+
+    nav.appendChild(btn);
+}
 
 function loadAddTask () {
     const addTask = document.getElementById("addTask");
@@ -81,6 +100,10 @@ function loadAddTaskCategories () {
         const option = document.createElement("option");
         option.value = category;
         option.textContent = category;
+        if (category == currentGroup) {
+            option.selected = true;
+        }
+
         categoryDropDown.appendChild(option);
     }
     return categoryDropDown;
@@ -88,6 +111,7 @@ function loadAddTaskCategories () {
 
 function populateNav() {
     const nav = document.querySelector("nav");
+
     for (let category of categories.keys()) {
         const btn = document.createElement("button");
         btn.textContent = category;
@@ -143,6 +167,7 @@ function switchTab(category) {
     content.querySelector("h2").textContent = category;
     content.removeChild(document.getElementById("tasks"));
     content.append(categories.get(category));
+    currentGroup = category;
 }
 
 function addTodo(title, date, priority, category, description = ""){
@@ -201,9 +226,8 @@ function showDialog() {
 
     const categoryField = document.getElementById("categoryField");
     const categoryDropDown = categoryField.querySelector("select");
-    if (categoryDropDown) {
-        categoryDropDown.remove();
-    }
+    categoryDropDown.remove();
+
     categoryField.appendChild(loadAddTaskCategories());
 }
 
