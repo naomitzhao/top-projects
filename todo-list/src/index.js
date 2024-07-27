@@ -46,6 +46,7 @@ function loadAddTask () {
     const addTask = document.getElementById("addTask");
     addTask.querySelector("img").src = Plus;
     const dialogOverlay = document.getElementById("dialogOverlay");
+    const addTaskButton = document.getElementById("addTaskButton")
 
     dialogOverlay.addEventListener("click", () => {
         hideDialog();
@@ -54,6 +55,35 @@ function loadAddTask () {
     addTask.addEventListener("click", () => {
         showDialog();
     });
+
+    addTaskButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        const addTaskForm = document.getElementById("addTaskForm");
+
+        const title =addTaskForm.elements["title"].value;
+        const date = addTaskForm.elements["date"].value;
+        const priority = addTaskForm.elements["priority"].value;
+        const category = addTaskForm.elements["category"].value;
+        const description = addTaskForm.elements["description"].value;
+
+        addTodo(title, date, priority, category, description);
+
+        hideDialog();
+        clearDialog(addTaskForm);
+    });
+}
+
+function loadAddTaskCategories () {
+    const categoryDropDown = document.createElement("select");
+    categoryDropDown.classList.add("addTaskInput");
+    categoryDropDown.name = "category";
+    for (let category of categories.keys()){
+        const option = document.createElement("option");
+        option.value = category;
+        option.textContent = category;
+        categoryDropDown.appendChild(option);
+    }
+    return categoryDropDown;
 }
 
 function populateNav() {
@@ -115,6 +145,11 @@ function switchTab(category) {
     content.append(categories.get(category));
 }
 
+function addTodo(title, date, priority, category, description = ""){
+    const todo = makeTodo(title, date, priority, category, description);
+    addDomTodo(todo);
+}
+
 function makeTodo(title, date, priority, category, description) {
     return {
         title: title,
@@ -158,16 +193,18 @@ function addDomTodo(todo) {
     categories.get(todo.category).append(item);
 }
 
-function addTodo(title, date, priority, category, description = ""){
-    const todo = makeTodo(title, date, priority, category, description);
-    addDomTodo(todo);
-}
-
 function showDialog() {
     const dialogContainer = document.getElementById("dialogContainer");
     dialogContainer.style.display = "flex";
     const dialog = document.querySelector("dialog");
     dialog.show();
+
+    const categoryField = document.getElementById("categoryField");
+    const categoryDropDown = categoryField.querySelector("select");
+    if (categoryDropDown) {
+        categoryDropDown.remove();
+    }
+    categoryField.appendChild(loadAddTaskCategories());
 }
 
 function hideDialog() {
@@ -175,4 +212,10 @@ function hideDialog() {
     dialogContainer.style.display = "none";
     const dialog = document.querySelector("dialog");
     dialog.close();
+}
+
+function clearDialog(form) {
+    form.querySelectorAll("input, textarea").forEach((field) => {
+        field.value = "";
+    });
 }
