@@ -106,14 +106,27 @@ nav button:hover {
 .item {
     display: flex;
     gap: 10px;
-    justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
+    overflow: hidden;
 
     background-color: white;
-    padding: 10px;
     border-radius: 10px;
 
     box-shadow: 1px 1px 5px #00000020;
+}
+
+.priorityBar {
+    width: 5px;
+    background-color: green;
+}
+
+.itemContent {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    flex: 1;
 }
 
 .nameCheck {
