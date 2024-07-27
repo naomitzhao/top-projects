@@ -29,22 +29,32 @@ const todos = [
     }
 ];
 
-const categories = ["ungrouped", "grouped"]
+const categories = new Map();
+categories.set("ungrouped", generateList("ungrouped"));
+categories.set("grouped", generateList("grouped"));
 
 populateNav();
-populateList("ungrouped");
+
+const content = document.getElementById("content")
+content.append(categories.get("ungrouped"));
 
 function populateNav() {
     const nav = document.querySelector("nav");
-    for (let i = 0; i < categories.length; i++) {
+    for (let category of categories.keys()) {
         const btn = document.createElement("button");
-        btn.textContent = categories[i];
+        btn.textContent = category;
+
+        btn.addEventListener("click", () => {
+            switchTab(category);
+        });
+
         nav.appendChild(btn);
     }
 }
 
-function populateList(category) {
-    const tasksDiv = document.getElementById("tasks");
+function generateList(category) {
+    const tasks = document.createElement("div");
+    tasks.id = "tasks";
     todos.forEach((todo) => {
         if (todo.category == category) {
             const item = document.createElement("div");
@@ -52,6 +62,7 @@ function populateList(category) {
             
             const priorityBar = document.createElement("div");
             priorityBar.classList.add("priorityBar");
+            priorityBar.style.backgroundColor = `var(--priority-${todo.priority})`;
 
             const itemContent = document.createElement("div");
             itemContent.classList.add("itemContent");
@@ -74,8 +85,14 @@ function populateList(category) {
 
             item.append(priorityBar, itemContent);
 
-            tasksDiv.appendChild(item);
+            tasks.appendChild(item);
         }
-        
     });
+    return tasks;
+}
+
+function switchTab(category) {
+    content.querySelector("h2").textContent = category;
+    content.removeChild(content.querySelector("div"));
+    content.append(categories.get(category));
 }
