@@ -1,4 +1,5 @@
 import './styles.css';
+import Plus from './assets/plus.svg';
 
 let idx = 0;
 
@@ -33,10 +34,27 @@ const categories = new Map();
 categories.set("ungrouped", generateList("ungrouped"));
 categories.set("grouped", generateList("grouped"));
 
+loadAddTask();
 populateNav();
 
 const content = document.getElementById("content")
 content.append(categories.get("ungrouped"));
+
+addTodo("test todo", "thu 7/25", 0, "grouped", "hello hello!");
+
+function loadAddTask () {
+    const addTask = document.getElementById("addTask");
+    addTask.querySelector("img").src = Plus;
+    const dialogOverlay = document.getElementById("dialogOverlay");
+
+    dialogOverlay.addEventListener("click", () => {
+        hideDialog();
+    });
+
+    addTask.addEventListener("click", () => {
+        showDialog();
+    });
+}
 
 function populateNav() {
     const nav = document.querySelector("nav");
@@ -93,6 +111,68 @@ function generateList(category) {
 
 function switchTab(category) {
     content.querySelector("h2").textContent = category;
-    content.removeChild(content.querySelector("div"));
+    content.removeChild(document.getElementById("tasks"));
     content.append(categories.get(category));
+}
+
+function makeTodo(title, date, priority, category, description) {
+    return {
+        title: title,
+        date: date,
+        priority: priority, 
+        category: category, 
+        description: description,
+        id: idx++
+    };
+}
+
+function addDomTodo(todo) {
+    const item = document.createElement("div");
+    item.classList.add("item");
+    
+    const priorityBar = document.createElement("div");
+    priorityBar.classList.add("priorityBar");
+    priorityBar.style.backgroundColor = `var(--priority-${todo.priority})`;
+
+    const itemContent = document.createElement("div");
+    itemContent.classList.add("itemContent");
+
+    const nameCheck = document.createElement("nameCheck");
+    nameCheck.classList.add("nameCheck");
+
+    const check = document.createElement("button");
+    check.classList.add("check");
+    
+    const h5 = document.createElement("h5");
+    h5.textContent = todo.title;
+
+    nameCheck.append(check, h5);
+
+    const dateP = document.createElement("p");
+    dateP.textContent = todo.date;
+
+    itemContent.append(nameCheck, dateP);
+
+    item.append(priorityBar, itemContent);
+
+    categories.get(todo.category).append(item);
+}
+
+function addTodo(title, date, priority, category, description = ""){
+    const todo = makeTodo(title, date, priority, category, description);
+    addDomTodo(todo);
+}
+
+function showDialog() {
+    const dialogContainer = document.getElementById("dialogContainer");
+    dialogContainer.style.display = "flex";
+    const dialog = document.querySelector("dialog");
+    dialog.show();
+}
+
+function hideDialog() {
+    const dialogContainer = document.getElementById("dialogContainer");
+    dialogContainer.style.display = "none";
+    const dialog = document.querySelector("dialog");
+    dialog.close();
 }

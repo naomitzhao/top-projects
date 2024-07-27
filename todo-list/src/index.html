@@ -14,11 +14,44 @@
             <nav></nav>
         </div>
         <div id="content">
-            <h2 id="groupName">ungrouped</h2>
+            <div id="groupHeader">
+                <h2 id="groupName">ungrouped</h2>
+                <button id="addTask">
+                    <img alt="plus icon">
+                </button>
+            </div>
         </div>
     </main>
     <footer>
         made with 💗 by naomitzhao
     </footer>
+    <div id="dialogContainer">
+        <div id="dialogOverlay"></div>
+        <dialog id="newTaskDialog" open>
+            <form>
+                <div>
+                    <label>task</label>
+                    <input type="text" name="title">
+                </div>
+                <div>
+                    <label>date</label>
+                    <input type="text" name="date">
+                </div>
+                <div>
+                    <label>priority</label>
+                    <input type="text" name="priority">
+                </div>
+                <div>
+                    <label>category</label>
+                    <input type="text" name="category">
+                </div>
+                <div>
+                    <label>description</label>
+                    <textarea name="description"></textarea>
+                </div>
+                <button id="addTaskButton" type="submit">add task</button>
+            </form>
+        </dialog>
+    </div>
 </body>
 </html>
