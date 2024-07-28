@@ -3,6 +3,7 @@ import Plus from './assets/plus.svg';
 
 let idx = 0;
 let currentGroup = "ungrouped";
+let newCategoryOpen = false;
 
 const todos = [];
 
@@ -24,29 +25,47 @@ addTodo("do something cool", "sun 7/29", 1, "grouped", "what is cool?");
 
 function loadAddCategory () {
     const nav = document.querySelector("nav");
-    const addCategory = document.getElementById("addCategory");
-    addCategory.querySelector("img").src = Plus;
+    const addCategoryButton = document.getElementById("addCategoryButton");
+    addCategoryButton.querySelector("img").src = Plus;
 
-    addCategory.addEventListener("click", () => {
-        const name = document.createElement("input");
-        name.type = 'text';
-        name.name = 'name';
-        
-        nav.appendChild(name);
-        name.focus();
+    addCategoryButton.addEventListener("click", () => {
+        if (!newCategoryOpen) {
+            const newCategoryDiv = document.createElement("div");
+            newCategoryDiv.id = 'newCategory';
+            const name = document.createElement("input");
+            name.type = 'text';
+            name.name = 'name';
+            const btn = document.createElement("button");
+            btn.textContent = "OK";
+            btn.id = "submitCategoryButton";
+            newCategoryDiv.append(name, btn);
+            
+            nav.appendChild(newCategoryDiv);
+            name.focus();
+            newCategoryOpen = true;
 
-        name.addEventListener("keydown", (e) => {
-            if (e.key == 'Enter') {
-                const newCategoryName = name.value;
-                if (newCategoryName) {
-                    categories.set(newCategoryName, generateList(newCategoryName));
-                    addDOMCategory(newCategoryName);
-                    switchTab(newCategoryName);
+            name.addEventListener("keydown", (e) => {
+                if (e.key == 'Enter') {
+                    addCategory(name.value, newCategoryDiv);
                 }
-                name.remove();
-            }
-        });
+            });
+
+            btn.addEventListener("click", () => {
+                addCategory(name.value, newCategoryDiv);
+            })
+        }
     });
+}
+
+function addCategory (newCategoryName, newCategoryDiv) {
+    if (newCategoryName) {
+        categories.set(newCategoryName, generateList(newCategoryName));
+        addDOMCategory(newCategoryName);
+        switchTab(newCategoryName);
+    }
+    newCategoryDiv.remove();
+
+    newCategoryOpen = false;
 }
 
 function addDOMCategory (category) {

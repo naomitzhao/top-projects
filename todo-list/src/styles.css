@@ -38,6 +38,8 @@ p {
 
     --accent-primary: #7D9D9C;
     --accent-secondary: #576F72;
+    
+    --accent-tertiary: #6a908e;
 
     --header-height: 100px;
     --footer-height: 40px;
@@ -78,50 +80,94 @@ main {
 
     display: flex;
     flex-direction: column;
+    align-items: stretch;
+    flex: 1;
+    max-width: 250px;
+    overflow: hidden;
+}
+
+#sidebarContent {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
 }
 
 #categoriesHeader {
     display: flex;
-    gap: 10px;
+    gap: 50px;
+    justify-content: space-between;
     align-items: center;
+    padding-left: 10px;
 }
 
-#addCategory {
+#addCategoryButton {
     border: none;
     height: 25px;
     background-color: transparent;
     cursor: pointer;
 }
 
-#addCategory > img {
+#addCategoryButton > img {
     height: 25px;
     width: 25px;
+}
+
+#newCategory {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    /* padding:  */
+}
+
+#newCategory input {
+    background-color: transparent;
+    /* border: 1px solid var(--accent-secondary); */
+    border: none;
+    background-color: var(--accent-tertiary);
+    outline: none;
+    font-size: 1.25rem;
+    /* height: 1.25rem; */
+    padding: 8px 8px;
+}
+
+#submitCategoryButton {
+    background-color: var(--background-primary);
+    border: none;
+    color: black;
+    padding: 2px 4px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#submitCategoryButton:hover {
+    background-color: var(--background-secondary);
 }
 
 nav {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    align-items: flex-start;
 }
 
-nav button {
+nav > button {
     background-color: transparent;
     border: none;
     font-size: 1.25rem;
     cursor: pointer;
+    padding: 8px 8px;
+    text-align: left;
 }
 
-nav button:hover {
-    text-decoration: underline;
+nav > button:hover {
+    /* text-decoration: underline; */
+    background-color: var(--accent-tertiary);
 }
 
 #content {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    flex: 1;
+    flex: 3;
     
     max-width: 500px;
 
