@@ -38,7 +38,11 @@ function loadAddCategory () {
             const btn = document.createElement("button");
             btn.textContent = "OK";
             btn.id = "submitCategoryButton";
-            newCategoryDiv.append(name, btn);
+
+            const cancelBtn = document.createElement("button");
+            cancelBtn.textContent = "X";
+            cancelBtn.id = "cancelCategoryButton";
+            newCategoryDiv.append(name, cancelBtn, btn);
             
             nav.appendChild(newCategoryDiv);
             name.focus();
@@ -52,7 +56,11 @@ function loadAddCategory () {
 
             btn.addEventListener("click", () => {
                 addCategory(name.value, newCategoryDiv);
-            })
+            });
+
+            cancelBtn.addEventListener("click", () => {
+                addCategory('', newCategoryDiv);
+            });
         }
     });
 }

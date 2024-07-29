@@ -134,13 +134,23 @@ main {
     background-color: var(--background-primary);
     border: none;
     color: black;
-    padding: 2px 4px;
+    padding: 4px;
     border-radius: 4px;
     cursor: pointer;
+    align-self: center;
 }
 
 #submitCategoryButton:hover {
     background-color: var(--background-secondary);
+}
+
+#cancelCategoryButton {
+    color: black;
+    background-color: transparent;
+    border: none;
+    padding-right: 10px;
+    cursor: pointer;
+    align-self: center;
 }
 
 nav {
