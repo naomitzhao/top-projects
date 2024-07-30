@@ -209,6 +209,7 @@ function makeTodo(title, date, priority, category, description) {
         priority: priority, 
         category: category, 
         description: description,
+        complete: false, 
         id: idx++
     };
 }
@@ -224,7 +225,7 @@ function addDomTodo(todo) {
     const itemContent = document.createElement("div");
     itemContent.classList.add("itemContent");
 
-    const nameCheck = document.createElement("nameCheck");
+    const nameCheck = document.createElement("div");
     nameCheck.classList.add("nameCheck");
 
     const check = document.createElement("button");
@@ -243,6 +244,19 @@ function addDomTodo(todo) {
     item.append(priorityBar, itemContent);
 
     categories.get(todo.category).append(item);
+
+    check.addEventListener("click", () => {
+        if (check.classList.contains("checkedCheck")) {
+            check.classList.remove("checkedCheck");
+            h5.classList.remove("checkedName");
+            item.classList.remove("checkedItem");
+        }
+        else {
+            check.classList.add("checkedCheck");
+            h5.classList.add("checkedName");
+            item.classList.add("checkedItem");
+        }
+    });
 }
 
 function showDialog() {

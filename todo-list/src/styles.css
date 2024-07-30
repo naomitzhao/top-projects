@@ -50,6 +50,8 @@ p {
     --priority-0: rgb(57, 175, 57);
     --priority-1: rgb(236, 186, 69);
     --priority-2: rgb(240, 105, 105);
+
+    --checked-item: #dee5e5;
 }
 
 body {
@@ -222,6 +224,10 @@ nav > button:hover {
     box-shadow: 1px 1px 5px #00000020;
 }
 
+.checkedItem {
+    background-color: var(--checked-item);
+}
+
 .priorityBar {
     width: 8px;
 }
@@ -247,6 +253,15 @@ nav > button:hover {
     background-color: transparent;
     border: 3px solid var(--accent-primary);
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.checkedCheck {
+    background-color: var(--accent-primary);
+}
+
+.checkedName {
+    text-decoration: line-through;
 }
 
 footer {
@@ -281,7 +296,7 @@ footer {
 }
 
 #newTaskDialog {
-    background-color: white;
+    background-color: var(--background-primary);
     padding: 20px;
     border: none;
     border-radius: 8px;
@@ -310,11 +325,11 @@ footer {
 }
 
 #newTaskDialog button {
-    background-color: white;
+    background-color: var(--accent-primary);
     padding: 5px;
     border-radius: 20px;
     border: 2px solid var(--accent-primary);
-    color: black;
+    color: white;
     font-size: 1rem;
     cursor: pointer;
 }
