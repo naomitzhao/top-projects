@@ -106,7 +106,7 @@ function loadAddTask () {
         e.preventDefault();
         const addTaskForm = document.getElementById("addTaskForm");
 
-        const title =addTaskForm.elements["title"].value;
+        const title = addTaskForm.elements["title"].value;
         const date = addTaskForm.elements["date"].value;
         const priority = addTaskForm.elements["priority"].value;
         const category = addTaskForm.elements["category"].value;
@@ -156,35 +156,7 @@ function generateList(category) {
     tasks.id = "tasks";
     todos.forEach((todo) => {
         if (todo.category == category) {
-            const item = document.createElement("div");
-            item.classList.add("item");
-            
-            const priorityBar = document.createElement("div");
-            priorityBar.classList.add("priorityBar");
-            priorityBar.style.backgroundColor = `var(--priority-${todo.priority})`;
-
-            const itemContent = document.createElement("div");
-            itemContent.classList.add("itemContent");
-
-            const nameCheck = document.createElement("nameCheck");
-            nameCheck.classList.add("nameCheck");
-
-            const check = document.createElement("button");
-            check.classList.add("check");
-            
-            const h5 = document.createElement("h5");
-            h5.textContent = todo.title;
-
-            nameCheck.append(check, h5);
-
-            const dateP = document.createElement("p");
-            dateP.textContent = todo.date;
-
-            itemContent.append(nameCheck, dateP);
-
-            item.append(priorityBar, itemContent);
-
-            tasks.appendChild(item);
+            addDomTodo(todo);
         }
     });
     return tasks;
