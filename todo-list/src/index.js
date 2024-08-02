@@ -4,6 +4,7 @@ import Plus from './assets/plus.svg';
 let idx = 0;
 let currentGroup = "ungrouped";
 let newCategoryOpen = false;
+let buttonIsEdit = false;
 
 const todos = [];
 
@@ -104,19 +105,41 @@ function loadAddTask () {
 
     addTaskButton.addEventListener("click", (e) => {
         e.preventDefault();
-        const addTaskForm = document.getElementById("addTaskForm");
-
-        const title = addTaskForm.elements["title"].value;
-        const date = addTaskForm.elements["date"].value;
-        const priority = addTaskForm.elements["priority"].value;
-        const category = addTaskForm.elements["category"].value;
-        const description = addTaskForm.elements["description"].value;
-
-        addTodo(title, date, priority, category, description);
-
-        hideDialog();
-        clearDialog(addTaskForm);
+        if (buttonIsEdit) {
+            handleEditTask;
+        }
+        else {
+            handleAddTask();
+        }
     });
+}
+
+function handleAddTask(e) {
+    const addTaskForm = document.getElementById("addTaskForm");
+
+    const title = addTaskForm.elements["title"].value;
+    const date = addTaskForm.elements["date"].value;
+    const priority = addTaskForm.elements["priority"].value;
+    const category = addTaskForm.elements["category"].value;
+    const description = addTaskForm.elements["description"].value;
+
+    addTodo(title, date, priority, category, description);
+
+    hideDialog();
+    clearDialog(addTaskForm);
+}
+
+function handleEditTask(e) {
+    const addTaskForm = document.getElementById("addTaskForm");
+
+    const title = addTaskForm.elements["title"].value;
+    const date = addTaskForm.elements["date"].value;
+    const priority = addTaskForm.elements["priority"].value;
+    const category = addTaskForm.elements["category"].value;
+    const description = addTaskForm.elements["description"].value;
+
+    hideDialog();
+    clearDialog(addTaskForm);
 }
 
 function loadAddTaskCategories () {
@@ -174,6 +197,18 @@ function addTodo(title, date, priority, category, description = ""){
     addDomTodo(todo);
 }
 
+function editTodo(id, title, date, priority, category, description = "") {
+    for (const todo in todos){
+        if (todo.id == id) {
+            todo.title = title;
+            todo.date = date;
+            todo.priority = priority;
+            todo.category = category;
+            todo.description = description;
+        }
+    }
+}
+
 function makeTodo(title, date, priority, category, description) {
     return {
         title: title,
@@ -229,6 +264,10 @@ function addDomTodo(todo) {
             item.classList.add("checkedItem");
         }
     });
+
+    h5.addEventListener("click", () => {
+
+    })
 }
 
 function showDialog() {
