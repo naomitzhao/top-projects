@@ -4,7 +4,7 @@ import Plus from './assets/plus.svg';
 let idx = 0;
 let currentGroup = "ungrouped";
 let newCategoryOpen = false;
-let buttonIsEdit = false;
+let currTodoEdit = null;
 
 const todos = [];
 
@@ -105,8 +105,8 @@ function loadAddTask () {
 
     addTaskButton.addEventListener("click", (e) => {
         e.preventDefault();
-        if (buttonIsEdit) {
-            handleEditTask;
+        if (currTodoEdit != null) {
+            handleEditTask(currTodoEdit.id);
         }
         else {
             handleAddTask();
@@ -114,7 +114,7 @@ function loadAddTask () {
     });
 }
 
-function handleAddTask(e) {
+function handleAddTask() {
     const addTaskForm = document.getElementById("addTaskForm");
 
     const title = addTaskForm.elements["title"].value;
@@ -126,10 +126,9 @@ function handleAddTask(e) {
     addTodo(title, date, priority, category, description);
 
     hideDialog();
-    clearDialog(addTaskForm);
 }
 
-function handleEditTask(e) {
+function handleEditTask(taskId) {
     const addTaskForm = document.getElementById("addTaskForm");
 
     const title = addTaskForm.elements["title"].value;
@@ -138,8 +137,9 @@ function handleEditTask(e) {
     const category = addTaskForm.elements["category"].value;
     const description = addTaskForm.elements["description"].value;
 
+    editTodo(taskId, title, date, priority, category, description);
+
     hideDialog();
-    clearDialog(addTaskForm);
 }
 
 function loadAddTaskCategories () {
@@ -194,19 +194,23 @@ function switchTab(category) {
 
 function addTodo(title, date, priority, category, description = ""){
     const todo = makeTodo(title, date, priority, category, description);
+    todos.push(todo);
     addDomTodo(todo);
 }
 
 function editTodo(id, title, date, priority, category, description = "") {
-    for (const todo in todos){
+    todos.forEach((todo) => {
         if (todo.id == id) {
+            const oldCategory = todo.category;
             todo.title = title;
             todo.date = date;
             todo.priority = priority;
             todo.category = category;
             todo.description = description;
+            editDomTodo(todo, oldCategory);
+            return;
         }
-    }
+    });
 }
 
 function makeTodo(title, date, priority, category, description) {
@@ -224,6 +228,7 @@ function makeTodo(title, date, priority, category, description) {
 function addDomTodo(todo) {
     const item = document.createElement("div");
     item.classList.add("item");
+    item.id = "item" + todo.id;
     
     const priorityBar = document.createElement("div");
     priorityBar.classList.add("priorityBar");
@@ -266,8 +271,34 @@ function addDomTodo(todo) {
     });
 
     h5.addEventListener("click", () => {
-
+        currTodoEdit = todo;
+        showDialog();
     })
+}
+
+function editDomTodo(todo, oldCategory) {
+    const item = document.getElementById("item" + todo.id);
+    
+    const priorityBar = item.querySelector(".priorityBar");
+    priorityBar.style.backgroundColor = `var(--priority-${todo.priority})`;
+    
+    const h5 = item.querySelector("h5");
+    h5.textContent = todo.title;
+
+    const dateP = item.querySelector("p");
+    dateP.textContent = todo.date;
+
+    if (todo.category != oldCategory) {
+        categories.keys().forEach((key) => {
+            if (key == oldCategory) {
+                console.log(categories.get(key));
+                categories.get(key).removeChild(item);
+            }
+            else if (key == todo.category) {
+                categories.get(key).appendChild(item);
+            }
+        });
+    }
 }
 
 function showDialog() {
@@ -281,12 +312,19 @@ function showDialog() {
     categoryDropDown.remove();
 
     categoryField.appendChild(loadAddTaskCategories());
+
+    if (currTodoEdit != null) {
+        document.getElementById("titleInput").value = currTodoEdit.title;
+        document.getElementById("dateInput").value = currTodoEdit.date;
+        document.getElementById("descriptionInput").value = currTodoEdit.description;
+    }
 }
 
 function hideDialog() {
     const dialogContainer = document.getElementById("dialogContainer");
     dialogContainer.style.display = "none";
     const dialog = document.querySelector("dialog");
+    clearDialog(document.getElementById("addTaskForm"));
     dialog.close();
 }
 
@@ -294,4 +332,5 @@ function clearDialog(form) {
     form.querySelectorAll("input, textarea").forEach((field) => {
         field.value = "";
     });
+    currTodoEdit = null;
 }
