@@ -8,86 +8,172 @@ let currTodoEdit = null;
 
 const todos = [];
 
-const categories = new Map();
-categories.set("ungrouped", generateList("ungrouped"));
-categories.set("grouped", generateList("grouped"));
+const categories = (function () {
+    const map = new Map();
+
+    const addCategory = function (newCategoryName) {
+        const div = document.createElement("div");
+        div.id = 'tasks';
+        map.set(newCategoryName, div);
+    };
+
+    addCategory("ungrouped");
+    addCategory("grouped");
+
+    // const addTask = function (categoryName, taskId) {
+    //     map.get(categoryName).push(taskId);
+    // };
+
+    const get = function (key) {
+        return map.get(key);
+    };
+
+    const keys = function () {
+        return map.keys();
+    }
+
+    const getMap = function () {
+        return map;
+    }
+
+    return { addCategory, get, keys, getMap }
+    
+}) ();
+
+const domStuff = (function () {
+    const addTodo = function (todo) {
+        const item = document.createElement("div");
+        item.classList.add("item");
+        item.id = "item" + todo.id;
+        
+        const priorityBar = document.createElement("div");
+        priorityBar.classList.add("priorityBar");
+        priorityBar.style.backgroundColor = `var(--priority-${todo.priority})`;
+    
+        const itemContent = document.createElement("div");
+        itemContent.classList.add("itemContent");
+    
+        const nameCheck = document.createElement("div");
+        nameCheck.classList.add("nameCheck");
+    
+        const check = document.createElement("button");
+        check.classList.add("check");
+        
+        const h5 = document.createElement("h5");
+        h5.textContent = todo.title;
+    
+        nameCheck.append(check, h5);
+    
+        const dateP = document.createElement("p");
+        dateP.textContent = todo.date;
+    
+        itemContent.append(nameCheck, dateP);
+    
+        item.append(priorityBar, itemContent);
+
+        categories.get(todo.category).appendChild(item);
+    
+        check.addEventListener("click", () => {
+            if (check.classList.contains("checkedCheck")) {
+                check.classList.remove("checkedCheck");
+                h5.classList.remove("checkedName");
+                item.classList.remove("checkedItem");
+            }
+            else {
+                check.classList.add("checkedCheck");
+                h5.classList.add("checkedName");
+                item.classList.add("checkedItem");
+            }
+        });
+    
+        h5.addEventListener("click", () => {
+            currTodoEdit = todo;
+            showDialog();
+        });
+    };
+
+    const loadAddCategory = function () {
+        const nav = document.querySelector("nav");
+        const addCategoryButton = document.getElementById("addCategoryButton");
+        addCategoryButton.querySelector("img").src = Plus;
+    
+        addCategoryButton.addEventListener("click", () => {
+            if (!newCategoryOpen) {
+                const newCategoryDiv = document.createElement("div");
+                newCategoryDiv.id = 'newCategory';
+                const name = document.createElement("input");
+                name.type = 'text';
+                name.name = 'name';
+                const btn = document.createElement("button");
+                btn.textContent = "OK";
+                btn.id = "submitCategoryButton";
+    
+                const cancelBtn = document.createElement("button");
+                cancelBtn.textContent = "X";
+                cancelBtn.id = "cancelCategoryButton";
+                newCategoryDiv.append(name, cancelBtn, btn);
+                
+                nav.appendChild(newCategoryDiv);
+                name.focus();
+                newCategoryOpen = true;
+    
+                name.addEventListener("keydown", (e) => {
+                    if (e.key == 'Enter') {
+                        categories.addCategory(name.value, newCategoryDiv);
+                    }
+                });
+    
+                btn.addEventListener("click", () => {
+                    categories.addCategory(name.value, newCategoryDiv);
+                });
+    
+                cancelBtn.addEventListener("click", () => {
+                    categories.addCategory('', newCategoryDiv);
+                });
+            }
+        });
+    };
+
+    const addCategory = function (category) {
+        const nav = document.querySelector("nav");
+        const btn = document.createElement("button");
+        btn.textContent = category;
+    
+        btn.addEventListener("click", () => {
+            switchTab(category);
+        });
+    
+        nav.appendChild(btn);
+    };
+
+    return { addTodo, loadAddCategory };
+})();
+
+const todoList = (function () {
+    const addCategory = function (name, inputDiv) {
+        if (name) {
+            categories.addCategory(name);
+            domStuff.addCategory(name);
+            switchTab(name);
+        }
+        inputDiv.remove();
+    
+        newCategoryOpen = false;
+    };
+})();
 
 loadAddTask();
 populateNav();
-loadAddCategory();
+domStuff.loadAddCategory();
 
 const content = document.getElementById("content")
-content.append(categories.get("ungrouped"));
 
 addTodo("test todo", "thu 7/25", 0, "grouped", "hello hello!");
 addTodo("walk gerald", "fri 7/26", 2, "ungrouped", "take gerald for a walk");
 addTodo("water the sink", "sat 7/27", 0, "ungrouped", "the sink is thirsty");
 addTodo("do something cool", "sun 7/29", 1, "grouped", "what is cool?");
 
-function loadAddCategory () {
-    const nav = document.querySelector("nav");
-    const addCategoryButton = document.getElementById("addCategoryButton");
-    addCategoryButton.querySelector("img").src = Plus;
-
-    addCategoryButton.addEventListener("click", () => {
-        if (!newCategoryOpen) {
-            const newCategoryDiv = document.createElement("div");
-            newCategoryDiv.id = 'newCategory';
-            const name = document.createElement("input");
-            name.type = 'text';
-            name.name = 'name';
-            const btn = document.createElement("button");
-            btn.textContent = "OK";
-            btn.id = "submitCategoryButton";
-
-            const cancelBtn = document.createElement("button");
-            cancelBtn.textContent = "X";
-            cancelBtn.id = "cancelCategoryButton";
-            newCategoryDiv.append(name, cancelBtn, btn);
-            
-            nav.appendChild(newCategoryDiv);
-            name.focus();
-            newCategoryOpen = true;
-
-            name.addEventListener("keydown", (e) => {
-                if (e.key == 'Enter') {
-                    addCategory(name.value, newCategoryDiv);
-                }
-            });
-
-            btn.addEventListener("click", () => {
-                addCategory(name.value, newCategoryDiv);
-            });
-
-            cancelBtn.addEventListener("click", () => {
-                addCategory('', newCategoryDiv);
-            });
-        }
-    });
-}
-
-function addCategory (newCategoryName, newCategoryDiv) {
-    if (newCategoryName) {
-        categories.set(newCategoryName, generateList(newCategoryName));
-        addDOMCategory(newCategoryName);
-        switchTab(newCategoryName);
-    }
-    newCategoryDiv.remove();
-
-    newCategoryOpen = false;
-}
-
-function addDOMCategory (category) {
-    const nav = document.querySelector("nav");
-    const btn = document.createElement("button");
-    btn.textContent = category;
-
-    btn.addEventListener("click", () => {
-        switchTab(category);
-    });
-
-    nav.appendChild(btn);
-}
+content.append(categories.get("ungrouped"));
 
 function loadAddTask () {
     const addTask = document.getElementById("addTask");
@@ -174,17 +260,6 @@ function populateNav() {
     }
 }
 
-function generateList(category) {
-    const tasks = document.createElement("div");
-    tasks.id = "tasks";
-    todos.forEach((todo) => {
-        if (todo.category == category) {
-            addDomTodo(todo);
-        }
-    });
-    return tasks;
-}
-
 function switchTab(category) {
     content.querySelector("h2").textContent = category;
     content.removeChild(document.getElementById("tasks"));
@@ -195,7 +270,7 @@ function switchTab(category) {
 function addTodo(title, date, priority, category, description = ""){
     const todo = makeTodo(title, date, priority, category, description);
     todos.push(todo);
-    addDomTodo(todo);
+    domStuff.addTodo(todo);
 }
 
 function editTodo(id, title, date, priority, category, description = "") {
@@ -225,57 +300,6 @@ function makeTodo(title, date, priority, category, description) {
     };
 }
 
-function addDomTodo(todo) {
-    const item = document.createElement("div");
-    item.classList.add("item");
-    item.id = "item" + todo.id;
-    
-    const priorityBar = document.createElement("div");
-    priorityBar.classList.add("priorityBar");
-    priorityBar.style.backgroundColor = `var(--priority-${todo.priority})`;
-
-    const itemContent = document.createElement("div");
-    itemContent.classList.add("itemContent");
-
-    const nameCheck = document.createElement("div");
-    nameCheck.classList.add("nameCheck");
-
-    const check = document.createElement("button");
-    check.classList.add("check");
-    
-    const h5 = document.createElement("h5");
-    h5.textContent = todo.title;
-
-    nameCheck.append(check, h5);
-
-    const dateP = document.createElement("p");
-    dateP.textContent = todo.date;
-
-    itemContent.append(nameCheck, dateP);
-
-    item.append(priorityBar, itemContent);
-
-    categories.get(todo.category).append(item);
-
-    check.addEventListener("click", () => {
-        if (check.classList.contains("checkedCheck")) {
-            check.classList.remove("checkedCheck");
-            h5.classList.remove("checkedName");
-            item.classList.remove("checkedItem");
-        }
-        else {
-            check.classList.add("checkedCheck");
-            h5.classList.add("checkedName");
-            item.classList.add("checkedItem");
-        }
-    });
-
-    h5.addEventListener("click", () => {
-        currTodoEdit = todo;
-        showDialog();
-    })
-}
-
 function editDomTodo(todo, oldCategory) {
     const item = document.getElementById("item" + todo.id);
     
@@ -291,7 +315,6 @@ function editDomTodo(todo, oldCategory) {
     if (todo.category != oldCategory) {
         categories.keys().forEach((key) => {
             if (key == oldCategory) {
-                console.log(categories.get(key));
                 categories.get(key).removeChild(item);
             }
             else if (key == todo.category) {
