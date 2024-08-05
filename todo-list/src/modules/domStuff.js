@@ -137,11 +137,9 @@ export function makeDomStuff (categories, todoList) {
         dateP.textContent = todo.date;
     
         if (todo.category != oldCategory) {
+            item.remove();
             categories.keys().forEach((key) => {
-                if (key == oldCategory) {
-                    categories.get(key).removeChild(item);
-                }
-                else if (key == todo.category) {
+                if (key == todo.category) {
                     categories.get(key).appendChild(item);
                 }
             });

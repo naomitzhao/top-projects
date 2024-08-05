@@ -31,7 +31,7 @@ export function makeCategories () {
         }
         console.log("no");
         return false;
-    }
+    };
 
     addCategory("ungrouped");
     addCategory("grouped");

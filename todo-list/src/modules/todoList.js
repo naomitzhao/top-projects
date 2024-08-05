@@ -44,9 +44,8 @@ export function makeTodoList (categories) {
 
     const handleFormSubmit = function () {
         if (currTodoEdit != null) {
-            const oldCategory = currTodoEdit.category;
             editTodoFromForm(currTodoEdit.id);
-            return oldCategory;
+            return null;
         }
         else {
             return addTodoFromForm();
