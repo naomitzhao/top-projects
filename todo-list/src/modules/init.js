@@ -54,7 +54,14 @@ export function makeInit (categories, todoList, domStuff) {
         });
     };
 
+    const addTodo = function (title, date, priority, category, description) {
+        const todo = todoList.addTodo(title, date, priority, category, description);
+        domStuff.addTodo(todo);
+    }
+
     loadAddTask();
     loadNav();
     loadAddCategory();
+
+    return { addTodo }
 }
