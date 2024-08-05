@@ -17,26 +17,22 @@ const categories = (function () {
         map.set(newCategoryName, div);
     };
 
-    addCategory("ungrouped");
-    addCategory("grouped");
-
-    // const addTask = function (categoryName, taskId) {
-    //     map.get(categoryName).push(taskId);
-    // };
-
     const get = function (key) {
         return map.get(key);
     };
 
     const keys = function () {
         return map.keys();
-    }
+    };
 
     const getMap = function () {
         return map;
-    }
+    };
 
-    return { addCategory, get, keys, getMap }
+    addCategory("ungrouped");
+    addCategory("grouped");
+
+    return { addCategory, get, keys, getMap };
     
 }) ();
 
@@ -119,34 +115,45 @@ const domStuff = (function () {
     
                 name.addEventListener("keydown", (e) => {
                     if (e.key == 'Enter') {
-                        categories.addCategory(name.value, newCategoryDiv);
+                        addCategory(name.value, newCategoryDiv);
                     }
                 });
     
                 btn.addEventListener("click", () => {
-                    categories.addCategory(name.value, newCategoryDiv);
+                    addCategory(name.value, newCategoryDiv);
                 });
     
                 cancelBtn.addEventListener("click", () => {
-                    categories.addCategory('', newCategoryDiv);
+                    closeAddCategory();
                 });
             }
         });
     };
 
-    const addCategory = function (category) {
-        const nav = document.querySelector("nav");
-        const btn = document.createElement("button");
-        btn.textContent = category;
-    
-        btn.addEventListener("click", () => {
-            switchTab(category);
-        });
-    
-        nav.appendChild(btn);
+    const addCategory = function (category, newCategoryDiv) {
+        if (category != '') {
+            const nav = document.querySelector("nav");
+            const btn = document.createElement("button");
+            btn.textContent = category;
+        
+            btn.addEventListener("click", () => {
+                switchTab(category);
+            });
+        
+            nav.appendChild(btn);
+            
+            categories.addCategory(category, newCategoryDiv);
+        }
+        closeAddCategory();
     };
 
-    return { addTodo, loadAddCategory };
+    const closeAddCategory = function () {
+        newCategoryOpen = false;
+        const newCategoryDiv = document.getElementById('newCategory');
+        newCategoryDiv.remove();
+    };
+
+    return { addTodo, loadAddCategory, addCategory };
 })();
 
 const todoList = (function () {
@@ -160,6 +167,8 @@ const todoList = (function () {
     
         newCategoryOpen = false;
     };
+
+    return { addCategory }
 })();
 
 loadAddTask();
