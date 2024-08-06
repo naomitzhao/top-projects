@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo-list</title>
+</head>
+<body>
+    <header>
+        <h1>tudu!</h1>
+    </header>
+    <main>
+        <div id="sidebar">
+            <div id="sidebarContent">
+                <div id="categoriesHeader">
+                    <h3>categories</h3>
+                    <button id="addCategoryButton">
+                        <img alt="plus icon">
+                    </button>
+                </div>
+                <nav></nav>
+            </div>
+        </div>
+        <div id="currentCategoryContainer">
+            <div id="currentCategory">
+                <div id="content">
+                    <div id="groupHeader">
+                        <h2 id="groupName">ungrouped</h2>
+                        <button id="addTask">
+                            <img alt="plus icon">
+                        </button>
+                    </div>
+                </div>
+                <button id="deleteCategory">delete this category</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        made with 💗 by naomitzhao
+    </footer>
+    <div id="dialogContainer">
+        <div id="dialogOverlay"></div>
+        <dialog id="newTaskDialog" open>
+            <form id="addTaskForm">
+                <div id="formUpper">
+                    <div id="leftHalf">
+                        <div>
+                            <label>task</label>
+                            <input type="text" name="title" class="addTaskInput" id="titleInput">
+                        </div>
+                        <div>
+                            <label>priority</label>
+                            <select name="priority" class="addTaskInput" id="priorityInput">
+                                <option value="2">high</option>
+                                <option value="1">medium</option>
+                                <option value="0">low</option>
+                            </select>
+                        </div>
+                        <div id="categoryField">
+                            <label>category</label>
+                            <select id="categoryInput"></select>
+                        </div>
+                    </div>
+                    <div id="rightHalf">
+                        <div>
+                            <label>date</label>
+                            <input type="text" name="date" class="addTaskInput" id="dateInput">
+                        </div>
+                        <div>
+                            <label>description</label>
+                            <textarea name="description" class="addTaskInput" id="descriptionInput"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button id="addTaskButton" type="submit">add task</button>
+            </form>
+        </dialog>
+    </div>
+</body>
+</html>
