@@ -24,7 +24,7 @@ export function makeCategories () {
     };
 
     addCategory("ungrouped");
-    addCategory("grouped");
+    addCategory("school");
 
     return { addCategory, get, keys, getMap, deleteCategory };
     

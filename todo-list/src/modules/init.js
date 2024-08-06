@@ -32,7 +32,7 @@ export function makeInit (categories, todoList, domStuff) {
 
     const loadNav = function () {
         domStuff.addCategory("ungrouped");
-        domStuff.addCategory("grouped");
+        domStuff.addCategory("school");
     };
 
     const loadAddCategory = function () {
@@ -50,7 +50,7 @@ export function makeInit (categories, todoList, domStuff) {
         deleteCategory.addEventListener("click", () => {
             const current = domStuff.getCurrentGroup();
             if (current == "ungrouped") {
-                alert("you can't delete the default group!");
+                alert("you can't delete the default category!");
             }
             else {
                 domStuff.switchTab("ungrouped");
