@@ -1,3 +1,5 @@
+import Trash from '../assets/trash.svg';
+
 export function makeDomStuff (categories, todoList) {
     let newCategoryOpen = false;
     let currentGroup = "ungrouped";
@@ -26,11 +28,23 @@ export function makeDomStuff (categories, todoList) {
         h5.textContent = todo.title;
     
         nameCheck.append(check, h5);
+
+        const dateDelete = document.createElement("div");
+        dateDelete.classList.add("dateDelete");
     
         const dateP = document.createElement("p");
         dateP.textContent = todo.date;
+
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("todoDeleteButton");
+
+        const deleteIcon = document.createElement("img");
+        deleteIcon.src = Trash;
+        deleteButton.appendChild(deleteIcon);
+
+        dateDelete.append(dateP, deleteButton);
     
-        itemContent.append(nameCheck, dateP);
+        itemContent.append(nameCheck, dateDelete);
     
         item.append(priorityBar, itemContent);
         categories.get(todo.category).appendChild(item);
@@ -51,6 +65,10 @@ export function makeDomStuff (categories, todoList) {
         h5.addEventListener("click", () => {
             todoList.setCurrTodoEdit(todo);
             showDialog();
+        });
+
+        deleteButton.addEventListener("click", () => {
+            deleteTodo(todo);
         });
     };
 
@@ -96,7 +114,6 @@ export function makeDomStuff (categories, todoList) {
     }
 
     const addCategory = function (category) {
-        console.log(category);
         if (category != '') {
             const nav = document.querySelector("nav");
             const btn = document.createElement("button");
@@ -144,6 +161,11 @@ export function makeDomStuff (categories, todoList) {
                 }
             });
         }
+    };
+
+    const deleteTodo = function (todo) {
+        const item = document.getElementById("item" + todo.id);
+        item.remove();
     };
 
     const loadAddTaskCategories = function () {

@@ -264,6 +264,33 @@ nav > button:hover {
     text-decoration: line-through;
 }
 
+.dateDelete {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.todoDeleteButton {
+    padding: 0;
+    height: 20px;
+    width: 20px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+}
+
+.todoDeleteButton > img {
+    height: 20px;
+    width: 20px;
+}
+
 footer {
     height: var(--footer-height);
     background-color: var(--background-secondary);
