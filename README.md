@@ -58,3 +58,11 @@ extra: almost all projects feature full responsiveness through media queries! tr
 - **ES6 modules**
 - **webpack**
 - **tab switching**
+
+### [todo list](https://naomitzhao.github.io/top-projects/todo-list/dist)
+- flexbox
+- DOM manipulation and events
+- ES6 modules
+- webpack
+- module pattern
+- **object oriented programming**
