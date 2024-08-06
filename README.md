@@ -39,6 +39,8 @@ extra: almost all projects feature full responsiveness through media queries! tr
 - absolute positioning
 - SVG
 
+## javascript
+
 ### [library](https://naomitzhao.github.io/top-projects/library/)
 - flexbox
 - grid
