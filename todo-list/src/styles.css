@@ -273,6 +273,10 @@ nav > button:hover {
     align-items: center;
 }
 
+.nameCheck > h5 {
+    cursor: pointer;
+}
+
 .check {
     height: 30px;
     width: 30px;

@@ -1,3 +1,5 @@
+// function to extract data from the task dialog form
+
 export function getFormData () {
     const addTaskForm = document.getElementById("addTaskForm");
 

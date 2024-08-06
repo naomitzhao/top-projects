@@ -1,15 +1,19 @@
 import Trash from '../assets/trash.svg';
 
+// domStuff handles the majority of dom manipulation in this app. 
+
 export function makeDomStuff (categories, todoList) {
     let newCategoryOpen = false;
     let currentGroup = "ungrouped";
 
-    const content = document.getElementById("content")
+    const content = document.getElementById("content");
 
+    // getter for currentGroup
     const getCurrentGroup = function () {
         return currentGroup;
     };
 
+    // adds a todo (task) to the DOM
     const addTodo = function (todo) {
         const item = document.createElement("div");
         item.classList.add("item");
@@ -53,6 +57,7 @@ export function makeDomStuff (categories, todoList) {
         item.append(priorityBar, itemContent);
         categories.get(todo.category).appendChild(item);
     
+        // clicking the checkmark toggles the appearance of the item
         check.addEventListener("click", () => {
             if (check.classList.contains("checkedCheck")) {
                 check.classList.remove("checkedCheck");
@@ -66,18 +71,21 @@ export function makeDomStuff (categories, todoList) {
             }
         });
     
+        // clicking the header opens the form with info / edit for this todo
         h5.addEventListener("click", () => {
             todoList.setCurrTodoEdit(todo);
             showDialog();
         });
 
+        // clicking the delete button deletes the todo from the DOM
         deleteButton.addEventListener("click", () => {
             deleteTodo(todo);
         });
     };
 
+    // clicking the add category button opens a form in the nav
     const handleClickAddCategory = function () {
-        if (!newCategoryOpen) {
+        if (!newCategoryOpen) { // check there isn't already an open form
             const nav = document.querySelector("nav");
             const newCategoryDiv = document.createElement("div");
             newCategoryDiv.id = 'newCategory';
@@ -97,47 +105,49 @@ export function makeDomStuff (categories, todoList) {
             name.focus();
             newCategoryOpen = true;
 
-            name.addEventListener("keydown", (e) => {
-                if (e.key == 'Enter') {
-                    todoList.addCategory(name.value);
+            // create a new category when form submitted
+            btn.addEventListener("click", () => {
+                if (name.value) {
+                    categories.addCategory(name.value);
                     addCategory(name.value);
                     switchTab(name.value);
                 }
             });
 
-            btn.addEventListener("click", () => {
-                todoList.addCategory(name.value);
-                addCategory(name.value);
-                switchTab(name.value);
+            // pressing enter while input also submits the form
+            name.addEventListener("keydown", (e) => {
+                if (e.key == 'Enter') {
+                    if (name.value) {
+                        categories.addCategory(name.value);
+                        addCategory(name.value);
+                        switchTab(name.value);
+                    }
+                }
             });
 
+            // clicking the cancel button closes the form without making a new category
             cancelBtn.addEventListener("click", () => {
                 closeAddCategory();
             });
         }
     }
 
+    // add a new category to the DOM and switches to it
     const addCategory = function (category) {
-        if (category != '') {
-            const nav = document.querySelector("nav");
-            const btn = document.createElement("button");
-            btn.textContent = category;
-            btn.id = "category-" + category;
-        
-            btn.addEventListener("click", () => {
-                switchTab(category);
-            });
-        
-            nav.appendChild(btn);
-        }
+        const nav = document.querySelector("nav");
+        const btn = document.createElement("button");
+        btn.textContent = category;
+        btn.id = "category-" + category;
+    
+        btn.addEventListener("click", () => {
+            switchTab(category);
+        });
+    
+        nav.appendChild(btn);
         closeAddCategory();
     };
 
-    const deleteCategory = function (category) {
-        const categoryButton = document.getElementById("category-" + category);
-        categoryButton.remove();
-    }
-
+    // closes the add category form
     const closeAddCategory = function () {
         if (newCategoryOpen) {
             newCategoryOpen = false;
@@ -146,6 +156,13 @@ export function makeDomStuff (categories, todoList) {
         }
     };
 
+    // deletes a category from the DOM
+    const deleteCategory = function (category) {
+        const categoryButton = document.getElementById("category-" + category);
+        categoryButton.remove();
+    }
+
+    // switches the content div's content to a different category's content
     const switchTab = function (category) {
         content.querySelector("h2").textContent = category;
         content.removeChild(document.getElementById("tasks"));
@@ -153,6 +170,7 @@ export function makeDomStuff (categories, todoList) {
         currentGroup = category;
     };
 
+    // edits the DOM of a specific todo
     const editTodo = function (todo, oldCategory) {
         const item = document.getElementById("item" + todo.id);
 
@@ -165,6 +183,7 @@ export function makeDomStuff (categories, todoList) {
         const dateP = item.querySelector("p");
         dateP.textContent = todo.date;
     
+        // if the category was edited, move the todo from the old category to the new one
         if (todo.category != oldCategory) {
             item.remove();
             categories.keys().forEach((key) => {
@@ -175,11 +194,13 @@ export function makeDomStuff (categories, todoList) {
         }
     };
 
+    // delete a todo from the DOM
     const deleteTodo = function (todo) {
         const item = document.getElementById("item" + todo.id);
         item.remove();
     };
 
+    // load the dropdown used to select category in the task form
     const loadAddTaskCategories = function () {
         const categoryDropDown = document.createElement("select");
         categoryDropDown.classList.add("addTaskInput");
@@ -197,6 +218,16 @@ export function makeDomStuff (categories, todoList) {
         return categoryDropDown;
     };
 
+    const loadSelectedPriority = function (selected) {
+        const priorityInput = document.getElementById("priorityInput");
+        for (let i = 0; i < 3; i ++) {
+            if (priorityInput.options[i].value == selected) {
+                priorityInput.options[i].selected = true;
+            }
+        }
+    }
+
+    // show the task form dialog
     const showDialog = function () {
         const dialogContainer = document.getElementById("dialogContainer");
         dialogContainer.style.display = "flex";
@@ -208,14 +239,18 @@ export function makeDomStuff (categories, todoList) {
         categoryDropDown.remove();
     
         categoryField.appendChild(loadAddTaskCategories());
+        loadSelectedPriority(0);
     
         if (todoList.getCurrTodoEdit() != null) {
+            loadSelectedPriority(todoList.getCurrTodoEdit().priority);
+
             document.getElementById("titleInput").value = todoList.getCurrTodoEdit().title;
             document.getElementById("dateInput").value = todoList.getCurrTodoEdit().date;
             document.getElementById("descriptionInput").value = todoList.getCurrTodoEdit().description;
         }
     };
     
+    // hide the task form dialog
     const hideDialog = function () {
         const dialogContainer = document.getElementById("dialogContainer");
         dialogContainer.style.display = "none";
@@ -224,6 +259,7 @@ export function makeDomStuff (categories, todoList) {
         dialog.close();
     };
     
+    // clear the task form
     const clearDialog = function (form) {
         form.querySelectorAll("input, textarea").forEach((field) => {
             field.value = "";

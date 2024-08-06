@@ -1,3 +1,5 @@
+// categories are mapped to their DOM "tasks" div which contains the task elements within them
+
 export function makeCategories () {
     const map = new Map();
 
