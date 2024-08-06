@@ -19,23 +19,13 @@ export function makeCategories () {
         return map;
     };
 
-    const includesKey = function (key) {
-        console.log("check if " + key + " in map.keys");
-        console.log(key);
-        for (const k in map.keys()){
-            console.log(k);
-            if (k == key) {
-                console.log("found");
-                return true;
-            }
-        }
-        console.log("no");
-        return false;
+    const deleteCategory = function (key) {
+        map.delete(key);
     };
 
     addCategory("ungrouped");
     addCategory("grouped");
 
-    return { addCategory, get, keys, getMap, includesKey };
+    return { addCategory, get, keys, getMap, deleteCategory };
     
 };

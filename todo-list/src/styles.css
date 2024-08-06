@@ -175,15 +175,41 @@ nav > button:hover {
     background-color: var(--accent-tertiary);
 }
 
+#currentCategoryContainer {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: center;
+}
+
+#currentCategory {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 3;
+    max-width: 600px;
+
+    padding: var(--padding-medium);
+    padding-bottom: var(--padding-small);
+}
+
 #content {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    flex: 3;
-    
-    max-width: 500px;
+    gap: 20px;
+}
 
-    padding: var(--padding-medium);
+#deleteCategory {
+    align-self: flex-end;
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+#deleteCategory:hover {
+    opacity: 1;
 }
 
 #groupHeader {
@@ -284,6 +310,14 @@ nav > button:hover {
     border: none;
 
     cursor: pointer;
+}
+
+.todoDeleteButton {
+    opacity: 0.5;
+}
+
+.todoDeleteButton:hover {
+    opacity: 1;
 }
 
 .todoDeleteButton > img {

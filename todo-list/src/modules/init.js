@@ -31,18 +31,8 @@ export function makeInit (categories, todoList, domStuff) {
     };
 
     const loadNav = function () {
-        const nav = document.querySelector("nav");
-    
-        for (let category of categories.keys()) {
-            const btn = document.createElement("button");
-            btn.textContent = category;
-    
-            btn.addEventListener("click", () => {
-                domStuff.switchTab(category);
-            });
-    
-            nav.appendChild(btn);
-        }
+        domStuff.addCategory("ungrouped");
+        domStuff.addCategory("grouped");
     };
 
     const loadAddCategory = function () {
@@ -54,14 +44,31 @@ export function makeInit (categories, todoList, domStuff) {
         });
     };
 
+    const loadDeleteCategory = function () {
+        const deleteCategory = document.getElementById("deleteCategory");
+
+        deleteCategory.addEventListener("click", () => {
+            const current = domStuff.getCurrentGroup();
+            if (current == "ungrouped") {
+                alert("you can't delete the default group!");
+            }
+            else {
+                domStuff.switchTab("ungrouped");
+                categories.deleteCategory(current);
+                domStuff.deleteCategory(current);
+            }
+        });
+    }
+
     const addTodo = function (title, date, priority, category, description) {
         const todo = todoList.addTodo(title, date, priority, category, description);
         domStuff.addTodo(todo);
-    }
+    };
 
     loadAddTask();
     loadNav();
     loadAddCategory();
+    loadDeleteCategory();
 
     return { addTodo }
 }

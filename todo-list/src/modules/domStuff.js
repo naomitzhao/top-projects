@@ -6,6 +6,10 @@ export function makeDomStuff (categories, todoList) {
 
     const content = document.getElementById("content")
 
+    const getCurrentGroup = function () {
+        return currentGroup;
+    };
+
     const addTodo = function (todo) {
         const item = document.createElement("div");
         item.classList.add("item");
@@ -118,6 +122,7 @@ export function makeDomStuff (categories, todoList) {
             const nav = document.querySelector("nav");
             const btn = document.createElement("button");
             btn.textContent = category;
+            btn.id = "category-" + category;
         
             btn.addEventListener("click", () => {
                 switchTab(category);
@@ -128,10 +133,17 @@ export function makeDomStuff (categories, todoList) {
         closeAddCategory();
     };
 
+    const deleteCategory = function (category) {
+        const categoryButton = document.getElementById("category-" + category);
+        categoryButton.remove();
+    }
+
     const closeAddCategory = function () {
-        newCategoryOpen = false;
-        const newCategoryDiv = document.getElementById('newCategory');
-        newCategoryDiv.remove();
+        if (newCategoryOpen) {
+            newCategoryOpen = false;
+            const newCategoryDiv = document.getElementById('newCategory');
+            newCategoryDiv.remove();
+        }
     };
 
     const switchTab = function (category) {
@@ -221,5 +233,5 @@ export function makeDomStuff (categories, todoList) {
 
     content.append(categories.get("ungrouped"));
 
-    return { addTodo, handleClickAddCategory, addCategory, switchTab, editTodo, showDialog, hideDialog, clearDialog };
+    return { getCurrentGroup, addTodo, handleClickAddCategory, addCategory, deleteCategory, switchTab, editTodo, showDialog, hideDialog, clearDialog };
 }
