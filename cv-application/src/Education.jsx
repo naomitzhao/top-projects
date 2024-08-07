@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import './App.css'
+import { TextInput, TextareaInput } from './Inputs'
 
 export default function Education ({content}) {
     // console.log(content);
@@ -10,27 +11,27 @@ export default function Education ({content}) {
                         <form key={item.key}>
                         <div>
                             <label htmlFor="institutionName">Institution Name</label>
-                            <input name="institutionName" value={item.name}></input>
+                            <TextInput name="institutionName" defaultValue={item.name}></TextInput>
                         </div>
                         <div>
                             <label htmlFor="startDate">Start Date</label>
-                            <input name="startDate" value={item.startDate}></input>
+                            <TextInput name="startDate" defaultValue={item.startDate}></TextInput>
                         </div>
                         <div>
                             <label htmlFor="endDate">End Date</label>
-                            <input name="endDate" value={item.endDate}></input>
+                            <TextInput name="endDate" defaultValue={item.endDate}></TextInput>
                         </div>
                         <div>
                             <label htmlFor="degree">Degree</label>
-                            <input name="degree" value={item.degree}></input>
+                            <TextInput name="degree" defaultValue={item.degree}></TextInput>
                         </div>
                         <div>
                             <label htmlFor="area">Area of Study</label>
-                            <input name="area" value={item.area}></input>
+                            <TextInput name="area" defaultValue={item.area}></TextInput>
                         </div>
                         <div>
                             <label htmlFor="description">Description</label>
-                            <textarea name="description" value={item.description}></textarea>
+                            <TextareaInput name="description" defaultValue={item.description}></TextareaInput>
                         </div>
                         <button>Delete Education</button>
                     </form>

@@ -1,23 +1,24 @@
 /* eslint-disable react/prop-types */
 import './App.css'
+import { TextInput } from './Inputs'
 
 export default function BasicInfo({content}) {
-    console.log(content);
+    
     return (
         <form>
             <div>
                 <label htmlFor="fullName">Full Name</label>
-                <input name="fullName" value={content.name}></input>
+                <TextInput name="fullName" defaultValue={content.name}></TextInput>
             </div>
 
             <div>
                 <label htmlFor="email">Email</label>
-                <input name="email" value={content.email}></input>
+                <TextInput name="email" defaultValue={content.email}></TextInput>
             </div>
 
             <div>
                 <label htmlFor="phone">Phone</label>
-                <input name="phone" value={content.phone}></input>
+                <TextInput name="phone" defaultValue={content.phone}></TextInput>
             </div>
         </form>
     )
