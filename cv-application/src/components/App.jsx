@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // import { jsPDF } from "jspdf";
-import './App.css';
+import '../styles/App.css';
 import BasicInfo from './BasicInfo';
 import Education from './Education';
 import Experience from './Experience';

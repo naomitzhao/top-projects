@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import './App.css'
+import '../styles/App.css'
 import { TextInput } from './Inputs'
 
 export default function BasicInfo({content}) {
