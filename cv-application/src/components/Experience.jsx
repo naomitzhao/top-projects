@@ -28,7 +28,7 @@ export default function Experience ({ content }) {
                             <label htmlFor="description">Description</label>
                             <TextareaInput name="description" defaultValue={item.description}></TextareaInput>
                         </div>
-                        <button>Delete Experience</button>
+                        <button className="deleteButton">Delete Experience</button>
                     </form>
                 );
             })}

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+/* eslint-disable no-unused-vars */
+import { useState, useEffect } from 'react';
 // import { jsPDF } from "jspdf";
 import '../styles/App.css';
 import BasicInfo from './BasicInfo';
@@ -7,52 +8,138 @@ import Experience from './Experience';
 
 function App() {
   // eslint-disable-next-line no-unused-vars
-  const [content, setContent] = useState({
-    basicInfo: {
+  const [basicInfo, setBasicInfo] = useState(
+    {
       name: "naomi z",
       email: "naomiz.zzzzz@zmail.com",
       phone: "(555) 555-5555"
-    }, 
-    education: [
+    }
+  )
+  const [education, setEducation] = useState(
+    [
       {
         name: "University of California, Davis",
         startDate: "Sep 2022", 
         endDate: "Jun 2026", 
         degree: "B.S.", 
-        area: "Computer Science and Engineering"
+        area: "Computer Science and Engineering",
+        key: 0
+      }, 
+      {
+        name: "Mills High School",
+        startDate: "Aug 2018", 
+        endDate: "May 2022", 
+        degree: "High School Diploma", 
+        area: "High School",
+        key: 1  
       }
-    ],
+    ]
+  )
+  const [content, setContent] = useState({
     experience: [
       {
         name: "Personal Projects", 
         position: "",
         startDate: "", 
         endDate: "", 
-        description: "i make yay"
+        description: "i make yay", 
+        key: 0
       }, 
       {
         name: "#include at Davis", 
         position: "Web Developer",
         startDate: "Oct 2023", 
         endDate: "Mar 2024", 
-        description: "blah blah blah"
+        description: "blah blah blah", 
+        key: 1
       }
     ],
   });
+
+  const updateBasicInfo = (e) => {
+    setBasicInfo({
+      name: e.target.form[0].value,
+      email: e.target.form[1].value, 
+      phone: e.target.form[2].value
+    })
+  }
+
+  const updateEducation = (e) => {
+
+  }
+
+  useEffect(() => {
+    console.log(education);
+  })
 
   return (
     <main>
       <div id="formContainerContainer">
         <div id="formContainer">
           <div id="basicInfo">
-            <BasicInfo content={content.basicInfo}/>
+            <form>
+              <div>
+                <div>
+                    <label htmlFor="fullName">Full Name</label>
+                    <input name="fullName" defaultValue={basicInfo.name}></input>
+                </div>
+                <div>
+                    <label htmlFor="email">Email</label>
+                    <input name="email" defaultValue={basicInfo.email}></input>
+                </div>
+                <div>
+                    <label htmlFor="phone">Phone</label>
+                    <input name="phone" defaultValue={basicInfo.phone}></input>
+                </div>
+              </div>
+
+              <button type="submit" onClick={(e) => {
+                e.preventDefault();
+                updateBasicInfo(e);
+              }}>Update Basic Info</button>
+            </form>
           </div>
           <div id="education">
             <button>Add Education</button>
-            <Education content={content.education}/>
+            <form>
+            { education.map((item) => {
+              <p>hi</p>
+            })
+            }
+            { education.map((item) => {
+              <div key={item.key} className="educationSection">
+                  <div>
+                      <label htmlFor="institutionName">Institution Name</label>
+                      <input name="institutionName" defaultValue={item.name}></input>
+                  </div>
+                  <div>
+                      <label htmlFor="startDate">Start Date</label>
+                      <input name="startDate" defaultValue={item.startDate}></input>
+                  </div>
+                  <div>
+                      <label htmlFor="endDate">End Date</label>
+                      <input name="endDate" defaultValue={item.endDate}></input>
+                  </div>
+                  <div>
+                      <label htmlFor="degree">Degree</label>
+                      <input name="degree" defaultValue={item.degree}></input>
+                  </div>
+                  <div>
+                      <label htmlFor="area">Area of Study</label>
+                      <input name="area" defaultValue={item.area}></input>
+                  </div>
+                  <div>
+                      <label htmlFor="description">Description</label>
+                      <textarea name="description" defaultValue={item.description}></textarea>
+                  </div>
+                  <button className="deleteButton">Delete Education</button>
+              </div>
+            })}
+        </form>
           </div>
           <div id="experience">
             <button>Add Experience</button>
+            
             <Experience content={content.experience}/>
           </div>
         </div>
@@ -61,13 +148,13 @@ function App() {
         <div id="resume">
           <div id="resumeContent">
             <div id="resumeBasicInfo">
-              <h1>{content.basicInfo.name}</h1>
-              <p>{content.basicInfo.email}</p>
-              <p>{content.basicInfo.phone}</p>
+              <h1>{basicInfo.name}</h1>
+              <p>{basicInfo.email}</p>
+              <p>{basicInfo.phone}</p>
             </div>
             <div id="resumeEducation">
               <h2>Education</h2>
-              {content.education.map((item) => {
+              {education.map((item) => {
                 return(
                   <div key={item.key}>
                     <h3>{item.name}</h3>

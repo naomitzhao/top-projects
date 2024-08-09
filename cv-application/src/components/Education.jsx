@@ -5,10 +5,9 @@ import { TextInput, TextareaInput } from './Inputs'
 export default function Education ({content}) {
     // console.log(content);
     return (
-        <div>
+        <form>
             {content.map((item) => {
-                return (
-                        <form key={item.key}>
+                    <div key={item.key} className="educationSection">
                         <div>
                             <label htmlFor="institutionName">Institution Name</label>
                             <TextInput name="institutionName" defaultValue={item.name}></TextInput>
@@ -33,10 +32,10 @@ export default function Education ({content}) {
                             <label htmlFor="description">Description</label>
                             <TextareaInput name="description" defaultValue={item.description}></TextareaInput>
                         </div>
-                        <button>Delete Education</button>
-                    </form>
-                )
+                        <button className="deleteButton">Delete Education</button>
+                    </div>
+                
             })}
-        </div>
+        </form>
     );
 }
