@@ -1,7 +1,7 @@
 import '../styles/Resume.css';
 
 /* eslint-disable react/prop-types */
-export default function Resume({ basicInfo, education, experience }) {
+export default function Resume({ basicInfo, education, experience, skills }) {
     return (
         <div id="resumeContainer">
         <div id="resume">
@@ -54,6 +54,11 @@ export default function Resume({ basicInfo, education, experience }) {
                     )
                   }) }
               </div>
+            </div>
+            <div id="resumeSkills">
+                { skills.length && <h2>SKILLS</h2> }
+                { skills.length && <hr></hr>}
+                <p>{skills}</p>
             </div>
           </div>
         </div>

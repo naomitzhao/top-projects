@@ -4,22 +4,29 @@ import '../styles/App.css';
 import BasicInfoForm from './BasicInfoForm';
 import EducationForm from './EducationForm';
 import ExperienceForm from './ExperienceForm';
+import SkillsForm from './SkillsForm';
 import Resume from './Resume';
 
 function App() {
-  const exampleData = {
-    basicInfo: {
+  // state for name, email, phone
+  const [basicInfo, setBasicInfo] = useState(
+    {
       name: "Naomi Zhao",
-      email: "naomitan.zhao@gmail.com",
-      phone: "(925) 914-0386"
-    },
-    education: [
+      email: "naomitan dot zhao at gmail dot com",
+      phone: "(123) 456-7890"
+    }
+  )
+
+  // state for list of education
+  const [education, setEducation] = useState(
+    [
       {
         name: "University of California, Davis", 
         startDate: "Sep 2022", 
         endDate: "Jun 2026", 
         degree: "B.S.", 
         area: "Computer Science and Engineering", 
+        description: "- Relevant Coursework: Data Structures, Algorithms, & Programming, Algorithm Design and Analysis",
         key: 0
       }, 
       {
@@ -28,6 +35,7 @@ function App() {
         endDate: "Aug 2024", 
         degree: "", 
         area: "",
+        description: "- Relevant Coursework: PHP Programming",
         key: 1
       }, 
       {
@@ -36,16 +44,21 @@ function App() {
         endDate: "Aug 2021", 
         degree: "", 
         area: "", 
+        description: "Java Programming: Solving Problems with Software Programming and Foundations with Javascript, HTML, and CSS", 
         key: 2
       },
-    ],
-    experience: [
+    ]
+  )
+
+  // state for list of experience
+  const [experience, setExperience] = useState(
+    [
       {
         name: "The Odin Project", 
         title: "Personal Projects", 
         startDate: "", 
         endDate: "", 
-        description: "Various full-stack Javascript web applications.", 
+        description: "- Various full-stack Javascript web applications.", 
         key: 0
       },
       {
@@ -53,7 +66,7 @@ function App() {
         title: "Web Developer",
         startDate: "Oct 2023", 
         endDate: "Mar 2024", 
-        description: "Develop responsive front-end with React, HTML, SCSS, Javascript, and Next.js for UC Davis organization Best Buddies", 
+        description: "- Develop responsive front-end with React, HTML, SCSS, Javascript, and Next.js for UC Davis organization Best Buddies", 
         key: 1
       }, 
       {
@@ -61,7 +74,7 @@ function App() {
         title: "Tech Lead", 
         startDate: "Oct 2022", 
         endDate: "Jun 2023", 
-        description: "Collaborated in a team of developers to develop full-stack mobile applications.", 
+        description: "- Collaborated in a team of developers to develop full-stack mobile applications.", 
         key: 2
       }, 
       {
@@ -69,50 +82,13 @@ function App() {
         title: "Python Mentor", 
         startDate: "Aug 2019", 
         endDate: "May 2022", 
-        description: "Taught self-written curriculum in weekly Python workshops.", 
+        description: "- Taught self-written curriculum in weekly Python workshops.", 
         key: 3
       }
     ]
-  };
-  // state for name, email, phone
-  const [basicInfo, setBasicInfo] = useState(
-    // {
-    //   name: "",
-    //   email: "",
-    //   phone: ""
-    // }
-    exampleData.basicInfo
-  )
-
-  // state for list of education
-  const [education, setEducation] = useState(
-    // [
-    //   {
-    //     name: "",
-    //     startDate: "", 
-    //     endDate: "", 
-    //     degree: "", 
-    //     area: "",
-    //     key: 0
-    //   }
-    // ]
-    exampleData.education
-  )
-
-  // state for list of experience
-  const [experience, setExperience] = useState(
-    // [
-    //   {
-    //     name: "", 
-    //     title: "",
-    //     startDate: "", 
-    //     endDate: "", 
-    //     description: "", 
-    //     key: 0
-    //   }
-    // ]
-    exampleData.experience
   );
+
+  const [skills, setSkills] = useState("Languages: HTML, CSS, Javascript");
 
   // update basic info based on form
   const updateBasicInfo = (e) => {
@@ -157,6 +133,12 @@ function App() {
     }
     setExperience(newExp);
   };
+
+  // update skills based on form
+  const updateSkills = (e) => {
+    const newSkills = e.target.form[0].value;
+    setSkills(newSkills);
+  }
 
   const addEducation = () => {
     const newEdu = [];
@@ -212,9 +194,12 @@ function App() {
             <button onClick={ () => { addExperience(); } }>Add Experience</button>
             <ExperienceForm experience={experience} setExperience={setExperience} onChange={(e) => { updateExperience(e); }}></ExperienceForm>
           </div>
+          <div id="skills">
+            <SkillsForm skills={skills} onChange={(e) => updateSkills(e)}></SkillsForm>
+          </div>
         </div>
       </div>
-      <Resume basicInfo={basicInfo} education={education} experience={experience}></Resume>
+      <Resume basicInfo={basicInfo} education={education} experience={experience} skills={skills}></Resume>
     </main>
   )
 }
