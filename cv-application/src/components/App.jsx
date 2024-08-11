@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import '../styles/App.css';
 import BasicInfoForm from './BasicInfoForm';
 import EducationForm from './EducationForm';
