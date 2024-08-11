@@ -2,7 +2,7 @@
 // eslint-disable-next-line react/prop-types
 export default function BasicInfoForm ({ onChange, basicInfo }) {
     return (
-        <div>
+        <form>
             <div>
                 <label htmlFor="fullName">Full Name</label>
                 <input name="fullName" id="fullName" defaultValue={basicInfo.name} onChange={onChange}></input>
@@ -15,6 +15,6 @@ export default function BasicInfoForm ({ onChange, basicInfo }) {
                 <label htmlFor="phone">Phone</label>
                 <input name="phone" id="phone" defaultValue={basicInfo.phone} onChange={onChange}></input>
             </div>
-        </div>
+        </form>
     );
 }

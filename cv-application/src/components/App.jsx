@@ -147,12 +147,12 @@ function App() {
     const frm = e.target.form;
     for (let i = 0; i < frm.length - 1; i += 6) {
       newExp.push({
-        name: frm[i].value, 
-        title: frm[i + 1].value, 
+        title: frm[i].value, 
+        name: frm[i + 1].value, 
         startDate: frm[i + 2].value, 
         endDate: frm[i + 3].value, 
         description: frm[i + 4].value, 
-        key: frm[i].id.slice(7)
+        key: frm[i].id.slice(5)
       });
     }
     setExperience(newExp);
@@ -202,21 +202,15 @@ function App() {
       <div id="formContainerContainer">
         <div id="formContainer">
           <div id="basicInfo">
-            <form>
-              <BasicInfoForm basicInfo={basicInfo} onChange={(e) => { updateBasicInfo(e); }}></BasicInfoForm>
-            </form>
+            <BasicInfoForm basicInfo={basicInfo} onChange={(e) => { updateBasicInfo(e); }}></BasicInfoForm>
           </div>
           <div id="education">
             <button onClick={ () => { addEducation(); } }>Add Education</button>
-            <form>
             <EducationForm education={education} setEducation={setEducation} onChange={(e) => { updateEducation(e); }}></EducationForm>
-          </form>
           </div>
           <div id="experience">
             <button onClick={ () => { addExperience(); } }>Add Experience</button>
-            <form>
-              <ExperienceForm experience={experience} setExperience={setExperience} onChange={(e) => { updateExperience(e); }}></ExperienceForm>
-            </form>
+            <ExperienceForm experience={experience} setExperience={setExperience} onChange={(e) => { updateExperience(e); }}></ExperienceForm>
           </div>
         </div>
       </div>
