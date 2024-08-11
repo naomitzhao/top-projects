@@ -5,7 +5,7 @@
 
 :root {
   background-color: var(--background-primary);
-  --padding-main: 50px;
+  --padding-main: 25px;
 }
 
 main {
@@ -110,4 +110,18 @@ input:focus {
 
 .deletebutton:hover {
   text-decoration: underline;
+}
+
+@media screen and (max-width: 840px) {
+  main {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    height: auto;
+  }
+  
+  #formContainerContainer {
+    align-self: stretch;
+    max-width: 100%;
+  }
 }

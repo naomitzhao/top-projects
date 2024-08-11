@@ -29,12 +29,12 @@
 #resumeContent {
     font-weight: 400;
     /* 1pt font = 1 em */
-    font-size: calc(72px / var(--ratio)); 
+    --pt: calc(0.0138888888px * var(--ratio)); 
 
     padding: calc(var(--ratio) * 0.5px);
     display: flex;
     flex-direction: column;
-    gap: 8em;
+    gap: 8px;
 }
 
 #resumeContent * {
@@ -43,21 +43,21 @@
 }
 
 #resumeContent h1 {
-    font-size: 22em;
+    font-size: calc(22 * var(--pt));
     font-weight: 700;
 }
 
 #resumeContent h2 {
-    font-size: 12em;
+    font-size: calc(12 * var(--pt));
     font-weight: 700;
 }
 
 #resumeContent h3 {
-    font-size: 12em;
+    font-size: calc(12 * var(--pt));
 }
 
 #resumeContent p {
-    font-size: 12em;
+    font-size: calc(12 * var(--pt));
 }
 
 .contactInfo {
@@ -73,9 +73,16 @@
 #educationItems, #experienceItems {
     display: flex;
     flex-direction: column;
-    gap: 6em;
+    gap: 6px;
 }
 
 .companyName {
     font-style: italic;
 }
+
+@media screen and (max-width: 1280px) {
+    #resume {
+        --ratio: 50;
+    }
+}
+
