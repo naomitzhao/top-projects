@@ -14,12 +14,12 @@ export default function ExperienceForm ({ onChange, experience, setExperience })
         return (
             <div key={"exp" + item.key}>
                 <div>
-                    <label htmlFor={"expName" + item.key}>Company/Organization</label>
-                    <input name="name" id={"expName" + item.key} defaultValue={item.name} onChange={onChange}></input>
+                    <label htmlFor="title">Position Title</label>
+                    <input name="title" defaultValue={item.title} onChange={onChange}></input>
                 </div>
                 <div>
-                    <label htmlFor="title">Position Title</label>
-                    <input name="title" defaultValue={item.position} onChange={onChange}></input>
+                    <label htmlFor={"expName" + item.key}>Company/Organization</label>
+                    <input name="name" id={"expName" + item.key} defaultValue={item.name} onChange={onChange}></input>
                 </div>
                 <div>
                     <label htmlFor="startDate">Start Date</label>
