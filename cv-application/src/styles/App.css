@@ -1,0 +1,127 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  background-color: var(--background-primary);
+  --padding-main: 25px;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-main);
+  gap: var(--padding-main);
+  align-items: flex-start;
+  height: calc(100vh - var(--padding-main) * 2 - var(--header-height) - var(--footer-height)); 
+  justify-content: space-evenly;
+}
+
+#formContainerContainer {
+  max-width: 50%;
+  flex: 1;
+  max-height: 100%;
+  overflow: auto;
+}
+
+#formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--padding-main);
+
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: var(--padding-main);
+  overflow: auto;
+}
+
+#formContainer > div {
+  background-color: white;
+  padding: var(--padding-main);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+#formContainer > div > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-main);
+}
+
+button {
+  background: var(--accent-primary);
+  color: white;
+  font-size: 1rem;
+  align-self: center;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 2px solid var(--accent-primary);
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form > div > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+input {
+  border: 1px solid var(--text-secondary);
+  padding: 5px;
+  border-radius: 4px;
+}
+
+textarea {
+  border: 1px solid var(--text-secondary);
+  padding: 5px;
+  border-radius: 4px;
+  resize: none;
+  height: 60px;
+}
+
+input:focus {
+  border: 1px solid var(--accent-primary);
+}
+
+.deleteButton {
+  background-color: white;
+  color: var(--accent-primary);
+  font-size: 0.75rem;
+  padding: 0;
+  border: none;
+}
+
+.deletebutton:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 840px) {
+  main {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    height: auto;
+  }
+  
+  #formContainerContainer {
+    align-self: stretch;
+    max-width: 100%;
+  }
+}
