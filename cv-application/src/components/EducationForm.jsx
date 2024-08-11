@@ -18,24 +18,24 @@ export default function EducationForm ( { onChange, education, setEducation } ) 
                     <input name="institutionName" id={"eduName" + item.key} defaultValue={item.name} onChange={onChange}></input>
                 </div>
                 <div>
-                    <label htmlFor="startDate">Start Date</label>
-                    <input name="startDate" defaultValue={item.startDate} onChange={onChange}></input>
+                    <label htmlFor={"startDate" + item.key}>Start Date</label>
+                    <input name="startDate" id={"startDate" + item.key} defaultValue={item.startDate} onChange={onChange}></input>
                 </div>
                 <div>
-                    <label htmlFor="endDate">End Date</label>
-                    <input name="endDate" defaultValue={item.endDate} onChange={onChange}></input>
+                    <label htmlFor={"endDate" + item.key}>End Date</label>
+                    <input name="endDate" id={"endDate" + item.key} defaultValue={item.endDate} onChange={onChange}></input>
                 </div>
                 <div>
-                    <label htmlFor="degree">Degree</label>
-                    <input name="degree" defaultValue={item.degree} onChange={onChange}></input>
+                    <label htmlFor={"degree" + item.key}>Degree</label>
+                    <input name="degree" id={"degree" + item.key} defaultValue={item.degree} onChange={onChange}></input>
                 </div>
                 <div>
-                    <label htmlFor="area">Area of Study</label>
-                    <input name="area" defaultValue={item.area} onChange={onChange}></input>
+                    <label htmlFor={"area" + item.key}>Area of Study</label>
+                    <input name="area" id={"area" + item.key} defaultValue={item.area} onChange={onChange}></input>
                 </div>
                 <div>
-                    <label htmlFor="description">Description</label>
-                    <textarea name="description" defaultValue={item.description} onChange={onChange}></textarea>
+                    <label htmlFor={"description" + item.key}>Description</label>
+                    <textarea name="description" id={"description" + item.key} defaultValue={item.description} onChange={onChange}></textarea>
                 </div>
                 <button className="deleteButton" onClick={(e) => {
                     e.preventDefault();

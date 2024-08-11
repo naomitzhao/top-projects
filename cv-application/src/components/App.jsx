@@ -36,7 +36,7 @@ function App() {
         endDate: "Aug 2021", 
         degree: "", 
         area: "", 
-        key: 1
+        key: 2
       },
     ],
     experience: [
