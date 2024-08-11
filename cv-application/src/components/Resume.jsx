@@ -16,8 +16,8 @@ export default function Resume({ basicInfo, education, experience, skills }) {
               <hr></hr>
             </div>
             <div id="resumeEducation">
-              { education.length && <h2>EDUCATION</h2>}
-              { education.length && <hr></hr> }
+              { education.length != 0 && <h2>EDUCATION</h2>}
+              { education.length != 0 && <hr></hr> }
               <div id="educationItems">
                   { education.map((item) => {
                     return(
@@ -36,8 +36,8 @@ export default function Resume({ basicInfo, education, experience, skills }) {
               </div>
             </div>
             <div id="resumeExperience">
-              { experience.length && <h2>EXPERIENCE</h2> }
-              { experience.length && <hr></hr>}
+              { experience.length != 0 && <h2>EXPERIENCE</h2> }
+              { experience.length != 0 && <hr></hr>}
               <div id="experienceItems">
                   { experience.map((item) => {
                     return(
@@ -56,8 +56,8 @@ export default function Resume({ basicInfo, education, experience, skills }) {
               </div>
             </div>
             <div id="resumeSkills">
-                { skills.length && <h2>SKILLS</h2> }
-                { skills.length && <hr></hr>}
+                { skills.length != 0 && <h2>SKILLS</h2> }
+                { skills.length != 0 && <hr></hr>}
                 <p>{skills}</p>
             </div>
           </div>
