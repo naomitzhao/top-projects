@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+}
+
+:root {
+    display: flex;
+    flex-direction: column;
+
+    color: white;
+    font-family: 'Rubik', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+    --header-height: 80px;
+    --footer-height: 80px;
+    --padding: 80px;
+    --padding-small: 20px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    padding: var(--padding);
+    justify-content: center;
+    min-height: calc(100vh - 2 * var(--padding) - var(--footer-height) - 4 * var(--padding-small) - var(--header-height));
+}
+
+#temp {
+    font-size: 10rem;
+    border-right: 1px solid white;
+    line-height: 100%;
+    padding-right: 40px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+#mainContent {
+    display: flex;
+    gap: 40px;
+}
+
+#rightDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
