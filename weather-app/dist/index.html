@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather app</title>
+</head>
+<body>
+    <header>
+        <div id="headerContent">
+            <button id="unitButton">°C/KPH</button>
+            <div class="searchbar">
+                <img class="searchIcon">
+                <input class="searchInput">
+            </div>
+        </div>
+        <p id="errorMessage">city not found :(</p>
+    </header>
+    <main>
+        <p id="condition"></p>
+        <h2 id="cityName"></h2>
+        <div id="mainContent">
+            <h1 id="temp"></h1>
+            <div id="divider"></div>
+            <div id="rightDiv">
+                <p>LOW: <span id="low"></span></p>
+                <p>HIGH: <span id="high"></span></p>
+                <p>WIND: <span id="wind"></span></p>
+                <p>HUMIDITY: <span id="humidity"></span></p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div id="footerContent">
+            <div id="info">
+                <p>basic weather app. made with 🤍 by naomitzhao</p>
+                <p>image credits: <a href="https://pixabay.com/users/pexels-2286921/" target=”_blank” rel="noreferrer noopener">clear night sky</a></p>
+                <p>design credit: <a href="https://ding-09.github.io/weather-app/" target=”_blank” rel="noreferrer noopener">ding-09</a></p>
+            </div>
+            <img class="infoIcon">
+        </div>
+    </footer>
+<script defer src="bundle.js"></script></body>
+</html>

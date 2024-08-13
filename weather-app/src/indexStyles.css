@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+}
+
+:root {
+    display: flex;
+    flex-direction: column;
+
+    color: white;
+    font-family: 'Rubik', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+    --header-height: 80px;
+    --footer-height: 80px;
+    --padding: 80px;
+    --padding-small: 20px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    padding: var(--padding);
+    justify-content: center;
+    min-height: calc(100vh - 2 * var(--padding) - var(--footer-height) - 4 * var(--padding-small) - var(--header-height));
+}
+
+#mainContent {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+#temp {
+    font-size: 10rem;
+    line-height: 100%;
+    padding-right: 40px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+#divider {
+    background-color: #ffffff80;
+    width: 2px;
+    height: 100px;
+}
+
+#rightDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

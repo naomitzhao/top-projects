@@ -84,6 +84,14 @@ extra: almost all projects feature full responsiveness through media queries! tr
 - module pattern
 - **object oriented programming**
 
+### [weather app](https://naomitzhao.github.io/top-projects/weather-app/dist)
+- flexbox
+- DOM manipulation and events
+- ES6 modules
+- webpack
+- module pattern
+- **asynchronous javascript and APIs**
+
 ## react
 
 ### [cv application](https://naomitzhao-cv-application.netlify.app/)

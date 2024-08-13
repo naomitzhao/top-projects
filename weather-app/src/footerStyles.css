@@ -1,0 +1,41 @@
+footer {
+    height: var(--footer-height);
+    display: flex;
+    justify-content: flex-end;
+    padding: var(--padding-small);
+    align-items: center;
+}
+
+#footerContent {
+    display: flex;
+    gap: var(--padding-small);
+    align-items: center;
+}
+
+#info {
+    background-color: rgba(255, 255, 255, 0.117);
+    padding: var(--padding-small);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    display: none;
+}
+
+#info a {
+    color: white;
+    opacity: 0.6;
+}
+
+#info a:hover {
+    opacity: 1;
+}
+
+.infoIcon {
+    height: 40px;
+    width: 40px;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.selectedInfoIcon {
+    opacity: 0.8;
+}
