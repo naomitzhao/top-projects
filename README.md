@@ -1,6 +1,6 @@
 # quick links
 | course | topic | project/link | 
-| ------- | -------- | ------- |
+| ------- | ------- | ------- |
 | foundations | flexbox | [landing page](https://naomitzhao.github.io/top-projects/landing-page/) |
 | foundations | javascript basics | [rock paper scissors](https://naomitzhao.github.io/top-projects/rock-paper-scissors/) |
 | foundations | javascript basics | [etch-a-sketch](https://naomitzhao.github.io/top-projects/etch-a-sketch/) |
@@ -11,15 +11,14 @@
 | javascript | the module pattern | [tic-tac-toe](https://naomitzhao.github.io/top-projects/tic-tac-toe/) |
 | javascript | classes, es6 modules, webpack | [restaurant page](https://naomitzhao.github.io/top-projects/restaurant-page/dist) |
 | javascript | object-oriented programming | [todo list](https://naomitzhao.github.io/top-projects/todo-list/dist) |
+| javascript | asynchronous javascript and APIs | [weather app](https://naomitzhao.github.io/top-projects/weather-app/dist) |
 | react | react state | [cv application](https://naomitzhao-cv-application.netlify.app/) |
 
 # repo information
 
 web development projects i'm making for the odin project.
 
-projects are listed in **chronological order**, so see the later projects for my more recent work!
-
-extra: almost all projects feature full responsiveness through media queries! try resizing your window :)
+projects are listed in (mostly) **chronological order**, so see the later projects for my more recent work!
 
 ## foundations
 
@@ -57,36 +56,25 @@ extra: almost all projects feature full responsiveness through media queries! tr
 ## javascript
 
 ### [library](https://naomitzhao.github.io/top-projects/library/)
-- flexbox
-- grid
-- DOM manipulation and events
 - form validation
 - **objects and constructors**
 
 ### [tic-tac-toe](https://naomitzhao.github.io/top-projects/tic-tac-toe/)
-- flexbox
-- DOM manipulation and events
 - **factory functions**
 - **module pattern**
 
 ### [restaurant page](https://naomitzhao.github.io/top-projects/restaurant-page/dist)
-- flexbox
-- DOM manipulation and events
 - **ES6 modules**
 - **webpack**
 - **tab switching**
 
 ### [todo list](https://naomitzhao.github.io/top-projects/todo-list/dist)
-- flexbox
-- DOM manipulation and events
 - ES6 modules
 - webpack
 - module pattern
 - **object oriented programming**
 
 ### [weather app](https://naomitzhao.github.io/top-projects/weather-app/dist)
-- flexbox
-- DOM manipulation and events
 - ES6 modules
 - webpack
 - module pattern
@@ -95,6 +83,5 @@ extra: almost all projects feature full responsiveness through media queries! tr
 ## react
 
 ### [cv application](https://naomitzhao-cv-application.netlify.app/)
-- flexbox
 - **basic react: components, props, rendering, keys, state**
 - deployment
