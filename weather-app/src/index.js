@@ -1,16 +1,18 @@
 import "./indexStyles.css";
 import StarrySky from "./assets/starry_sky.jpg";
 import loadInfo from "./footer.js";
-import { loadUnitSwitch, loadSearch } from "./header.js";
+import { loadUnitSwitch, loadSearch, showError, hideError } from "./header.js";
 import loadContent from "./content.js";
 import { fetchWeatherData, processWeatherData } from "./weatherData.js";
+
+const DEFAULT_CITY = "san francisco";
 
 // whether we are using US (imperial) units
 let isUsUnits = false;
 
 
 let weatherData = null;
-searchCity("san francisco");
+searchCity(DEFAULT_CITY);
 loadSearch(searchCity);
 loadUnitSwitch(switchUnits);
 loadInfo();
@@ -31,6 +33,13 @@ function switchUnits () {
 
 // get the weather data for a city, then load the content from the data
 async function searchCity (city) {
-    weatherData = processWeatherData(await fetchWeatherData(city));
-    loadContent(weatherData, isUsUnits);
+    weatherData = await fetchWeatherData(city);
+    if (weatherData === -1) {
+        showError();
+    }
+    else {
+        weatherData = processWeatherData(weatherData);
+        hideError();
+        loadContent(weatherData, isUsUnits);
+    }
 }

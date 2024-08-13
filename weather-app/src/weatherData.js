@@ -4,8 +4,8 @@ export async function fetchWeatherData (location) {
     const weatherData = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?&unitGroup=metric&key=6UTUVYRGLDSL6P35F4U5XZGTD`)
         .then(function (response) {
             return response.json();
-        }).catch(function (err) {
-            console.log(err);
+        }).catch(() => {
+            return -1;
         });
     return weatherData;
 }

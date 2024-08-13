@@ -65,3 +65,15 @@ export function loadUnitSwitch (switchUnits) {
         switchUnits();
     })
 }
+
+// show the city not found message
+export function showError () {
+    const errorMessage = document.getElementById("errorMessage");
+    errorMessage.style.display = "block";
+}
+
+// hide the city not found message
+export function hideError () {
+    const errorMessage = document.getElementById("errorMessage");
+    errorMessage.style.display = "none";
+}
