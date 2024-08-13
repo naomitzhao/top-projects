@@ -1,18 +1,18 @@
 # quick links
-| course | topic | project/link | 
-| ------- | ------- | ------- |
-| foundations | flexbox | [landing page](https://naomitzhao.github.io/top-projects/landing-page/) |
-| foundations | javascript basics | [rock paper scissors](https://naomitzhao.github.io/top-projects/rock-paper-scissors/) |
-| foundations | javascript basics | [etch-a-sketch](https://naomitzhao.github.io/top-projects/etch-a-sketch/) |
-| foundations | javascript basics | [calculator](https://naomitzhao.github.io/top-projects/calculator/) |
-| intermediate html and css | forms | [sign-up form](https://naomitzhao.github.io/top-projects/sign-up-form/) |
-| intermediate html and css | grid | [admin dashboard](https://naomitzhao.github.io/top-projects/admin-dashboard/) |
-| javascript | objects, constructors | [library](https://naomitzhao.github.io/top-projects/library/) |
-| javascript | the module pattern | [tic-tac-toe](https://naomitzhao.github.io/top-projects/tic-tac-toe/) |
-| javascript | classes, es6 modules, webpack | [restaurant page](https://naomitzhao.github.io/top-projects/restaurant-page/dist) |
-| javascript | object-oriented programming | [todo list](https://naomitzhao.github.io/top-projects/todo-list/dist) |
-| javascript | asynchronous javascript and APIs | [weather app](https://naomitzhao.github.io/top-projects/weather-app/dist) |
-| react | react state | [cv application](https://naomitzhao-cv-application.netlify.app/) |
+| course                    | topic                            | project/link                                                                          | 
+| ------------------------- | -------------------------------- | ------------------------------------------------------------------------------------- |
+| foundations               | flexbox                          | [landing page](https://naomitzhao.github.io/top-projects/landing-page/)               |
+| foundations               | javascript basics                | [rock paper scissors](https://naomitzhao.github.io/top-projects/rock-paper-scissors/) |
+| foundations               | javascript basics                | [etch-a-sketch](https://naomitzhao.github.io/top-projects/etch-a-sketch/)             |
+| foundations               | javascript basics                | [calculator](https://naomitzhao.github.io/top-projects/calculator/)                   |
+| intermediate html and css | forms                            | [sign-up form](https://naomitzhao.github.io/top-projects/sign-up-form/)               |
+| intermediate html and css | grid                             | [admin dashboard](https://naomitzhao.github.io/top-projects/admin-dashboard/)         |
+| javascript                | objects, constructors            | [library](https://naomitzhao.github.io/top-projects/library/)                         |
+| javascript                | the module pattern               | [tic-tac-toe](https://naomitzhao.github.io/top-projects/tic-tac-toe/)                 |
+| javascript                | classes, es6 modules, webpack    | [restaurant page](https://naomitzhao.github.io/top-projects/restaurant-page/dist)     |
+| javascript                | object-oriented programming      | [todo list](https://naomitzhao.github.io/top-projects/todo-list/dist)                 |
+| javascript                | asynchronous javascript and APIs | [weather app](https://naomitzhao.github.io/top-projects/weather-app/dist)             |
+| react                     | react state                      | [cv application](https://naomitzhao-cv-application.netlify.app/)                      |
 
 # repo information
 
