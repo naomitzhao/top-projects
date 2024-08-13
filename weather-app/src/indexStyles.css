@@ -29,21 +29,27 @@ main {
     min-height: calc(100vh - 2 * var(--padding) - var(--footer-height) - 4 * var(--padding-small) - var(--header-height));
 }
 
+#mainContent {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
 #temp {
     font-size: 10rem;
-    border-right: 1px solid white;
     line-height: 100%;
     padding-right: 40px;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
 }
 
-#mainContent {
-    display: flex;
-    gap: 40px;
+#divider {
+    background-color: #ffffff80;
+    width: 2px;
+    height: 100px;
 }
 
 #rightDiv {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    gap: 10px;
 }
