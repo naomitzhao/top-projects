@@ -1,7 +1,7 @@
 import Search from "./assets/search.svg";
 import "./headerStyles.css";
 
-export default function loadSearch () {
+export function loadSearch () {
     const searchbar = document.querySelector(".searchbar");
     const searchIcon = document.querySelector(".searchIcon");
     searchIcon.src = Search;
@@ -24,5 +24,19 @@ export default function loadSearch () {
             input.value = "";
             console.log(searchValue);
         }
+    })
+}
+
+export function loadUnitSwitch (switchUnits) {
+    const unitButton = document.getElementById("unitButton");
+    
+    unitButton.addEventListener("click", () => {
+        if (unitButton.textContent == "°F/MPH") {
+            unitButton.textContent = "°C/KPH"
+        }
+        else {
+            unitButton.textContent = "°F/MPH";
+        }
+        switchUnits();
     })
 }

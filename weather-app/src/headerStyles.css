@@ -5,6 +5,20 @@ header {
     justify-content: flex-end;
     padding: var(--padding-small);
     align-items: center;
+    gap: var(--padding-small);
+}
+
+#unitButton {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    color: white;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+#unitButton:hover {
+    opacity: 1;
 }
 
 .searchbar {
