@@ -26,13 +26,30 @@ main {
     flex-direction: column;
     padding: var(--padding);
     justify-content: center;
+    gap: 20px;
     min-height: calc(100vh - 2 * var(--padding) - var(--footer-height) - 4 * var(--padding-small) - var(--header-height));
+}
+
+#topInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 #mainContent {
     display: flex;
     gap: 20px;
     align-items: center;
+}
+
+#mainHeader {
+    display: flex;
+}
+
+#mobileSpacer {
+    height: 10rem;
+    width: 50px;
+    display: none;
 }
 
 #temp {
@@ -52,4 +69,28 @@ main {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+@media screen and (max-width: 720px) {
+    main {
+        align-items: center;
+        text-align: center;
+    }
+
+    #mainContent {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #mobileSpacer {
+        display: block;
+    }
+
+    #divider {
+        display: none;
+    }
+
+    #rightDiv {
+        align-items: center;
+    }
 }

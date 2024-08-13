@@ -72,3 +72,10 @@ header {
 #errorMessage {
     display: none;
 }
+
+@media screen and (max-width: 440px) {
+    #headerContent {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+    }
+}
