@@ -46,7 +46,7 @@ header {
     opacity: 1;
 }
 
-#searchInput {
+.searchInput {
     background-color: transparent;
     outline: none;
     border: none;
@@ -54,4 +54,9 @@ header {
     font-size: 1.25rem;
     color: white;
     padding-left: 10px;
+    opacity: 0.6;
+}
+
+.focusedSearchInput {
+    opacity: 1;
 }

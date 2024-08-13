@@ -12,13 +12,19 @@ let isUsUnits = false;
 const body = document.querySelector("body");
 body.style.background = "url(" + StarrySky + ") 100% / cover no-repeat";
 
-const weatherData = processWeatherData(await fetchWeatherData("san francisco"));
-loadContent(weatherData, isUsUnits);
-loadSearch();
+let weatherData = null;
+searchCity("san francisco");
+loadSearch(searchCity);
 loadUnitSwitch(switchUnits);
 loadInfo();
 
+
 function switchUnits () {
     isUsUnits = !isUsUnits;
+    loadContent(weatherData, isUsUnits);
+}
+
+async function searchCity (city) {
+    weatherData = processWeatherData(await fetchWeatherData(city));
     loadContent(weatherData, isUsUnits);
 }
