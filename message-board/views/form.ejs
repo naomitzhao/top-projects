@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>new message</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <%- include('navbar', {links: links}) %>
-    <form method="POST" action="/new">
-        <label for="authorNameInput">author name</label>
-        <input type="text" name="authorName" id="authorNameInput">
-
-        <label for="messageInput">message</label>
-        <textarea name="message" id="messageInput"></textarea>
-
-        <button type="submit"></button>
-     </form>
+    <%- include('header') %>
+    <main>
+        <form method="POST" action="/new">
+            <label for="authorNameInput">author name</label>
+            <input type="text" name="authorName" id="authorNameInput">
+            <label for="messageInput">message</label>
+            <textarea name="message" id="messageInput"></textarea>
+            <button type="submit"></button>
+         </form>
+    </main>
+     <%- include('footer') %>
 </body>
 </html>

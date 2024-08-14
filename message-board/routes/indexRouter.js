@@ -5,12 +5,14 @@ const messages = [
     {
       text: "hello world :3",
       user: "naomi",
-      added: new Date("2024-08-13T19:43:01")
+      added: new Date("2024-08-13T19:43:01"),
+      color: 4, 
     },
     {
-      text: "this is the mini message board hehe",
+      text: "this is the mini message board hehe! let's make this message a bit longer so you have to click it to read the full thing.",
       user: "naomi",
-      added: new Date("2024-08-13T19:43:59")
+      added: new Date("2024-08-13T19:43:59"), 
+      color: 5, 
     }
   ];
 
@@ -26,7 +28,8 @@ indexRouter.post("/new", (req, res) => {
     messages.push({
         text: req.body.message, 
         user: req.body.authorName, 
-        added: new Date()
+        added: new Date(), 
+        color: Math.floor(Math.random() * 6),
     });
     res.redirect("/");
 });
