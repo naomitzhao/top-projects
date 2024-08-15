@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 * {
     padding: 0;
@@ -74,7 +75,7 @@ main {
 
 .card {
     padding: var(--padding-small);
-    /* background-color: var(--card-1); */
+    height: 120px;
     border-radius: 4px;
     box-shadow: 2px 2px 6px #00000020; 
 
@@ -82,6 +83,8 @@ main {
     flex-direction: column;
     justify-content: space-between;
     gap: 10px;
+
+    font-family: 'Courier Prime', Courier, monospace;
 }
 
 .cardMessage {
@@ -112,6 +115,53 @@ main {
     background-color: var(--card-5);
 }
 
+#formPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--padding-small);
+}
+
+#newMessageForm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-small);
+    width: 50%;
+    max-width: 400px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputGroup > input, textarea {
+    background-color: white;
+    border: 2px solid var(--accent-main);
+    border-radius: 4px;
+    padding: 10px;
+    font-family: 'Courier Prime', Courier, monospace;
+    font-size: 1rem;
+}
+
+textarea {
+    resize: none;
+    height: 200px;
+}
+
+#newMessageForm > button {
+    align-self: center;
+    padding: 12px 24px;
+    font-size: 1rem;
+    background-color: var(--accent-main);
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
 footer {
     height: var(--footer-height);
     background-color: var(--background-secondary);
@@ -119,4 +169,5 @@ footer {
 
     display: flex;
     align-items: center;
+    justify-content: center;
 }

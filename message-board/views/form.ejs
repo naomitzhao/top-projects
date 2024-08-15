@@ -9,13 +9,20 @@
 <body>
     <%- include('header') %>
     <main>
-        <form method="POST" action="/new">
-            <label for="authorNameInput">author name</label>
-            <input type="text" name="authorName" id="authorNameInput">
-            <label for="messageInput">message</label>
-            <textarea name="message" id="messageInput"></textarea>
-            <button type="submit"></button>
-         </form>
+        <div id="formPage">
+            <h2>new message</h2>
+            <form method="POST" action="/new" id="newMessageForm">
+                <div class="inputGroup">
+                    <label for="authorNameInput">author name</label>
+                    <input type="text" name="authorName" id="authorNameInput">
+                </div>
+                <div class="inputGroup">
+                    <label for="messageInput">message</label>
+                    <textarea name="message" id="messageInput"></textarea>
+                </div>
+                <button type="submit">post message</button>
+             </form>
+        </div>
     </main>
      <%- include('footer') %>
 </body>
