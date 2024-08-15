@@ -18,5 +18,5 @@ app.use(express.static(assetsPath));
 const indexRouter = require("./routes/indexRouter");
 app.use("/", indexRouter);
 
-const PORT = process.env.port || 3000;
-app.listen(PORT);
+const port = process.env.PORT || 3000;
+app.listen(port);
