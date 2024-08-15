@@ -71,28 +71,56 @@ main {
 
 #content {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 200px);
+    grid-template-columns: repeat(auto-fill, 240px);
+    align-self: center;
+    width: 100%;
     gap: var(--padding-main);
+    justify-content: center;
 }
 
 .card {
-    padding: var(--padding-small);
-    height: 120px;
+    padding: 20px 30px 40px 30px;
+    height: 150px;
     border-radius: 4px;
     box-shadow: 2px 2px 6px #00000020; 
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     gap: 10px;
 
     font-family: 'Courier Prime', Courier, monospace;
+}
+
+.pinIcon {
+    height: 20px;
+    width: 20px;
+    align-self: flex-end;
+    opacity: 0;
+}
+
+.visible {
+    opacity: 0.4 !important;
+}
+
+.cardText {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .cardMessage {
     display: -webkit-box;
     line-clamp: 5;
     -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+
+.cardUser {
+    display: -webkit-box;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;  
     overflow: hidden;
 }

@@ -11,9 +11,12 @@
         <a class="button" href="/new">add a message</a>
         <div id="content">
             <% messages.forEach((message) => { %>
-                <div class="card color<%= message.color %>">
-                    <p class="cardMessage"><%= message.text %></p>
-                    <p>- <%= message.user %></p>
+                <div class="card color<%= message.color %> ">
+                    <img src="assets/pin.svg" class="pinIcon <%= (message.pinned)? "visible" : "" %>">
+                    <div class="cardText">
+                        <p class="cardMessage"><%= message.text %></p>
+                        <p class="cardUser">- <%= message.user %></p>
+                    </div>
                 </div>
             <% }); %>
         </div>
