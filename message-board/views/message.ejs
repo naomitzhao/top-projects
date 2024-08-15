@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>view message</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <%- include('header') %>
+    <main>
+        <div id="viewContent">
+            <h1><%= message.user %>'s message</h1>
+            <div id="viewCardContainer">
+                <%- include('card', {message: message, display: true, date: date}) %>
+            </div>
+        </div>
+        <a class="button" id="returnHomeButton" href="/">return to home</a>
+    </main>
+    <%- include('footer') %>
+</body>
+</html>
