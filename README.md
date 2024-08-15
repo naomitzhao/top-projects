@@ -68,4 +68,10 @@ projects are listed in (mostly) **chronological order**, so see the later projec
 
 ### [cv application](https://naomitzhao-cv-application.netlify.app/)
 - **basic react: components, props, rendering, keys, state**
+
+## nodejs
+
+### [message board]()
+- introduction to node
+- **basic express: routes, controllers, views**
 - deployment
