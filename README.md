@@ -71,7 +71,7 @@ projects are listed in (mostly) **chronological order**, so see the later projec
 
 ## nodejs
 
-### [message board]()
+### [message board](https://naomitzhao-message-board.fly.dev/)
 - introduction to node
 - **basic express: routes, controllers, views**
-- deployment
+- EJS
