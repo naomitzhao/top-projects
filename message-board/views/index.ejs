@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>message board</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <%- include('header') %>
@@ -11,13 +11,7 @@
         <a class="button" href="/new">add a message</a>
         <div id="content">
             <% messages.forEach((message) => { %>
-                <div class="card color<%= message.color %> ">
-                    <img src="assets/pin.svg" class="pinIcon <%= (message.pinned)? "visible" : "" %>">
-                    <div class="cardText">
-                        <p class="cardMessage"><%= message.text %></p>
-                        <p class="cardUser">- <%= message.user %></p>
-                    </div>
-                </div>
+                <%- include('card', {message: message, display: false}) %>
             <% }); %>
         </div>
     </main>
