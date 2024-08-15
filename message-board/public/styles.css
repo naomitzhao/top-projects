@@ -218,6 +218,7 @@ textarea {
 #formButtonContainer {
     display: flex;
     justify-content: space-evenly;
+    gap: var(--padding-small);
 }
 
 #returnHomeButton {
@@ -249,4 +250,32 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media screen and (max-width: 540px) {
+    :root {
+        --padding-main: 20px;
+        --padding-small: 10px;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    #formButtonContainer {
+        flex-direction: column-reverse;
+    }
+
+    #content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #viewContent {
+        padding: var(--padding-small);
+    }
+}
+
+@media screen and (max-width: 360px) {
+
 }
