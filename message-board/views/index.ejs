@@ -11,8 +11,15 @@
         <a class="button" href="/new">add a message</a>
         <div id="content">
             <% messages.forEach((message) => { %>
+                <% if (message.pinned) { %>
                 <%- include('card', {message: message, display: false}) %>
+                <% } %>
             <% }); %>
+            <% for (let i = messages.length - 1; i >= 0; i --) { %>
+                <% if (!messages[i].pinned) { %>
+                    <%- include('card', {message: messages[i], display: false}) %>
+                <% } %>
+            <% } %>
         </div>
     </main>
     <%- include('footer') %>

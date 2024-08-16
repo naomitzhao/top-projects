@@ -4,21 +4,13 @@ const { Router } = require("express");
 // default messages
 const messages = [
     {
-      id: uuid(),
-      text: "hello world :3",
+      id: 0,
+      text: 'welcome to the message board! remember to be respectful and appropriate (this is a public message board)',
       user: "naomi",
       added: new Date("2024-08-13T19:43:01"),
       color: 4, 
       pinned: true,
     },
-    {
-      id: uuid(),
-      text: "this is the mini message board hehe! let's make this message a bit longer so you have to click it to read the full thing because the message gets pretty long, even if we have a wide card. lots of filler text text text text text text text text text text text text text text text text text text text text text text text",
-      user: "naomi",
-      added: new Date("2024-08-13T19:43:59"), 
-      color: 5, 
-      pinned: true,
-    }
   ];
 
 const navLinks = [
@@ -51,7 +43,7 @@ function parseDate(date) {
       values[i] = "0" + values[i];
     }
   }
-  return `${values[0]}.${values[1]}.${values[2]} at ${values[3]}:${values[4]} ${values[5]}`;
+  return `${values[0]}.${values[1]}.${values[2]} at ${values[3]}:${values[4]} ${values[5]} GMT`;
 }
 
 indexRouter.post("/new", (req, res) => {
