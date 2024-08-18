@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for naomitzhao-message-board on 2024-08-15T15:50:32-07:00
+# fly.toml app configuration file generated for naomitzhao-message-board on 2024-08-15T16:28:26-07:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -11,12 +11,12 @@ primary_region = 'sjc'
 [http_service]
   internal_port = 3000
   force_https = true
-  auto_stop_machines = 'stop'
+  auto_stop_machines = false
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
 
 [[vm]]
-  memory = '1gb'
+  memory = '256mb'
   cpu_kind = 'shared'
   cpus = 1
