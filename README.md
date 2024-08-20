@@ -1,77 +1,74 @@
-# TOP projects
+My work for [The Odin Project](https://theodinproject.com/). 
+Projects are listed in (mostly) **chronological order**, so see the later projects for my more recent work!
 
-web development projects i'm making for the odin project.
+## Foundations
 
-projects are listed in (mostly) **chronological order**, so see the later projects for my more recent work!
+### [Landing Page](https://naomitzhao.github.io/top-projects/landing-page/)
+- **Basic HTML**
+- **Basic CSS**
+- **Flexbox**
 
-## foundations
-
-### [landing page](https://naomitzhao.github.io/top-projects/landing-page/)
-- **basic html**
-- **basic css**
-- **flexbox**
-
-### [rock paper scissors](https://naomitzhao.github.io/top-projects/rock-paper-scissors/)
-- **basic javascript**
+### [Rock Paper Scissors](https://naomitzhao.github.io/top-projects/rock-paper-scissors/)
+- **Basic JavaScript**
 - **DOM manipulation and events**
 
-### [etch-a-sketch](https://naomitzhao.github.io/top-projects/etch-a-sketch/)
-- flexbox
+### [Etch-A-Sketch](https://naomitzhao.github.io/top-projects/etch-a-sketch/)
+- Flexbox
 - **DOM manipulation and events**
 
-### [calculator](https://naomitzhao.github.io/top-projects/calculator/)
-- flexbox
+### [Calculator](https://naomitzhao.github.io/top-projects/calculator/)
+- Flexbox
 - **DOM manipulation and events**
 
-## intermediate html and css
+## Intermediate HTML and CSS
 
-### [sign-up form](https://naomitzhao.github.io/top-projects/sign-up-form/)
-- flexbox
-- **relative and absolute positioning**
+### [Sign-up Form](https://naomitzhao.github.io/top-projects/sign-up-form/)
+- Flexbox
+- **Relative and absolute positioning**
 - SVG
-- **form validation**
-- **regular expressions**
+- **Form validation**
+- **Regular expressions**
 
-### [admin dashboard](https://naomitzhao.github.io/top-projects/admin-dashboard/)
-- **grid**
-- absolute positioning
+### [Admin Dashboard](https://naomitzhao.github.io/top-projects/admin-dashboard/)
+- **CSS Grid**
+- Relative and absolute positioning
 - SVG
 
-## javascript
+## JavaScript
 
-### [library](https://naomitzhao.github.io/top-projects/library/)
-- form validation
-- **objects and constructors**
+### [Library](https://naomitzhao.github.io/top-projects/library/)
+- Form validation
+- **Objects and constructors**
 
-### [tic-tac-toe](https://naomitzhao.github.io/top-projects/tic-tac-toe/)
-- **factory functions**
-- **module pattern**
+### [Tic-Tac-Toe](https://naomitzhao.github.io/top-projects/tic-tac-toe/)
+- **Factory functions**
+- **Module pattern**
 
-### [restaurant page](https://naomitzhao.github.io/top-projects/restaurant-page/dist)
+### [Restaurant Page](https://naomitzhao.github.io/top-projects/restaurant-page/dist)
 - **ES6 modules**
-- **webpack**
-- **tab switching**
+- **Webpack**
+- **Tab switching**
 
-### [todo list](https://naomitzhao.github.io/top-projects/todo-list/dist)
+### [Todo List](https://naomitzhao.github.io/top-projects/todo-list/dist)
 - ES6 modules
-- webpack
-- module pattern
-- **object oriented programming**
+- Webpack
+- Bodule pattern
+- **Object-oriented programming**
 
-### [weather app](https://naomitzhao.github.io/top-projects/weather-app/dist)
+### [Weather App](https://naomitzhao.github.io/top-projects/weather-app/dist)
 - ES6 modules
-- webpack
-- module pattern
-- **asynchronous javascript and APIs**
+- Webpack
+- Module pattern
+- **Asynchronous JavaScript and APIs**
 
-## react
+## React
 
-### [cv application](https://naomitzhao-cv-application.netlify.app/)
-- **basic react: components, props, rendering, keys, state**
+### [CV Application](https://naomitzhao-cv-application.netlify.app/)
+- **Basic React: Components, props, rendering, keys, state**
 
-## nodejs
+## NodeJS
 
-### [message board](https://naomitzhao-message-board.fly.dev/)
-- introduction to node
-- **basic express: routes, controllers, views**
+### [Message Board](https://naomitzhao-message-board.fly.dev/)
+- Introduction to Node
+- **Basic Express: Routes, controllers, views**
 - EJS
