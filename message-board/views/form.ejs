@@ -11,21 +11,21 @@
     <main>
         <div id="formPage">
             <h2>new message</h2>
+            <%- include("partials/error.ejs") %>
             <form method="POST" action="/new" id="newMessageForm">
                 <div class="inputGroup">
-                    <label for="authorNameInput">author name</label>
-                    <input type="text" name="authorName" id="authorNameInput">
+                    <label for="nameInput">author name</label>
+                    <input type="text" name="name" id="nameInput" value="<%= nameText %>">
                 </div>
                 <div class="inputGroup">
                     <label for="messageInput">message</label>
-                    <textarea name="message" id="messageInput"></textarea>
+                    <textarea name="message" id="messageInput"><%= messageText %></textarea>
                 </div>
                 <div id="formButtonContainer">
                     <a class="button" id="returnHomeButton" href="/">return to home</a>
                     <button type="submit" class="button">post message</button>
                 </div>
              </form>
-             
         </div>
     </main>
      <%- include('footer') %>

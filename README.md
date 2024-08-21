@@ -52,7 +52,7 @@ Projects are listed in (mostly) **chronological order**, so see the later projec
 ### [Todo List](https://naomitzhao.github.io/top-projects/todo-list/dist)
 - ES6 modules
 - Webpack
-- Bodule pattern
+- Module pattern
 - **Object-oriented programming**
 
 ### [Weather App](https://naomitzhao.github.io/top-projects/weather-app/dist)
@@ -71,4 +71,6 @@ Projects are listed in (mostly) **chronological order**, so see the later projec
 ### [Message Board](https://naomitzhao-message-board.fly.dev/)
 - Introduction to Node
 - **Basic Express: Routes, controllers, views**
+- **Data handling: express-validator library**
+- **PostgreSQL**
 - EJS

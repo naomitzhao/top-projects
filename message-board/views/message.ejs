@@ -9,9 +9,9 @@
     <%- include('header') %>
     <main>
         <div id="viewContent">
-            <h1><%= message.user %>'s message</h1>
+            <h1><%= message.name %>'s message</h1>
             <div id="viewCardContainer">
-                <%- include('card', {message: message, display: true, date: date}) %>
+                <%- include('card', {message: message, display: true, added: added}) %>
             </div>
         </div>
         <a class="button" id="returnHomeButton" href="/">return to home</a>
