@@ -2,12 +2,12 @@
     <img src="/assets/pin.svg" class="pinIcon <%= (message.pinned)? "visible" : "" %>">
     <div class="cardText">
         <p class="<%= (!display)? "cardMessage" : "" %>">
-            <%= message.text %>
+            <%= message.message %>
         </p>
         <div class="cardEnding">
-            <p class="cardUser">- <%= message.user %></p>
+            <p class="cardUser">- <%= message.name %></p>
             <% if (display) { %> 
-                <p class="timestamp"><%= date %></p>
+                <p class="timestamp"><%= added %></p>
             <% } else { %>
                 <a href="/message/<%= message.id %>">view message</a>
             <% } %>
