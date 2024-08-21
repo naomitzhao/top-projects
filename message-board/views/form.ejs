@@ -29,4 +29,14 @@
     </main>
      <%- include('footer') %>
 </body>
+<script>
+    const newMessageForm = document.getElementById("newMessageForm");
+
+    newMessageForm.addEventListener("submit", (e) => {
+        if (newMessageForm.elements[0].value == "" || newMessageForm.elements[1].value == "") {
+            e.preventDefault();
+            alert('all fields must be filled.');
+        }
+    });
+</script>
 </html>
