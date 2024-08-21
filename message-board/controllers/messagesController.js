@@ -19,7 +19,8 @@ async function newMessageGetController(req, res) {
  * controller function to take form inputs and put a new message into the database
  */
 async function newMessagePostController(req, res) {
-    console.log("save message ", req.body.name, req.body.message);
+    await db.insertMessage(req.body.name, req.body.message);
+    res.redirect("/");
 }
 
 /**
@@ -45,7 +46,6 @@ function parseDate(date) {
  * and render the message
  */
 async function viewMessageGetController(req, res) {
-    console.log("id", req.params.id);
     const message = await db.getMessage(req.params.id);
     const added = parseDate(message.added);
     res.render("message", { 

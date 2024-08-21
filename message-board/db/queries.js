@@ -28,7 +28,8 @@ async function getMessage(id) {
  * inserts a message into the database given a name and a message
  */
 async function insertMessage(name, message) {
-    await pool.query("INSERT INTO messages (name, message, color, pinned) VALUES ($1, $2, 1, FALSE);", [name,  message]);
+    const color = Math.floor(Math.random() * 5) + 1;
+    await pool.query("INSERT INTO messages (name, message, color, pinned) VALUES ($1, $2, $3, FALSE);", [name,  message, color]);
 }
 
 module.exports = {

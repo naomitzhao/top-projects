@@ -27,10 +27,9 @@ async function main() {
       connectionString: process.env.DB_STRING
     });
     await client.connect();
-    console.log(client);
     await client.query(SQL);
     await client.end();
-    console.log("done");
+    console.log("done!");
 }
 
 main();
