@@ -1,4 +1,5 @@
 const db = require("../db/queries");
+const { body, validationResult } = require("express-validator");
 
 /**
  * controller function to get all messages in the database and display them
@@ -12,16 +13,41 @@ async function getAllMessagesController(req, res) {
  * controller function to render the new message form
  */
 async function newMessageGetController(req, res) {
-    res.render("form");
+    res.render("form", {
+        nameText: "",
+        messageText: ""
+    });
 }
 
 /**
- * controller function to take form inputs and put a new message into the database
+ * middleware function to take form inputs and put a new message into the database
  */
-async function newMessagePostController(req, res) {
-    await db.insertMessage(req.body.name, req.body.message);
-    res.redirect("/");
+async function postNewMessage(req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        const name = req.body.name;
+        const message = req.body.message;
+        res.status(400).render("form", {
+            errors: errors.array(),
+            nameText: name,
+            messageText: message
+        });
+    }
+    else {
+        await db.insertMessage(req.body.name, req.body.message);
+        res.redirect("/");
+    }
+    
 }
+
+/**
+ * middleware to validate name and message fields, and then post a new message
+ */
+const newMessagePostController = [
+    body("name").trim().notEmpty().withMessage("author name cannot be empty."), 
+    body("message").trim().notEmpty().withMessage("message cannot be empty."),
+    (req, res) => { postNewMessage(req, res) }
+];
 
 /**
  * function that formats a specific date in the format

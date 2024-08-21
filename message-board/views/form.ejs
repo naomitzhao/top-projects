@@ -11,14 +11,15 @@
     <main>
         <div id="formPage">
             <h2>new message</h2>
+            <%- include("partials/error.ejs") %>
             <form method="POST" action="/new" id="newMessageForm">
                 <div class="inputGroup">
                     <label for="nameInput">author name</label>
-                    <input type="text" name="name" id="nameInput">
+                    <input type="text" name="name" id="nameInput" value="<%= nameText %>">
                 </div>
                 <div class="inputGroup">
                     <label for="messageInput">message</label>
-                    <textarea name="message" id="messageInput"></textarea>
+                    <textarea name="message" id="messageInput"><%= messageText %></textarea>
                 </div>
                 <div id="formButtonContainer">
                     <a class="button" id="returnHomeButton" href="/">return to home</a>
@@ -29,14 +30,4 @@
     </main>
      <%- include('footer') %>
 </body>
-<script>
-    const newMessageForm = document.getElementById("newMessageForm");
-
-    newMessageForm.addEventListener("submit", (e) => {
-        if (newMessageForm.elements[0].value == "" || newMessageForm.elements[1].value == "") {
-            e.preventDefault();
-            alert('all fields must be filled.');
-        }
-    });
-</script>
 </html>
