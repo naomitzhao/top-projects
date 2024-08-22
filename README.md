@@ -72,5 +72,7 @@ Projects are listed in (mostly) **chronological order**, so see the later projec
 - Introduction to Node
 - **Basic Express: Routes, controllers, views**
 - **Data handling: express-validator library**
+- **SQL**
 - **PostgreSQL**
+- **Prisma ORM**
 - EJS
