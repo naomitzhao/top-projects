@@ -1,4 +1,5 @@
-const pool = require("./pool");
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
 /**
  * todo: make queries safer against sql injection using an ORM
@@ -9,8 +10,9 @@ const pool = require("./pool");
  * returns an array with message objects
  */
 async function getAllMessages() {
-    const { rows } = await pool.query("SELECT * FROM messages;");
-    return rows;
+    // const { rows } = await pool.query("SELECT * FROM messages;");
+    // return rows;
+    return await prisma.messages.findMany();
 }
 
 /**
@@ -18,10 +20,12 @@ async function getAllMessages() {
  * returns a message object
  */
 async function getMessage(id) {
-    const query = `SELECT * FROM messages
-                   WHERE id=${id};`;
-    const { rows } = await pool.query(query);
-    return rows[0];
+    const message = await prisma.messages.findUnique({
+        where: {
+            id: parseInt(id)
+        },
+    });
+    return message;
 }
 
 /**
@@ -29,7 +33,14 @@ async function getMessage(id) {
  */
 async function insertMessage(name, message) {
     const color = Math.floor(Math.random() * 5) + 1;
-    await pool.query("INSERT INTO messages (name, message, color, pinned) VALUES ($1, $2, $3, FALSE);", [name,  message, color]);
+    await prisma.messages.create({
+        data: {
+            name,
+            message,
+            color, 
+            pinned: false
+        },
+    });
 }
 
 module.exports = {
