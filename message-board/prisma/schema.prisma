@@ -1,0 +1,17 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DB_STRING")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model messages {
+    id      Int         @id @default(autoincrement())
+    name    String      @db.VarChar(100)
+    message String      @db.VarChar(350)
+    pinned  Boolean     @db.Boolean
+    color   Int         @db.Integer
+    added   DateTime    @default(now()) @db.Timestamp(6)
+}

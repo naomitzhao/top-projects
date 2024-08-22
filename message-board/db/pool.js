@@ -1,3 +1,8 @@
+/**
+ * only used for populatedb.js
+ * now that we switched to prisma orm.
+ */
+
 const { Pool } = require("pg");
 require('dotenv').config();
 
