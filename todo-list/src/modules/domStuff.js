@@ -14,6 +14,25 @@ export function makeDomStuff (todoList, localStorage) {
         return currentGroup;
     };
 
+    const formatDate = function(dateObj) {
+        console.log(dateObj);
+        const daysOfWeek = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+        const dayText = daysOfWeek[dateObj.getDay()];
+        let year = dateObj.getFullYear();
+        let month = dateObj.getMonth() + 1;
+        let day = dateObj.getDate();
+        if (month < 10) {
+            month = "0" + month;
+        }
+        if (day < 10) {
+            day = "0" + day;
+        }
+        if (year != (new Date()).getFullYear()) {
+            return `${month}/${day}/${year}`;
+        }
+        return `${dayText} ${month}/${day}`;
+    }
+
     // adds a todo (task) to the DOM
     const addTodo = function (todo) {
         const item = document.createElement("div");
@@ -42,7 +61,11 @@ export function makeDomStuff (todoList, localStorage) {
         dateDelete.classList.add("dateDelete");
     
         const dateP = document.createElement("p");
-        dateP.textContent = todo.date;
+        let dateText = "";
+        if (todo.date) {
+            dateText = formatDate(todo.date);
+        }
+        dateP.textContent = dateText;
 
         const deleteButton = document.createElement("button");
         deleteButton.classList.add("todoDeleteButton");
@@ -200,7 +223,11 @@ export function makeDomStuff (todoList, localStorage) {
         h5.textContent = todo.title;
 
         const dateP = item.querySelector("p");
-        dateP.textContent = todo.date;
+        let dateText = "";
+        if (todo.date) {
+            dateText = formatDate(todo.date);
+        }
+        dateP.textContent = dateText;
     
         // if the category was edited, move the todo from the old category to the new one
         if (todo.category != oldCategory) {
@@ -264,7 +291,19 @@ export function makeDomStuff (todoList, localStorage) {
             loadSelectedPriority(todoList.getCurrTodoEdit().priority);
 
             document.getElementById("titleInput").value = todoList.getCurrTodoEdit().title;
-            document.getElementById("dateInput").value = todoList.getCurrTodoEdit().date;
+            console.log(todoList.getCurrTodoEdit().date);
+            const todoDate = todoList.getCurrTodoEdit().date;
+            if (todoDate) {
+                let month = todoDate.getMonth() + 1;
+                if (month < 10) {
+                    month = "0" + month;
+                }
+                let day = todoDate.getDate();
+                if (day < 10) {
+                    day = "0" + day;
+                }
+                document.getElementById("dateInput").value = `${todoDate.getFullYear()}-${month}-${day}`;
+            }
             document.getElementById("descriptionInput").value = todoList.getCurrTodoEdit().description;
         }
     };
