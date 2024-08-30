@@ -18,10 +18,10 @@ export function init (todoList, domStuff, localStorage) {
             todoList.addCategory("school");
             domStuff.addCategory("ungrouped");
             domStuff.addCategory("school");
-            addTodo("welcome to tudu!", new Date(2024, 8, 15), 2, "ungrouped", ":D");
-            addTodo("click me to see more info or edit!", new Date(2024, 8, 15), 1, "ungrouped", "you can change any of these fields!");
-            addTodo("tudu uses your browser's local storage!", new Date(2024, 8, 29), 0, "ungrouped", "clear your cookies to reset tudu.");
-            addTodo("study for cs exam", new Date(2024, 8, 15), 1, "school", "i hope i ace this one!");
+            addTodo("welcome to tudu!", new Date(2024, 7, 15), 2, "ungrouped", ":D");
+            addTodo("click me :3", new Date(2024, 7, 29), 1, "ungrouped", "you can change any of these fields! tudu uses your browser's local storage, so clear your cookies to reset.");
+            addTodo("buy eggs", new Date(2024, 7, 31), 0, "ungrouped", "trader joes");
+            addTodo("study for cs exam", new Date(2024, 7, 15), 1, "school", "i hope i ace this one!");
             localStorage.update();
         }
         domStuff.switchTab("ungrouped");
