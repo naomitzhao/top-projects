@@ -1,7 +1,7 @@
 import Plus from '../assets/plus.svg';
 
 // initialization of various dom elements
-export function makeInit (categories, todoList, domStuff) {
+export function makeInit (todoList, domStuff) {
 
     // this plus sign icon shows the add task dialog form when clicked.
     const loadAddTask = function () {
@@ -38,8 +38,11 @@ export function makeInit (categories, todoList, domStuff) {
 
     // load the default categories of the app.
     const loadNav = function () {
+        todoList.addCategory("ungrouped");
+        todoList.addCategory("school");
         domStuff.addCategory("ungrouped");
         domStuff.addCategory("school");
+        domStuff.switchTab("ungrouped");
     };
 
     // the plus sign in the side bar makes a form to create a new category. 
@@ -64,7 +67,7 @@ export function makeInit (categories, todoList, domStuff) {
             }
             else {
                 domStuff.switchTab("ungrouped");
-                categories.deleteCategory(current);
+                todoList.deleteCategory(current);
                 domStuff.deleteCategory(current);
             }
         });

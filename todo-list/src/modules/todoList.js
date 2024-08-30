@@ -1,10 +1,11 @@
 import { getFormData } from "./formData";
 
 // the todo list handles all things to do with the actual data
-export function makeTodoList (categories) {
+export function makeTodoList () {
     const todos = [];
     let currTodoEdit = null;
     let idx = 0;
+    const categories = [];
 
     // make a new todo and add it to the todo array
     const addTodo = function (title, date, priority, category, description = ""){
@@ -77,5 +78,30 @@ export function makeTodoList (categories) {
         currTodoEdit = todo;
     }
 
-    return { addTodo, editTodo, handleFormSubmit, addTodoFromForm, editTodoFromForm, getCurrTodoEdit, setCurrTodoEdit }
+    // return the array of todos
+    const getTodos = function () {
+        return todos;
+    }
+
+    // return the array of categories
+    const getCategories = function () {
+        return categories;
+    }
+
+    // add a category to the categories array
+    const addCategory = function (category) {
+        categories.push(category);
+    }
+
+    // delete a category from the categories array
+    const deleteCategory = function (category) {
+        const idx = categories.indexOf(category);
+        if (idx > -1) {
+            idx.splice(idx, 1);
+        } else {
+            throw Error(category + " not found");
+        }
+    }
+
+    return { addTodo, editTodo, handleFormSubmit, addTodoFromForm, editTodoFromForm, getCurrTodoEdit, setCurrTodoEdit, getTodos, getCategories, addCategory, deleteCategory }
 }
