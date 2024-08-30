@@ -29,6 +29,15 @@ export function makeTodoList () {
         });
     };
 
+    // delete a todo from the todo list given its id
+    const deleteTodo = function (id) {
+        for (let i = 0; i < todos.length; i ++) {
+            if (todos[i].id == id) {
+                todos.splice(i, 1);
+            }
+        }
+    }
+
     const toggleTodoComplete = function (id) {
         todos.forEach((todo) => {
             if (todo.id == id) {
@@ -106,7 +115,7 @@ export function makeTodoList () {
     const deleteCategory = function (category) {
         const idx = categories.indexOf(category);
         if (idx > -1) {
-            idx.splice(idx, 1);
+            categories.splice(idx, 1);
         } else {
             throw Error(category + " not found");
         }
@@ -116,5 +125,5 @@ export function makeTodoList () {
         categories = Array.from(categoryArray);
     }
 
-    return { addTodo, editTodo, toggleTodoComplete, handleFormSubmit, addTodoFromForm, editTodoFromForm, getCurrTodoEdit, setCurrTodoEdit, getTodos, getCategories, addCategory, deleteCategory, setCategories }
+    return { addTodo, editTodo, deleteTodo, toggleTodoComplete, handleFormSubmit, addTodoFromForm, editTodoFromForm, getCurrTodoEdit, setCurrTodoEdit, getTodos, getCategories, addCategory, deleteCategory, setCategories }
 }

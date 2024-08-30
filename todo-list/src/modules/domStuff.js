@@ -15,7 +15,6 @@ export function makeDomStuff (todoList, localStorage) {
     };
 
     const formatDate = function(dateObj) {
-        console.log(dateObj);
         const daysOfWeek = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
         const dayText = daysOfWeek[dateObj.getDay()];
         let year = dateObj.getFullYear();
@@ -110,9 +109,11 @@ export function makeDomStuff (todoList, localStorage) {
             showDialog();
         });
 
-        // clicking the delete button deletes the todo from the DOM
+        // clicking the delete button deletes the todo
         deleteButton.addEventListener("click", () => {
             deleteTodo(todo);
+            todoList.deleteTodo(todo.id);
+            localStorage.update();
         });
     };
 
@@ -138,12 +139,18 @@ export function makeDomStuff (todoList, localStorage) {
             name.focus();
             newCategoryOpen = true;
 
+            function listAndDOMAddCategory (categoryName) {
+                categoryDivs.set(categoryName, []);
+                addCategory(categoryName);
+                todoList.addCategory(categoryName);
+                localStorage.update();
+                switchTab(categoryName);
+            }
+
             // create a new category when form submitted
             btn.addEventListener("click", () => {
                 if (name.value) {
-                    categoryDivs.set(name.value, []);
-                    addCategory(name.value);
-                    switchTab(name.value);
+                    listAndDOMAddCategory(name.value);
                 }
             });
 
@@ -151,9 +158,7 @@ export function makeDomStuff (todoList, localStorage) {
             name.addEventListener("keydown", (e) => {
                 if (e.key == 'Enter') {
                     if (name.value) {
-                        categoryDivs.set(name.value, []);
-                        addCategory(name.value);
-                        switchTab(name.value);
+                        listAndDOMAddCategory(name.value);
                     }
                 }
             });
@@ -198,8 +203,8 @@ export function makeDomStuff (todoList, localStorage) {
     const deleteCategory = function (category) {
         const categoryButton = document.getElementById("category-" + category);
         categoryButton.remove();
-
         categoryDivs.delete(category);
+        localStorage.update();
     }
 
     // switches the content div's content to a different category's content
@@ -291,7 +296,6 @@ export function makeDomStuff (todoList, localStorage) {
             loadSelectedPriority(todoList.getCurrTodoEdit().priority);
 
             document.getElementById("titleInput").value = todoList.getCurrTodoEdit().title;
-            console.log(todoList.getCurrTodoEdit().date);
             const todoDate = todoList.getCurrTodoEdit().date;
             if (todoDate) {
                 let month = todoDate.getMonth() + 1;
