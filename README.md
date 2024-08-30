@@ -54,6 +54,7 @@ Projects are listed in (mostly) **chronological order**, so see the later projec
 - Webpack
 - Module pattern
 - **Object-oriented programming**
+- **Local storage**
 
 ### [Weather App](https://naomitzhao.github.io/top-projects/weather-app/dist)
 - ES6 modules
