@@ -5,11 +5,11 @@ export function makeTodoList () {
     const todos = [];
     let currTodoEdit = null;
     let idx = 0;
-    const categories = [];
+    let categories = [];
 
     // make a new todo and add it to the todo array
-    const addTodo = function (title, date, priority, category, description = ""){
-        const todo = makeTodo(title, date, priority, category, description);
+    const addTodo = function (title, date, priority, category, description = "", complete){
+        const todo = makeTodo(title, date, priority, category, description, complete);
         todos.push(todo);
         return todo;
     };
@@ -29,15 +29,24 @@ export function makeTodoList () {
         });
     };
 
+    const toggleTodoComplete = function (id) {
+        todos.forEach((todo) => {
+            if (todo.id == id) {
+                todo.complete = !todo.complete;
+                return todo;
+            }
+        });
+    }
+
     // factory function to make todo objects
-    const makeTodo = function (title, date, priority, category, description) {
+    const makeTodo = function (title, date, priority, category, description, complete=false) {
         return {
             title: title,
             date: date,
             priority: priority, 
             category: category, 
             description: description,
-            complete: false, 
+            complete: complete, 
             id: idx++
         };
     };
@@ -65,7 +74,7 @@ export function makeTodoList () {
     // returns the edited todo
     const editTodoFromForm = function (taskId) {
         const data = getFormData();
-        return editTodo(taskId, data.title, data.date, data.priority, data.category, data.description);
+        return editTodo(taskId, data.title, data.date, data.priority, data.category, data.description, data.complete);
     };
 
     // getter for currTodoEdit
@@ -103,5 +112,9 @@ export function makeTodoList () {
         }
     }
 
-    return { addTodo, editTodo, handleFormSubmit, addTodoFromForm, editTodoFromForm, getCurrTodoEdit, setCurrTodoEdit, getTodos, getCategories, addCategory, deleteCategory }
+    const setCategories = function (categoryArray) {
+        categories = Array.from(categoryArray);
+    }
+
+    return { addTodo, editTodo, toggleTodoComplete, handleFormSubmit, addTodoFromForm, editTodoFromForm, getCurrTodoEdit, setCurrTodoEdit, getTodos, getCategories, addCategory, deleteCategory, setCategories }
 }

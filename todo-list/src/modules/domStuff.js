@@ -2,7 +2,7 @@ import Trash from '../assets/trash.svg';
 
 // domStuff handles the majority of dom manipulation in this app. 
 
-export function makeDomStuff (todoList) {
+export function makeDomStuff (todoList, localStorage) {
     let newCategoryOpen = false;
     let currentGroup = "ungrouped";
     const categoryDivs = new Map();
@@ -57,18 +57,27 @@ export function makeDomStuff (todoList) {
     
         item.append(priorityBar, itemContent);
         categoryDivs.get(todo.category).appendChild(item);
+
+        if (todo.complete == true) {
+            check.classList.add("checkedCheck");
+            h5.classList.add("checkedName");
+            item.classList.add("checkedItem");
+        }
     
-        // clicking the checkmark toggles the appearance of the item
+        // clicking the checkmark toggles the appearance of the item and toggles complete
         check.addEventListener("click", () => {
+            todoList.toggleTodoComplete(todo.id);
             if (check.classList.contains("checkedCheck")) {
                 check.classList.remove("checkedCheck");
                 h5.classList.remove("checkedName");
                 item.classList.remove("checkedItem");
+                localStorage.update();
             }
             else {
                 check.classList.add("checkedCheck");
                 h5.classList.add("checkedName");
                 item.classList.add("checkedItem");
+                localStorage.update();
             }
         });
     
@@ -150,7 +159,6 @@ export function makeDomStuff (todoList) {
         div.id = 'tasks';
         categoryDivs.set(category, div);
 
-        console.log(categoryDivs);
         closeAddCategory();
     };
 

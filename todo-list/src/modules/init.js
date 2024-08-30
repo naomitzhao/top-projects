@@ -1,7 +1,33 @@
 import Plus from '../assets/plus.svg';
 
 // initialization of various dom elements
-export function makeInit (todoList, domStuff) {
+export function init (todoList, domStuff, localStorage) {
+
+    const loadData = function () {
+        if (localStorage.isPopulated()) {
+            localStorage.loadCategories();
+            localStorage.loadTodos();
+            for (let category of todoList.getCategories()) {
+                domStuff.addCategory(category);
+            }
+            for (let todo of todoList.getTodos()) {
+                domStuff.addTodo(todo);
+            }
+        } else {
+            todoList.addCategory("ungrouped");
+            todoList.addCategory("school");
+            domStuff.addCategory("ungrouped");
+            domStuff.addCategory("school");
+            addTodo("welcome to tudu!", new Date(2024, 8, 15), 2, "ungrouped", ":D");
+            addTodo("click me to see more info or edit!", new Date(2024, 8, 15), 1, "ungrouped", "you can change any of these fields!");
+            addTodo("tudu uses your browser's local storage!", new Date(2024, 8, 29), 0, "ungrouped", "clear your cookies to reset tudu.");
+            addTodo("study for cs exam", new Date(2024, 8, 15), 1, "school", "i hope i ace this one!");
+            localStorage.update();
+        }
+        domStuff.switchTab("ungrouped");
+    }
+    
+    
 
     // this plus sign icon shows the add task dialog form when clicked.
     const loadAddTask = function () {
@@ -33,16 +59,8 @@ export function makeInit (todoList, domStuff) {
                 domStuff.addTodo(todoList.handleFormSubmit());
             }
             domStuff.hideDialog();
+            localStorage.update();
         });
-    };
-
-    // load the default categories of the app.
-    const loadNav = function () {
-        todoList.addCategory("ungrouped");
-        todoList.addCategory("school");
-        domStuff.addCategory("ungrouped");
-        domStuff.addCategory("school");
-        domStuff.switchTab("ungrouped");
     };
 
     // the plus sign in the side bar makes a form to create a new category. 
@@ -69,6 +87,7 @@ export function makeInit (todoList, domStuff) {
                 domStuff.switchTab("ungrouped");
                 todoList.deleteCategory(current);
                 domStuff.deleteCategory(current);
+                localStorage.update();
             }
         });
     }
@@ -78,10 +97,11 @@ export function makeInit (todoList, domStuff) {
     const addTodo = function (title, date, priority, category, description) {
         const todo = todoList.addTodo(title, date, priority, category, description);
         domStuff.addTodo(todo);
+        localStorage.update();
     };
 
+    loadData();
     loadAddTask();
-    loadNav();
     loadAddCategory();
     loadDeleteCategory();
 
