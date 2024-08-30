@@ -2,9 +2,10 @@ import Trash from '../assets/trash.svg';
 
 // domStuff handles the majority of dom manipulation in this app. 
 
-export function makeDomStuff (categories, todoList) {
+export function makeDomStuff (todoList, localStorage) {
     let newCategoryOpen = false;
     let currentGroup = "ungrouped";
+    const categoryDivs = new Map();
 
     const content = document.getElementById("content");
 
@@ -14,7 +15,6 @@ export function makeDomStuff (categories, todoList) {
     };
 
     const formatDate = function(dateObj) {
-        console.log(dateObj);
         const daysOfWeek = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
         const dayText = daysOfWeek[dateObj.getDay()];
         let year = dateObj.getFullYear();
@@ -78,19 +78,28 @@ export function makeDomStuff (categories, todoList) {
         itemContent.append(nameCheck, dateDelete);
     
         item.append(priorityBar, itemContent);
-        categories.get(todo.category).appendChild(item);
+        categoryDivs.get(todo.category).appendChild(item);
+
+        if (todo.complete == true) {
+            check.classList.add("checkedCheck");
+            h5.classList.add("checkedName");
+            item.classList.add("checkedItem");
+        }
     
-        // clicking the checkmark toggles the appearance of the item
+        // clicking the checkmark toggles the appearance of the item and toggles complete
         check.addEventListener("click", () => {
+            todoList.toggleTodoComplete(todo.id);
             if (check.classList.contains("checkedCheck")) {
                 check.classList.remove("checkedCheck");
                 h5.classList.remove("checkedName");
                 item.classList.remove("checkedItem");
+                localStorage.update();
             }
             else {
                 check.classList.add("checkedCheck");
                 h5.classList.add("checkedName");
                 item.classList.add("checkedItem");
+                localStorage.update();
             }
         });
     
@@ -100,9 +109,11 @@ export function makeDomStuff (categories, todoList) {
             showDialog();
         });
 
-        // clicking the delete button deletes the todo from the DOM
+        // clicking the delete button deletes the todo
         deleteButton.addEventListener("click", () => {
             deleteTodo(todo);
+            todoList.deleteTodo(todo.id);
+            localStorage.update();
         });
     };
 
@@ -128,12 +139,18 @@ export function makeDomStuff (categories, todoList) {
             name.focus();
             newCategoryOpen = true;
 
+            function listAndDOMAddCategory (categoryName) {
+                categoryDivs.set(categoryName, []);
+                addCategory(categoryName);
+                todoList.addCategory(categoryName);
+                localStorage.update();
+                switchTab(categoryName);
+            }
+
             // create a new category when form submitted
             btn.addEventListener("click", () => {
                 if (name.value) {
-                    categories.addCategory(name.value);
-                    addCategory(name.value);
-                    switchTab(name.value);
+                    listAndDOMAddCategory(name.value);
                 }
             });
 
@@ -141,9 +158,7 @@ export function makeDomStuff (categories, todoList) {
             name.addEventListener("keydown", (e) => {
                 if (e.key == 'Enter') {
                     if (name.value) {
-                        categories.addCategory(name.value);
-                        addCategory(name.value);
-                        switchTab(name.value);
+                        listAndDOMAddCategory(name.value);
                     }
                 }
             });
@@ -167,6 +182,11 @@ export function makeDomStuff (categories, todoList) {
         });
     
         nav.appendChild(btn);
+        
+        const div = document.createElement("div");
+        div.id = 'tasks';
+        categoryDivs.set(category, div);
+
         closeAddCategory();
     };
 
@@ -183,13 +203,17 @@ export function makeDomStuff (categories, todoList) {
     const deleteCategory = function (category) {
         const categoryButton = document.getElementById("category-" + category);
         categoryButton.remove();
+        categoryDivs.delete(category);
+        localStorage.update();
     }
 
     // switches the content div's content to a different category's content
     const switchTab = function (category) {
         content.querySelector("h2").textContent = category;
-        content.removeChild(document.getElementById("tasks"));
-        content.append(categories.get(category));
+        if (document.getElementById("tasks")) {
+            content.removeChild(document.getElementById("tasks"));
+        }
+        content.append(categoryDivs.get(category));
         currentGroup = category;
     };
 
@@ -213,9 +237,9 @@ export function makeDomStuff (categories, todoList) {
         // if the category was edited, move the todo from the old category to the new one
         if (todo.category != oldCategory) {
             item.remove();
-            categories.keys().forEach((key) => {
+            categoryDivs.forEach((key) => {
                 if (key == todo.category) {
-                    categories.get(key).appendChild(item);
+                    categoryDivs.get(key).appendChild(item);
                 }
             });
         }
@@ -232,7 +256,7 @@ export function makeDomStuff (categories, todoList) {
         const categoryDropDown = document.createElement("select");
         categoryDropDown.classList.add("addTaskInput");
         categoryDropDown.name = "category";
-        for (let category of categories.keys()){
+        for (let category of categoryDivs.keys()){
             const option = document.createElement("option");
             option.value = category;
             option.textContent = category;
@@ -272,7 +296,6 @@ export function makeDomStuff (categories, todoList) {
             loadSelectedPriority(todoList.getCurrTodoEdit().priority);
 
             document.getElementById("titleInput").value = todoList.getCurrTodoEdit().title;
-            console.log(todoList.getCurrTodoEdit().date);
             const todoDate = todoList.getCurrTodoEdit().date;
             if (todoDate) {
                 let month = todoDate.getMonth() + 1;
@@ -305,8 +328,6 @@ export function makeDomStuff (categories, todoList) {
         });
         todoList.setCurrTodoEdit(null);
     };
-
-    content.append(categories.get("ungrouped"));
 
     return { getCurrentGroup, addTodo, handleClickAddCategory, addCategory, deleteCategory, switchTab, editTodo, showDialog, hideDialog, clearDialog };
 }
